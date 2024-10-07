@@ -1,0 +1,75 @@
+@use '../../styles/abstracts' as *;
+
+// Container
+.flayout {
+  --flayout-body-background: var(--color-background);
+  --flayout-body-border-radius: var(--border-radius-base);
+  --flayout-body-border: 0;
+  --flayout-body-box-shadow: var(--box-shadow-base);
+  --flayout-body-color: var(--color-text);
+  --flayout-body-width: var(--width-medium);
+
+  position: relative;
+}
+
+.flayout__body {
+  background-color: var(--flayout-body-background);
+  border-radius: var(--flayout-body-border-radius);
+  border: var(--flayout-body-border);
+  box-shadow: var(--flayout-body-box-shadow);
+  color: var(--flayout-body-color);
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  margin: 0;
+  padding: var(--padding-small) var(--padding-medium);
+  position: absolute;
+  width: var(--flayout-body-width);
+  z-index: var(--zindex-flayout);
+
+  // Position adjustments
+  .is-up > & {
+    bottom: 100%;
+  }
+
+  .is-right > & {
+    left: auto;
+    right: 0;
+  }
+}
+
+// Summary Marker
+.flayout summary::after {
+  background-image: var(--icon-chevron);
+  background-position: right center;
+  background-repeat: no-repeat;
+  content: '';
+  display: block;
+  width: var(--size-icon);
+  height: var(--size-icon);
+}
+
+// Share Specific Styles
+.flayout.is-share {
+  summary {
+    border-radius: var(--border-radius-small);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--padding-small);
+
+    &:hover {
+      background-color: var(--color-background-hover);
+    }
+
+    &::after {
+      display: none;
+    }
+  }
+
+  .flayout__body {
+    bottom: var(--size-offset);
+    right: calc(var(--size-offset) * -1);
+    left: auto;
+  }
+}

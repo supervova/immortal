@@ -1,0 +1,50 @@
+{% set site = {
+  lang: 'ru',
+  title: {
+    ru: '_Project',
+    en: '_Project'
+  },
+  desc: {
+    ru: '_project tagline ru',
+    en: '_project tagline en'
+  },
+  url: 'https://www._project.tld',
+  theme: '/assets/',
+  css: '/assets/css/main.css',
+  logo: 'img/components/icon/icon-192.png',
+  img: '/assets/images/cover.png',
+  icon: {
+    lg: '/assets/img/components/icon/icon-192.png',
+    svg: '/assets/img/components/icon/favicon.svg'
+  },
+  color: '#f00',
+  fonts: {
+    google: 'Inter:wght@300;400;600'
+  },
+  social: {
+    facebook: '_project'
+  },
+  author: {
+    summary: 'Vladimir Nikishin, www.super-mark.ru',
+    twitter: '@supervova',
+  }
+} %}
+
+{% set company = {
+  title: site.title,
+  city: {
+    ru: 'Херцег-Нови',
+    en: 'Herceg Novi',
+  },
+  country: {
+    ru: 'Черногория',
+    en: 'Montenegro',
+  },
+  postalCode: '85340',
+  phone: '+382 69 184524',
+  map: 'https://google-or-yandex-map-link'
+} %}
+
+{% set now = "now"|date('Y-m-d H:i:s') %}
+{% set current_year = "now"|date('Y') %}
+{% set timestamp = "now"|date('U') %}

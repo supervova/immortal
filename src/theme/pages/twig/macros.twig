@@ -1,0 +1,68 @@
+{# Using:
+{% from "pages/twig/macros.twig" import icon %}
+
+{{ icon('like') }}
+{{ icon('share', 'is-lg') }} #}
+
+{# Icon #}
+{% macro icon(name, classes='') %}
+  {% set icon_classes = ['icon', 'is-' ~ name, classes]|join(' ')|trim %}
+  <svg class="{{ icon_classes }}" aria-hidden="true" focusable="false">
+    <use xlink:href="/assets/img/components/icon/sprite.svg#icon-{{ name }}"></use>
+  </svg>
+{% endmacro %}
+
+{# Button #}
+{% macro button(label, iconName=false, classes='', iconOnly=false, type='button', action='') %}
+  <button class="btn {{ classes }}" type="{{ type }}" {% if action %}data-action="{{ action }}"{% endif %}>
+    {% if iconName %}{{ _self.icon(iconName) }}{% endif %}
+    <span {% if iconOnly %}class="visually-hidden"{% endif %}>{{ label }}</span>
+  </button>
+{% endmacro %}
+
+{# Menu Item #}
+{% macro menu_item(label, iconStart, action='', hotkey=false, iconEnd=false) %}
+  <button class="menu-item" role="menuitem" {% if action %}data-action="{{ action }}"{% endif %}>
+    {{ _self.icon(iconStart) }}
+    <span class="menu-label">{{ label }}</span>
+    {% if hotkey %}<kbd class="menu-hotkey">{{ hotkey }}</kbd>{% endif %}
+    {% if iconEnd %}{{ _self.icon(iconEnd) }}{% endif %}
+  </button>
+{% endmacro %}
+
+{# Form item #}
+{% macro form_item(label, name, type='text', labelClass='', alert=false, inputmode='', value='', maxlength='', pattern='', required=false, placeholder='') %}
+  <label for="form-{{ name }}" class="{{ labelClass }}">{{ label }}</label>
+  <input
+    id="form-{{ name }}"
+    name="{{ name }}"
+    type="{{ type }}"
+    {% if inputmode %}inputmode="{{ inputmode }}"{% endif %}
+    {% if value %}value="{{ value }}"{% endif %}
+    {% if maxlength %}maxlength="{{ maxlength }}"{% endif %}
+    {% if pattern %}pattern="{{ pattern }}"{% endif %}
+    {% if required %}required{% endif %}
+    {% if placeholder %}placeholder="{{ placeholder }}"{% endif %}
+  >
+  {% if alert %}
+    <small role="alert">{{ alert }}</small>
+  {% endif %}
+{% endmacro %}
+
+{# List view snippet #}
+{% macro snippet(title, summary, img=false, link='#', id='') %}
+  <article class="snippet" id="{{ id }}" itemscope itemtype="http://schema.org/Article">
+    {% if img %}
+      <figure class="snippet__img">
+        <img src="/assets/img/{{ img }}" alt="{{ title }}">
+      </figure>
+    {% endif %}
+    <div class="snippet__copy">
+      <a href="{{ link }}">
+        <h3 itemprop="headline">{{ title }}</h3>
+      </a>
+      <p itemprop="description">{{ summary }}</p>
+    </div>
+  </article>
+{% endmacro %}
+

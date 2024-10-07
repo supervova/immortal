@@ -1,0 +1,110 @@
+@use '../../styles/abstracts' as *;
+
+/* Base menu styles */
+.menu {
+  --menu-color: var(--color-ink);
+  --menu-item-padding: var(--padding-item);
+  --menu-padding: var(--padding-menu);
+  --menu-item-height: var(--item-height);
+
+  display: flex;
+  flex-direction: column;
+  list-style-type: none;
+  padding: var(--menu-padding);
+  width: 100%;
+
+  li {
+    display: block;
+    position: relative;
+    padding: 0;
+
+    &::marker {
+      display: none;
+    }
+  }
+
+  @media (--tablet) {
+    li:not(:last-child) {
+      margin-bottom: var(--margin-item);
+    }
+  }
+}
+
+/* Menu item link */
+.menu__item {
+  @include menu-item;
+
+  &[aria-current] {
+    background-color: var(--color-current);
+    cursor: default;
+    pointer-events: none;
+  }
+}
+
+/* Subtitle styles */
+.menu__subtitle {
+  font-size: var(--font-size-subtitle);
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  line-height: var(--line-height-subtitle);
+  color: var(--color-subtitle);
+  text-transform: uppercase;
+  margin-top: var(--margin-top-subtitle);
+  margin-bottom: var(--margin-bottom-subtitle);
+  padding-top: var(--padding-top-subtitle);
+  padding-bottom: var(--padding-bottom-subtitle);
+  padding-inline: var(--padding-inline-subtitle);
+
+  > a {
+    color: var(--color-link);
+  }
+}
+
+/* Text truncation for labels */
+.menu__item > .label {
+  @include text-truncate;
+
+  flex-grow: 1;
+  min-width: 0;
+}
+
+/* Divider styles */
+.menu__divider {
+  border-top: 1px solid var(--color-divider);
+  height: 0;
+}
+
+/* Section item style */
+.menu__section .menu__item::before {
+  color: var(--color-icon);
+  content: '\2022\00a0';
+  align-self: flex-start;
+}
+
+/* Feedback success message */
+.menu__feedback-success {
+  @include text-truncate;
+
+  color: var(--color-success);
+  position: absolute;
+  top: var(--top-feedback);
+  left: var(--left-feedback);
+  right: var(--right-feedback);
+  opacity: 0;
+  pointer-events: none;
+
+  &,
+  + .menu__item {
+    transition: opacity var(--transition-duration) var(--transition-easing);
+  }
+
+  &.is-visible {
+    opacity: 1;
+    pointer-events: all;
+
+    + .menu__item {
+      pointer-events: none;
+      opacity: 0;
+    }
+  }
+}
