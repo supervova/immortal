@@ -196,31 +196,31 @@ html(data-theme='light')
 
   ```scss
   // Микровзаимодействия с малыми объектами: кнопками, переключателями etc
-  var(--duration-xxs): .07s !default;
+  var(--duration-50): .07s !default;
 
   /* Микровзаимодействия типа переходов fade out / fade in (затемнения / выхода
   из затемнения; растворения / выхода из прозрачности) */
-  var(--duration-xxs):  .11s !default;
+  var(--duration-50):  .11s !default;
 
   /* Микровзаимодействия, раскрытие небольших блоков, перемещения на небольшие
   расстояния */
-  var(--duration-sm):  .15s !default;
+  var(--duration-200):  .15s !default;
 
   // Раскрытие средних блоков, тосты, системные сообщения
-  var(--duration-md):  .24s !default;
+  var(--duration-500):  .24s !default;
 
   // Раскрытие больших блоков, важные сообщения
-  var(--duration-lg):  .4s !default;
+  var(--duration-700):  .4s !default;
 
   // Смена фонового цвета
-  var(--duration-xl):  .7s !default;
+  var(--duration-900):  .7s !default;
   ```
 
-- Длительность сложных полноэкранных анимаций можно задавать увеличением одного из стартных периодов в несколько раз. Например, `var(--duration-lg) * 4`.
+- Длительность сложных полноэкранных анимаций можно задавать увеличением одного из стартных периодов в несколько раз. Например, `var(--duration-700) * 4`.
 - Для расчета новой шкалы можно использовать коэффициент геометрической прогрессии — также, как в размерной шкале шрифта. Например, малую септиму: 1.778 (9:16).
 - Элементы в идеале должны исчезать с экрана быстрее, чем появляться. Для этого используем свойство `transition` в обоих положениях.
 
   ```scss
-  .el { transition: all (var(--duration-md) * .8) $motion-easing-disappearance; }
-  .el.is-hidden { transition: all var(--duration-md) $motion-easing-appearance; }
+  .el { transition: all (var(--duration-500) * .8) $motion-easing-disappearance; }
+  .el.is-hidden { transition: all var(--duration-500) $motion-easing-appearance; }
   ```

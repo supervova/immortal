@@ -264,22 +264,22 @@
   // #region
 
   // Micro-interactions such as button and toggle
-  --duration-xxs: 0.07s;
+  --duration-50: 0.07s;
 
   // Micro-interactions such as fade
-  --duration-xs: 0.11s;
+  --duration-100: 0.11s;
 
   // Micro-interactions, small expansion, short distance movements
-  --duration-sm: 0.15s;
+  --duration-200: 0.15s;
 
   // Expansion, system communication, toast
-  --duration-md: 0.24s;
+  --duration-500: 0.24s;
 
   // Large expansion, important system notifications
-  --duration-lg: 0.4s;
+  --duration-700: 0.4s;
 
   // Background dimming
-  --duration-xl: 0.7s;
+  --duration-900: 0.7s;
 
   --easing-base: cubic-bezier(0.2, 0, 0.38, 0.9);
   --easing-appearance: cubic-bezier(0, 0, 0.38, 0.9);

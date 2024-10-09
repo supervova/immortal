@@ -1,6 +1,7 @@
 # Working stuff
 *~.*
 .obsidian
+assets
 deploy.sh
 dist
 
@@ -9,6 +10,7 @@ docs/_index.md
 docs/_tmp.md
 docs/arj
 docs/content/onboarding-insp.md
+docs/content/prompts.md
 docs/rnd/bot-software.md
 docs/rnd/cjm.md
 docs/rnd/competitors.md
@@ -83,3 +85,4 @@ Desktop.ini
 Thumbs.db
 ehthumbs.db
 ehthumbs_vista.db
+

@@ -22,7 +22,7 @@
   padding: 0;
   position: fixed;
   inset: 0;
-  transition: opacity var(--duration-md) var(--easing-base);
+  transition: opacity var(--duration-500) var(--easing-base);
   opacity: 1;
   width: inherit;
   min-width: 100%;
@@ -53,8 +53,8 @@
   overflow-y: auto;
   position: fixed;
   inset: 0;
-  transition: translate var(--duration-md) var(--easing-base),
-              opacity var(--duration-md) var(--easing-base);
+  transition: translate var(--duration-500) var(--easing-base),
+              opacity var(--duration-500) var(--easing-base);
   translate: 0;
   width: min(100%, var(--width-xl));
   height: calc(100% - var(--size-5));

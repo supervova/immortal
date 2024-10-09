@@ -103,7 +103,7 @@ input:not([type='checkbox']):not([type='radio']):not([type='submit']):not([type=
   display: block;
   padding-block: var(--padding-y-input);
   overflow: visible;
-  transition: box-shadow var(--easing-base) var(--duration-xxs), color var(--easing-base) var(--duration-xxs);
+  transition: box-shadow var(--easing-base) var(--duration-50), color var(--easing-base) var(--duration-50);
   width: 100%;
   min-height: calc(var(--size-line) * 2);
 

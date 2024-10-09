@@ -154,9 +154,9 @@ hr {
   text-decoration: none;
   outline: none;
   transition:
-    background-color var(--duration-xxs),
-    color var(--duration-xxs),
-    text-decoration var(--duration-xxs);
+    background-color var(--duration-50),
+    color var(--duration-50),
+    text-decoration var(--duration-50);
 
   &:is(:active, :focus-visible) {
     @include state-hover-a;

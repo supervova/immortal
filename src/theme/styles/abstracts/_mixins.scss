@@ -272,7 +272,7 @@
   position: absolute;
   top: var(--chevron-top, var(--size-2));
   inset-inline-end: var(--chevron-end, var(--size-2));
-  transition: transform var(--duration-xxs) var(--easing-base);
+  transition: transform var(--duration-50) var(--easing-base);
   width: $icon-size;
   height: $icon-size;
 }
@@ -374,8 +374,8 @@
   outline: 0;
   user-select: none;
   transition:
-    background var(--duration-xxs),
-    color var(--duration-xxs);
+    background var(--duration-50),
+    color var(--duration-50);
   width: 100%;
 
   > * {
@@ -409,8 +409,8 @@
   // Disable gestures like ‘double-tap to zoom’.
   touch-action: manipulation;
   transition:
-    background var(--duration-xxs) var(--easing-base),
-    box-shadow var(--duration-xxs) var(--easing-base);
+    background var(--duration-50) var(--easing-base),
+    box-shadow var(--duration-50) var(--easing-base);
   user-select: none;
   vertical-align: middle;
   // HACK: By default, flex items won’t shrink below their minimum content size
@@ -444,8 +444,8 @@
   padding-block: var(--padding-y-btn);
   padding-inline: var(--padding-x-btn);
   transition:
-    background var(--duration-xxs) var(--easing-base),
-    box-shadow var(--duration-xxs) var(--easing-base);
+    background var(--duration-50) var(--easing-base),
+    box-shadow var(--duration-50) var(--easing-base);
   max-width: 100%;
   height: var(--height-btn);
 
@@ -474,8 +474,8 @@
 @mixin button-primary() {
   text-shadow: 0 1px 0 var(--color-ink-min);
   transition:
-    filter var(--duration-xxs) var(--easing-base),
-    box-shadow var(--duration-xxs) var(--easing-base);
+    filter var(--duration-50) var(--easing-base),
+    box-shadow var(--duration-50) var(--easing-base);
 
   @include button(
     $btn-background: var(--color-brand-gradient),
