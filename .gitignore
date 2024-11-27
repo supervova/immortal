@@ -17,6 +17,7 @@ docs/rnd/competitors.md
 docs/rnd/logo-ideas.md
 docs/rnd/sales-business-process.md
 docs/rnd/terms.md
+src/templates/html-ipsum.twig
 
 # Media Files
 *.avi
@@ -85,4 +86,3 @@ Desktop.ini
 Thumbs.db
 ehthumbs.db
 ehthumbs_vista.db
-
