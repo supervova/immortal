@@ -1,0 +1,113 @@
+// stylelint-disable selector-no-qualifying-type
+
+@use '../abstracts' as *;
+
+// Container
+/* form */
+[role='search'] {
+  position: relative;
+
+  @media (--phone), (--phone-l-height) {
+    background: var(--color-bg-base);
+    display: flex;
+    padding: var(--size-1) var(--size-2);
+    max-width: 100%;
+    height: var(--size-8);
+  }
+
+  @media (--tablet) {
+    top: -24vh;
+  }
+}
+
+// Input
+[type='search'] {
+  border-radius: var(--border-radius-pill);
+  // Correct the outline style in Safari
+  outline-offset: -2px;
+  padding-right: var(--size-3);
+  padding-inline-end: var(--size-3);
+  padding-left: var(--size-6);
+  padding-inline-start: var(--size-6);
+
+  @media (--phone), (--phone-l-height) {
+    max-width: none;
+  }
+
+  @media (--tablet) {
+    // Correct the odd appearance in Chrome and Safari
+    // stylelint-disable-next-line property-no-vendor-prefix
+    -webkit-appearance: textfield;
+    border-radius: var(--border-radius-sm);
+    font-size: var(--font-size-base);
+    width: var(--width-lg);
+    height: var(--size-6);
+  }
+}
+
+// Cancel button
+[type='search']::-webkit-search-cancel-button {
+  appearance: none;
+  background: var(--icon-add) no-repeat center;
+  cursor: pointer;
+  margin-right: calc(var(--size-1) * -1);
+  margin-inline-end: calc(var(--size-1) * -1);
+  rotate: 45deg;
+  height: var(--size-3);
+  width: var(--size-3);
+
+  // Hide on desktop. It's easy select and delete a query with keyboard and mouse
+  @media (pointer: fine) {
+    display: none;
+  }
+}
+
+[type='search']::-webkit-search-decoration {
+  // Remove the inner padding in Chrome and Safari on macOS
+  appearance: none;
+}
+
+// BUTTONS
+
+// Disable search button when input is empty
+:where([role='search']) [type='submit'] {
+  border-radius: var(--border-radius-sm);
+  opacity: 0.5;
+  pointer-events: none;
+  position: absolute;
+  top: 50%;
+  left: var(--size-2p5);
+  translate: 0 -50%;
+
+  &:active {
+    box-shadow: inset 0 0 0 4px var(--color-bg-2ry);
+  }
+
+  @media (any-hover: hover) and (pointer: fine) {
+    &:hover {
+      box-shadow: inset 0 0 0 4px var(--color-bg-2ry);
+    }
+  }
+
+  @media (--tablet) {
+    left: var(--size-half);
+  }
+}
+
+:where([role='search'] input:not(:placeholder-shown)) + [type='submit'] {
+  pointer-events: auto;
+  opacity: 1;
+}
+
+// Cancel
+:where([role='search']) [data-role='close-modal'] {
+  color: var(--color-ink-2ry);
+  font-weight: 500;
+  padding-right: 0;
+  padding-left: var(--size-2);
+  translate: 0 (-1 * rem(3));
+
+  @media (--tablet) {
+    display: none;
+  }
+}

@@ -24,10 +24,13 @@ import newer from 'gulp-newer';
 import notify from 'gulp-notify';
 import plumber from 'gulp-plumber';
 import postcss from 'gulp-postcss';
-import pug from 'gulp-pug';
+import prettify from 'gulp-prettier';
+// import purge from '@fullhuman/postcss-purgecss';
+import replace from 'gulp-replace';
 import size from 'gulp-size';
 import sourcemaps from 'gulp-sourcemaps';
 import svgSprite from 'gulp-svg-sprite';
+import twig from 'gulp-twig';
 import yargs from 'yargs';
 import { createGulpEsbuild } from 'gulp-esbuild';
 import { deleteAsync } from 'del';
@@ -50,10 +53,10 @@ const PRODUCTION = argv.p;
 // #region
 const root = {
   src: './src',
-  tmp: './src/assets',
   dest: {
-    site: './dist',
-    assets: './dist/assets',
+    prod: './public', // для production
+    dev: './dist', // для разработки
+    assets: './public/assets', // assets всегда в public
   },
 };
 
@@ -63,51 +66,55 @@ const destAssets = root.dest.assets;
 const paths = {
   css: {
     src: {
-      main: `${srcBase}/main.scss`,
+      main: `${srcBase}/assets/scss/main.scss`,
+      home: `${srcBase}/assets/scss/pages/home.scss`,
     },
-    watch: `${srcBase}/**/*.scss`,
+    watch: `${srcBase}/assets/scss/**/*.scss`,
     tmp: `${srcBase}/assets/css/`,
     dest: `${destAssets}/css/`,
   },
   markup: {
     src: {
-      pug: [`${srcBase}/pages/**/*.pug`, `!${srcBase}/pages/pug/*.pug`],
+      twig: [
+        `${srcBase}/templates/**/*.twig`,
+        `!${srcBase}/templates/base/*.twig`,
+        `!${srcBase}/templates/components/*.twig`,
+      ],
     },
-    watch: [`${srcBase}/**/*.pug`],
-    dest: `${root.dest.site}`,
+    watch: [`${srcBase}/templates/**/*.twig`, `${destAssets}/css/home.css`],
+    dest: `${root.dest.dev}`,
   },
   img: {
-    src: {
-      graphics: [
-        `${srcBase}/**/*.{jpg,png,gif,svg}`,
-        `!${srcBase}/base/graphics/sprite/*.svg`,
-        `!${srcBase}/img/**/*`,
-      ],
-      content: `${srcBase}/img/**/*.{jpg,png,gif,svg,webp}`,
-    },
-    watch: [
-      `${srcBase}/**/*.{jpg,png,gif,svg}`,
-      `!${srcBase}/base/graphics/sprite/*.svg`,
+    src: [
+      `${srcBase}/assets/img/**/*.{jpg,png,gif,svg}`,
+      `!${srcBase}/assets/img/icons/*.svg`,
+      `!${srcBase}/assets/img/icons-bg/*`,
     ],
     dest: `${destAssets}/img/`,
   },
   svg: {
-    src: `${srcBase}/base/graphics/sprite/*.svg`,
-    dest: `${srcBase}/base/graphics`,
+    src: `${srcBase}/assets/img/icons/*.svg`,
+    dest: `${destAssets}/img`,
   },
   js: {
-    src: `${srcBase}/main.js`,
+    src: `${srcBase}/assets/js`, // папка с исходниками
+    entry: {
+      main: `${srcBase}/assets/js/main.js`, // основная точка входа
+      home: `${srcBase}/assets/js/home.js`,
+    },
+    watch: `${srcBase}/assets/js/*.js`,
     dest: `${destAssets}/js/`,
   },
   video: {
-    src: [`${srcBase}/**/*.mp4`, `!${srcBase}/_arj/**/*.mp4`],
+    src: `${srcBase}/assets/video/**/*.mp4`,
     dest: `${destAssets}/video`,
   },
-  rootFiles: {
-    src: ['./*.html', './CNAME', './favicon.ico', 'manifest.json'],
-    dest: `${root.dest.site}`,
+  fonts: {
+    src: `${srcBase}/assets/fonts/**/*.{woff2,ttf}`,
+    dest: `${destAssets}/fonts/`,
   },
 };
+
 // #endregion
 
 /**
@@ -116,13 +123,19 @@ const paths = {
  * -----------------------------------------------------------------------------
  */
 // #region
-const clean = () =>
+const cleanDist = () =>
   deleteAsync([
+    `${root.dest.dev}/**/*`, // Очищаем dist
     `${paths.css.dest}/**/*.css`,
     `${paths.js.dest}/**/*.js`,
-    `${paths.img.dest}/**/*.img`,
+    `${paths.img.dest}/**/*`,
   ]);
+
+const cleanPages = () => deleteAsync([`${paths.markup.dest}/**/*.html`]);
+
 const cleanSrc = () => deleteAsync([`${srcBase}/**/*.css`]);
+
+const clean = parallel(cleanDist, cleanSrc, cleanPages);
 // #endregion
 
 /**
@@ -141,22 +154,33 @@ const handleError = (title) => {
 };
 
 const js = () => {
-  return src(paths.js.src)
-    .pipe(handleError('JS Compile Error'))
-    .pipe(
-      gulpEsbuild({
-        outfile: 'main.js',
-        bundle: true,
-        minify: PRODUCTION,
-      }).on('error', function errorHandler(err) {
-        // eslint-disable-next-line no-console
-        console.error('Error in esbuild:', err.message);
-        this.emit('end');
-      })
+  const entries = Object.entries(paths.js.entry);
+
+  return Promise.all(
+    entries.map(([name, entry]) =>
+      src(entry)
+        .pipe(handleError('JS Compile Error'))
+        .pipe(
+          gulpEsbuild({
+            outfile: `${name}.js`, // Каждому файлу своё имя
+            bundle: true,
+            minify: PRODUCTION,
+            define: {
+              'process.env.NODE_ENV': JSON.stringify(
+                PRODUCTION ? 'production' : 'development'
+              ),
+            },
+          }).on('error', function errorHandler(err) {
+            console.error('Error in esbuild:', err.message);
+            this.emit('end');
+          })
+        )
+        .pipe(dest(paths.js.dest))
+        .pipe(bsInstance.stream())
     )
-    .pipe(dest(paths.js.dest))
-    .pipe(bsInstance.stream());
+  );
 };
+
 // #endregion
 
 /**
@@ -169,10 +193,13 @@ const copyVideo = () =>
   src(paths.video.src, { encoding: false })
     .pipe(changed(paths.video.dest))
     .pipe(dest(paths.video.dest));
-const copyRootFiles = () =>
-  src(paths.rootFiles.src, { encoding: false })
-    .pipe(changed(paths.rootFiles.dest))
-    .pipe(dest(paths.rootFiles.dest));
+
+const copyFonts = () =>
+  src(paths.fonts.src, { encoding: false })
+    .pipe(changed(paths.fonts.dest))
+    .pipe(dest(paths.fonts.dest));
+
+const copy = parallel(copyFonts, copyVideo);
 // #endregion
 
 /**
@@ -181,8 +208,8 @@ const copyRootFiles = () =>
  * -----------------------------------------------------------------------------
  */
 // #region
-const imgTasks = (source, subtitle) =>
-  src(source, { encoding: false })
+const img = (done) => {
+  src(paths.img.src, { encoding: false })
     .pipe(newer(paths.img.dest))
     .pipe(
       imagemin(
@@ -213,20 +240,54 @@ const imgTasks = (source, subtitle) =>
       )
     )
     .pipe(dest(paths.img.dest))
-    .pipe(size({ title: `images: ${subtitle}` }));
-
-const imgGraphics = (done) => {
-  imgTasks(paths.img.src.graphics, 'graphics');
+    .pipe(size({ title: 'images' }));
   done();
 };
+// #endregion
 
-const imgContent = (done) => {
-  imgTasks(paths.img.src.content, 'content');
+/**
+ * -----------------------------------------------------------------------------
+ * 📰 PAGES
+ * -----------------------------------------------------------------------------
+ */
+// #region
+
+const pages = (done) => {
+  src(paths.markup.src.twig, { base: './src/templates' })
+    .pipe(
+      plumber({
+        handleError(err) {
+          console.log(err);
+          this.emit('end');
+        },
+      })
+    )
+    .pipe(
+      twig({
+        base: './src/templates',
+        filters: [
+          {
+            name: 'trans',
+            func(string) {
+              return string;
+            },
+          },
+        ],
+      })
+    )
+    .on('error', function errorHandler(err) {
+      process.stderr.write(`${err.message}\n`);
+      this.emit('end');
+    })
+    .pipe(replace(/\{\$(.*?)\}/g, ''))
+    .pipe(prettify({ printWidth: 40000, bracketSameLine: true }))
+    .pipe(replace(/ (\s*<style>\n)\s*@charset "UTF-8";/g, '$1'))
+    .pipe(replace(/\s\/>/g, '>'))
+    .pipe(size({ title: 'html' }))
+    .pipe(dest(paths.markup.dest))
+    .pipe(bsInstance.stream());
   done();
 };
-
-// OPTIMIZE
-const img = parallel(imgGraphics, imgContent);
 // #endregion
 
 /**
@@ -235,7 +296,15 @@ const img = parallel(imgGraphics, imgContent);
  * -----------------------------------------------------------------------------
  */
 // #region
-const processStyles = (source, subtitle, destination /* , purgeContent */) =>
+// const selectorsToIgnore = ['button', /^(is-|has-)/, /^(.*?)(m|p)(t|b)-/];
+
+const processStyles = (
+  source,
+  subtitle,
+  destination,
+  // purgeContent,
+  forceProduction = false
+) =>
   src(source)
     .pipe(newer(destination))
     .pipe(
@@ -243,7 +312,7 @@ const processStyles = (source, subtitle, destination /* , purgeContent */) =>
         errorHandler: notify.onError('Error: <%= error.message %>'),
       })
     )
-    .pipe(gulpif(!PRODUCTION, sourcemaps.init()))
+    .pipe(gulpif(!(PRODUCTION || forceProduction), sourcemaps.init()))
     .pipe(
       sassCompiler({
         precision: 4,
@@ -277,9 +346,9 @@ const processStyles = (source, subtitle, destination /* , purgeContent */) =>
           },
           autoprefixer: { cascade: false },
         }),
-        ...(PRODUCTION
+        ...(PRODUCTION || forceProduction
           ? [
-              // Uncomment and configure purge if needed
+              // Configure purge if needed
               // purge({
               //   content: purgeContent,
               //   dynamicAttributes: ['aria-selected'],
@@ -302,12 +371,12 @@ const processStyles = (source, subtitle, destination /* , purgeContent */) =>
             ]),
       ])
     )
-    .pipe(gulpif(!PRODUCTION, sourcemaps.write()))
+    .pipe(gulpif(!(PRODUCTION || forceProduction), sourcemaps.write()))
     .pipe(size({ title: `styles: ${subtitle}` }))
     .pipe(dest(destination))
     .pipe(bsInstance.stream());
 
-const css = (done) => {
+const cssBase = (done) => {
   processStyles(
     paths.css.src.main,
     'main',
@@ -316,6 +385,19 @@ const css = (done) => {
   );
   done();
 };
+
+const cssHome = (done) => {
+  processStyles(
+    paths.css.src.home,
+    'home',
+    paths.css.dest,
+    // [`${srcBase}/pages/uncss/**/*.html`],
+    true // Force production mode
+  );
+  done();
+};
+
+const css = series(cssBase, cssHome);
 // #endregion
 
 /**
@@ -347,22 +429,7 @@ function svg() {
     .pipe(dest(paths.svg.dest));
 }
 
-const sprite = series(svg, parallel(css, imgGraphics));
-// #endregion
-
-/**
- * -----------------------------------------------------------------------------
- * 📰 MARKUP
- * -----------------------------------------------------------------------------
- */
-// #region
-const buildPug = () =>
-  src(paths.markup.src.pug)
-    .pipe(plumber())
-    .pipe(pug({ doctype: 'html', pretty: true, basedir: srcBase }))
-    .pipe(size({ title: 'html' }))
-    .pipe(dest(paths.markup.dest))
-    .pipe(bsInstance.stream());
+const sprite = series(svg, parallel(css, img));
 // #endregion
 
 /**
@@ -378,15 +445,21 @@ const reload = (done) => {
 
 const watchFiles = () => {
   watch(paths.css.watch, series(css));
-  watch(paths.js.src, series(js));
-  watch(paths.markup.watch, series(buildPug));
-  watch(paths.img.watch, series(img, reload));
-  watch(paths.rootFiles.src, series(copyRootFiles, reload));
+  watch(paths.js.watch, series(js));
+  watch([paths.markup.watch], series(pages));
+  watch(paths.svg.src, series(svg, parallel(css, img), reload));
+  watch(paths.img.src, series(img, reload));
 };
 
 const serve = (done) => {
   bsInstance.init({
-    server: { baseDir: root.dest.site },
+    server: {
+      baseDir: root.dest.dev, // Основная директория - dist
+      routes: {
+        '/assets': root.dest.assets,
+        '/manifest.json': `${root.dest.prod}/manifest.json`,
+      },
+    },
     port: 9000,
     notify: false,
   });
@@ -401,13 +474,9 @@ const serve = (done) => {
  * -----------------------------------------------------------------------------
  */
 // #region
-const build = series(
-  clean,
-  parallel(img, buildPug, css, js, copyVideo, copyRootFiles)
-);
+const build = series(clean, svg, parallel(img, css, js, copyVideo));
 
-const dev = series(build, serve);
-
+const dev = series(build, pages, serve);
 // #endregion
 
 /**
@@ -415,20 +484,17 @@ const dev = series(build, serve);
  * ☑️ TASKS
  * -----------------------------------------------------------------------------
  */
-
 export {
-  cleanSrc,
   clean,
-  copyVideo as copy,
-  copyRootFiles,
-  buildPug as pug,
+  copy,
+  pages,
   sprite,
   img,
   js,
   css,
   dev,
   serve,
-  watchFiles,
+  watchFiles as w,
 };
 
 export default build;

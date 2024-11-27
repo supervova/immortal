@@ -1,0 +1,340 @@
+@use 'sass:math';
+@use 'abstracts/config' as *;
+@use 'abstracts/functions' as *;
+// prettier-ignore
+
+:root {
+  // 🎨 COLORS
+  // #region
+
+  --h-blue:   208;
+  --h-green:  112;
+  --h-red:    16;
+  --h-yellow: 64;
+
+  --s-base: 75%;
+  --s-2ry:  70%;  // desaturate the base by 4-10% for dark theme
+  --s-min:  0;    // for dark theme backgrounds
+
+  --h:  var(--h-blue);
+  --s:  var(--s-base);
+  --l:  70%;
+
+  // DECLARATIVE PALETTE
+  --color-brand-primary:  hsl(var(--h) var(--s) var(--l));
+
+  --color-alpha-dark-max: rgb(0 0 0);
+  --color-alpha-dark-900: rgb(0 0 0 / 0.87);
+  --color-alpha-dark-600: rgb(0 0 0 / 0.6);
+  --color-alpha-dark-400: rgb(0 0 0 / 0.38);
+  --color-alpha-dark-100: rgb(0 0 0 / 0.12);
+  --color-alpha-dark-min: rgb(0 0 0 / 0.05);
+
+  --color-alpha-light-max: hsl(0 0% 100%);
+  --color-alpha-light-900: hsl(0 0% 100% / 0.87);
+  --color-alpha-light-600: hsl(0 0% 100% / 0.6);
+  --color-alpha-light-400: hsl(0 0% 100% / 0.38);
+  --color-alpha-light-200: hsl(0 0% 100% / 0.2);
+  --color-alpha-light-min: hsl(0 0% 100% / 0.07);
+
+  --color-shadow:          0 0% 0%;
+
+  --color-bg-base-alpha:      #{color-mix(in srgb, var(--color-bg-base) 88%, transparent)};
+  --backdrop-filter-elevated: #{saturate(180%) blur(20px)};
+  --backdrop-filter-blur:     #{blur(20px)};
+
+  // Adjustments
+  --filter-brightness-up:   brightness(1.16);
+  --filter-brightness-down: brightness(0.84);
+  // #endregion
+
+  // 🔠 TYPOGRAPHY
+  // #region
+
+  --font-family-emoji:
+   'Apple Color Emoji',
+   'Segoe UI Emoji',
+   'Segoe UI Symbol',
+   'Noto Color Emoji';
+
+  --font-family-sans:
+   -apple-system,
+    BlinkMacSystemFont,
+    Inter,
+    sans-serif;
+
+  --font-family-mono:
+    ui-monospace,
+    SFMono-Regular,
+    Monaco,
+    Consolas,
+   'Andale Mono',
+    monospace,
+    var(--font-family-emoji);
+
+  --font-family-base:   var(--font-family-sans), var(--font-family-emoji);
+  --font-family-titles: var(--font-family-base);
+
+  --font-size-doc:         #{$html-font-size};
+
+  --font-weight-titles-max: 600;
+  --font-weight-titles:     500;
+  --font-weight-titles-min: 400;
+
+  --font-size-hero-title:      #{rem(34)};
+  --font-weight-hero-title:    var(--font-weight-titles-max);
+  --letter-spacing-hero-title: 0;
+  --line-height-hero-title:    #{math.div(40, 34)};
+  --padding-top-hero-title:    0;
+  --padding-bottom-hero-title: var(--size-1);
+
+  --font-size-title:      #{rem(28)};
+  --font-weight-title:    var(--font-weight-titles-max);
+  --letter-spacing-title: 0;
+  --line-height-title:    #{math.div(32, 28)};
+  --padding-top-title:    #{rem(6)};
+  --padding-bottom-title: #{rem(2)};
+
+  --font-size-h2:       #{rem(22)};
+  --font-weight-h2:     var(--font-weight-titles-max);
+  --letter-spacing-h2:  0;
+  --line-height-h2:     #{math.div(24, 22)};
+  --padding-top-h2:     #{rem(4)};
+  --padding-bottom-h2:  #{rem(4)};
+
+  --margin-top-subhead: var(--size-line);
+
+  --font-size-h3:      #{rem(17)};
+  --font-weight-h3:    var(--font-weight-titles);
+  --letter-spacing-h3: 0;
+  --line-height-h3:    #{math.div(24, 17)};
+  --padding-top-h3:    #{rem(6)};
+  --padding-bottom-h3: #{rem(2)};
+
+  --font-size-base:      #{rem(17)};
+  --line-height-base:    #{math.div(24, 17)};
+  --letter-spacing-base: 0;
+  --padding-top-base:    #{rem(6)};
+  --padding-bottom-base: #{rem(2)};
+
+  --font-size-body-sm:      #{rem(15)};
+  --line-height-body-sm:    #{math.div(24, 15)};
+  --letter-spacing-body-sm: 0;
+  --padding-top-body-sm:    #{rem(7)};
+  --padding-bottom-body-sm: #{rem(1)};
+
+  --font-size-label:      #{rem(17)};
+  --letter-spacing-label: 0;
+  --line-height-label:    #{math.div(24, 17)};
+  --padding-top-label:    #{rem(6)};
+  --padding-bottom-label: #{rem(2)};
+
+  --font-size-caption:      #{rem(12)};
+  --letter-spacing-caption: 0;
+  --line-height-caption:    #{math.div(16, 12)};
+  --padding-top-caption:    #{rem(4)};
+  --padding-bottom-caption: #{rem(4)};
+    // #endregion
+
+  // 📐 SPACING
+  // #region
+
+  --size-half: #{rem(4)};
+  --size-1:    #{rem(8)};
+  --size-1p5:  #{rem(12)};
+  --size-2:    #{rem(16)};
+  --size-2p5:  #{rem(20)};
+  --size-3:    #{rem(24)};
+  --size-4:    #{rem(32)};
+  --size-5:    #{rem(40)};
+  --size-6:    #{rem(48)};
+  --size-7:    #{rem(56)};
+  --size-8:    #{rem(64)};
+
+  --size-line:       var(--size-3);
+  --spacer:          var(--size-line);
+  --spacer-half-max: var(--size-4);
+  --spacer-max:      var(--size-8);
+  --gap-base:        var(--size-2p5);
+  --gap-large:       var(--size-4);
+  // #endregion
+
+  // 🍱 COMPONENTS BASE
+  // #region
+
+  // SPACING
+  --padding-bottom-list: #{rem(16)};
+  --padding-bottom-li:   #{rem(10)};  // 2 base + 8 as margin
+
+  --padding-x-box:       var(--size-2);
+  --padding-x-container: var(--size-2p5);
+
+  --padding-y-btn:       0;
+  --padding-x-btn:       var(--size-2p5);
+
+  --height-btn:          var(--size-7);
+
+  --padding-x-input:     var(--size-2);
+  --padding-y-input:     #{rem(5)};
+
+  --size-icon:           #{rem(24)};
+  --size-icon-sm:        #{rem(20)};
+
+  --border-width: #{rem(1)};
+
+  // RADIUS
+  --border-radius-xs:   var(--size-half);
+  --border-radius-sm:   var(--size-1);
+  --border-radius-base: var(--size-1p5);
+  --border-radius-md:  var(--size-2);
+
+  // Buttons, small dialogs, mobile sheets
+  --border-radius-lg:   var(--size-2p5);
+
+  // Modals
+  --border-radius-xl:   var(--size-5);
+
+  --border-radius-pill: 100vmax;
+
+  // Z-INDEX
+  --zindex-sticky:  10;
+  --zindex-fixed:   20;  // including app/nav bar
+  --zindex-fab:     30;
+  --zindex-flayout: 40;
+  --zindex-tooltip: 50;
+  --zindex-drawer:  70;
+  --zindex-modal:   80;
+  // #endregion
+
+  // 🔲 WIDTHS
+  // #region
+
+  --width-sm:        #{rem(272)};
+
+  // Flayouts, tablet and desktop drawers, alerts (.e-modal.is-sm) on landscape phones
+  --width-base:      #{rem(320)};
+
+  // Wide drawers, alerts (.e-modal.is-sm), flayouts on tablets and up
+  --width-md:        #{rem(448)};
+
+  // Default modals on landscape phones and up
+  --width-lg:        #{rem(544)};
+
+  // Large modals on desktops
+  --width-xl:        #{rem(720)};
+
+  // 1120 + 64*2 paddings
+  --width-container: #{rem(1248)};
+
+  --width-readable:  70ch;
+  // #endregion
+
+  // 🌓 SHADOWS
+  // #region
+
+  // Buttons, Cards, Alerts, App Bar, Tab Bar, Switches
+  --box-shadow-min: 0 1px 0 hsl(var(--color-shadow) / 0.12);
+
+  // FAB, Buttons hover, Snackbars, Sticky Components
+  --box-shadow-level-01:
+    0 0 0.5px 1px var(--color-alpha-light-min),
+    0 0 0 1px hsl(var(--color-shadow) / var(--shadow-ring, 0.04)),
+    0 1px 2px hsl(var(--color-shadow) / var(--shadow-opacity-low, 0.06)),
+    0 2px 4px -1px hsl(var(--color-shadow) / var(--shadow-opacity-low, 0.06));
+
+  // Overlays: Flayouts, Tooltips, Drawers, Dropdowns, Pickers,
+  // Modal Bottom Sheets, FAB hover
+  --box-shadow-level-02:
+    0 0 0.5px 1px var(--color-alpha-light-min),
+    0 0 0 1px hsl(var(--color-shadow) / var(--shadow-ring, 0.04)),
+    0 2px 4px hsl(var(--color-shadow) / var(--shadow-opacity-low, 0.06)),
+    0 6px 12px -2px hsl(var(--color-shadow) / var(--shadow-opacity-low, 0.06)),
+    0 14px 28px -4px hsl(var(--color-shadow) / var(--shadow-opacity-low, 0.06));
+
+  // Modals
+  --box-shadow-level-03:
+    0 0 0.5px 1px var(--color-alpha-light-min),
+    0 0 0 1px hsl(var(--color-shadow) / var(--shadow-ring, 0.04)),
+    0 3px 6px hsl(var(--color-shadow) / var(--shadow-opacity-low, 0.06)),
+    0 8px 16px -2px hsl(var(--color-shadow) / var(--shadow-opacity-low, 0.06)),
+    0 18px 36px -4px hsl(var(--color-shadow) / var(--shadow-opacity-low, 0.06)),
+    0 30px 60px -4px hsl(var(--color-shadow) / var(--shadow-opacity-low, 0.06));
+  // #endregion
+
+  // 👻 MOTION DESIGN
+  // #region
+
+  // Micro-interactions such as button and toggle
+  --duration-50: 0.07s;
+
+  // Micro-interactions such as fade
+  --duration-100: 0.11s;
+
+  // Micro-interactions, small expansion, short distance movements
+  --duration-200: 0.15s;
+
+  // Expansion, system communication, toast
+  --duration-500: 0.24s;
+
+  // Large expansion, important system notifications
+  --duration-700: 0.4s;
+
+  // Background dimming
+  --duration-900: 0.7s;
+
+  --easing-base: cubic-bezier(0.2, 0, 0.38, 0.9);
+  --easing-appearance: cubic-bezier(0, 0, 0.38, 0.9);
+  --easing-disappearance: cubic-bezier(0.2, 0, 1, 0.9);
+  --easing-bounce: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  // #endregion
+
+  // 📋 TABLET OVERRIDES
+  @media (--tablet) {
+    --font-size-hero-title:      #{rem(76)};
+    --line-height-hero-title:    #{math.div(72, 76)};
+    --letter-spacing-hero-title: #{-1 * rem(1.2)};
+    --padding-top-hero-title:    #{rem(0)};
+    --padding-bottom-hero-title: #{rem(8)};
+
+    --font-size-title:      #{rem(54)};
+    --letter-spacing-title: #{-1 * rem(1)};
+    --line-height-title:    #{math.div(56, 54)};
+    --padding-top-title:    #{rem(0)};
+    --padding-bottom-title: #{rem(8)};
+
+    --font-size-h2:      #{rem(38)};
+    --line-height-h2:    #{math.div(40, 38)};
+    --padding-top-h2:    #{rem(6)};
+    --padding-bottom-h2: #{rem(2)};
+
+    --font-size-h3:      #{rem(23)};
+    --font-weight-h3:    var(--font-weight-titles);
+    --line-height-h3:    #{math.div(24, 23)};
+    --padding-top-h3:    #{rem(4)};
+    --padding-bottom-h3: #{rem(4)};
+
+    --font-size-base:      #{rem(19)};
+    --font-weight-base:    var(--font-weight-titles);
+    --line-height-base:    #{math.div(24, 19)};
+    --letter-spacing-base: 0;
+    --padding-top-base:    #{rem(5)};
+    --padding-bottom-base: #{rem(3)};
+
+    --spacer:          calc(var(--size-line) * 3);
+    --spacer-half-max: var(--size-8);
+    --spacer-max:      calc(var(--size-8) * 2);
+
+    --padding-x-box:       var(--size-line);
+    --padding-x-container: var(--size-5);
+  }
+
+  @media (--tablet-l) {
+    --padding-x-container: var(--size-8);
+  }
+
+  //Animate to height: auto; (and other intrinsic sizing keywords)
+  @supports (interpolate-size: allow-keywords) {
+    interpolate-size: allow-keywords;
+  }
+}
+

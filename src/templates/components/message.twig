@@ -1,0 +1,15 @@
+<section
+  class="e-message {{ message.isIncoming ? 'is-incoming' : 'is-outgoing' }}"
+  aria-label="{{ message.isIncoming ? 'Answer' : 'Question' }}"
+>
+  <div class="e-message__bubble">
+    {{ message.content|raw }}
+  </div>
+  <figure class="e-message__avatar">
+    <img
+      src="/assets/img/pages/home/{{ message.avatar }}.png"
+      srcset="/assets/img/pages/home/{{ message.avatar }}@2x.png 2x"
+      alt=""
+    >
+  </figure>
+</section>

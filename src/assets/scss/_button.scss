@@ -1,0 +1,101 @@
+@use 'abstracts' as *;
+
+/* -----------------------------------------------------------------------------
+ * BASE STYLES FOR BUTTONS
+ * -------------------------------------------------------------------------- */
+
+.e-btn,
+button,
+input[type='submit'],
+input[type='button'],
+input[type='reset'],
+a[role='button'] {
+  --btn-border-outline: 1px solid var(--color-ink-border-brand);
+  --btn-color-outline: var(--color-ink-2ry);
+
+  @include button;
+}
+
+// Remove inner border and padding in Firefox
+:where(button, [type='button'], [type='reset'], [type='submit'])::-moz-focus-inner {
+  border-style: none;
+  padding: 0;
+}
+
+/* -----------------------------------------------------------------------------
+ * PRIMARY, OUTLINE AND GHOST BUTTONS
+ * -------------------------------------------------------------------------- */
+
+.e-btn.is-primary {
+  @include button-primary;
+}
+
+.e-btn.is-outline,
+.e-btn.is-ghost {
+  background: transparent;
+  color: var(--btn-color-outline);
+
+  &:active,
+  &:focus-visible {
+    background: var(--color-bg-brand);
+  }
+
+  @media (any-hover: hover) and (pointer: fine) {
+    &:hover {
+      background: var(--color-bg-brand);
+      filter: none;
+    }
+  }
+}
+
+.e-btn.is-outline {
+  border: var(--btn-border-outline);
+}
+
+/* -----------------------------------------------------------------------------
+ * ICON BUTTONS
+ * -------------------------------------------------------------------------- */
+
+.e-btn.is-icon {
+  padding: 0;
+  width: var(--size-7);
+  height: var(--size-7);
+}
+
+/* -----------------------------------------------------------------------------
+ * DISABLED STATE
+ * -------------------------------------------------------------------------- */
+
+.e-btn[disabled],
+button[disabled],
+input[type='submit'][disabled],
+input[type='button'][disabled],
+input[type='reset'][disabled],
+a[role='button'][disabled] {
+  @include state-disabled();
+}
+
+/* -----------------------------------------------------------------------------
+ * BUTTON GROUP
+ * -------------------------------------------------------------------------- */
+
+.e-buttons {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--size-2);
+
+  @supports not (gap: 4px) {
+    > * {
+      margin-bottom: var(--size-2);
+
+      @media (--tablet) {
+        margin-bottom: 0;
+      }
+    }
+
+    .e-btn + .e-btn {
+      margin-left: var(--size-1);
+    }
+  }
+}

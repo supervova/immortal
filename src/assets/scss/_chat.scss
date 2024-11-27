@@ -1,0 +1,118 @@
+@use 'abstracts' as *;
+
+.e-messages {
+  display: flex;
+  flex-direction: column;
+  gap: var(--size-3);
+  margin-inline: auto;
+  padding-inline: var(--padding-x-container);
+  width: 100%;
+  max-width: calc(#{rem(930)} + var(--padding-x-container) * 2);
+
+  @media (--tablet) {
+    gap: var(--size-6);
+  }
+}
+
+.e-message {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--size-2);
+  max-width: calc(100% - var(--size-2p5));
+
+  @media (--tablet) {
+    max-width: 70%;
+  }
+}
+
+.e-message__avatar {
+  --avatar-size: var(--size-5);
+
+  background-color: var(--color-base-yellow-soft);
+  border-radius: 50%;
+  flex-shrink: 0;
+  margin-bottom: 0;
+  overflow: hidden;
+  position: relative;
+  width: var(--avatar-size);
+  height: var(--avatar-size);
+
+  // Border
+  &::after {
+    border-radius: 50%;
+    box-shadow: inset 0 0 0 1px var(--color-ink-border);
+    content: '';
+    display: block;
+    pointer-events: none;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+  }
+
+  img {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.e-message__bubble {
+  @include text-format(body-sm);
+
+  padding-block: var(--size-2);
+  padding-inline: var(--size-3);
+  position: relative;
+  min-height: rem(88);
+
+  p {
+    font-weight: 400;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  time {
+    @include text-format(caption);
+  }
+}
+
+.e-message.is-outgoing {
+  margin-inline-start: auto;
+
+  .e-message__bubble {
+    background-color: var(--color-bg-success);
+    border-radius: var(--border-radius-lg) var(--border-radius-base) 0 var(--border-radius-lg);
+  }
+
+  p {
+    color: var(--color-ink-text-success);
+  }
+
+  time {
+    --background-image: none;
+    background: var(--background-image) no-repeat right calc(50% - 1px);
+    color: var(--color-ink-2ry-success);
+    padding-inline-end: var(--size-3);
+  }
+}
+
+.e-message.is-incoming {
+  flex-direction: row-reverse;
+
+  .e-message__bubble {
+    background-color: var(--color-bg-info);
+    border-radius: 0 var(--border-radius-base) var(--border-radius-lg) var(--border-radius-lg);
+  }
+
+  p {
+    color: var(--color-ink-text-info);
+  }
+
+  time {
+    color: var(--color-ink-2ry-info);
+  }
+}
+

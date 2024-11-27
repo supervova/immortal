@@ -1,0 +1,105 @@
+// -----------------------------------------------------------------------------
+// ESSENTIALS
+// -----------------------------------------------------------------------------
+
+@use 'sass:meta';
+@use 'abstracts' as *;
+@use 'abstracts/custom';
+@use 'fonts';
+@use 'vars';
+@use 'vars-light';
+
+// Uncomment everything else needed
+// @use 'theme-dark';
+
+@layer base, components, pages, helpers, print;
+
+@layer base {
+  @include meta.load-css('reset');
+  @include meta.load-css('doc');
+  @include meta.load-css('content/headings');
+  @include meta.load-css('content/copy');
+  @include meta.load-css('content/media');
+  @include meta.load-css('containers');
+}
+
+// -----------------------------------------------------------------------------
+// EXTENDED
+// -----------------------------------------------------------------------------
+
+@layer base {
+  @include meta.load-css('icon');
+  @include meta.load-css('button');
+  @include meta.load-css('form/form');
+  @include meta.load-css('grid');
+  @include meta.load-css('flex');
+
+  /*
+  @include meta.load-css('form/checkbox-radio');
+  @include meta.load-css('form/select');
+  @include meta.load-css('logo');
+  @include meta.load-css('helpers/animation');
+  */
+}
+
+@layer components {
+  @include meta.load-css('card');
+  @include meta.load-css('chat');
+  @include meta.load-css('code');
+  @include meta.load-css('content/table');
+  @include meta.load-css('flayout');
+  @include meta.load-css('footer');
+  @include meta.load-css('form/search');
+  @include meta.load-css('header');
+  @include meta.load-css('modal');
+  @include meta.load-css('navbar');
+  @include meta.load-css('scroller');
+  @include meta.load-css('section');
+  // @include meta.load-css('slideshow');
+  @include meta.load-css('tooltip');
+
+  /*
+  // Navigation & Actions
+  @include meta.load-css('pagination');
+  @include meta.load-css('menu');
+
+  // Structure
+  @include meta.load-css('snippet/snippet');
+
+  // Content
+  @include meta.load-css('badge');
+  @include meta.load-css('blockquote');
+  @include meta.load-css('callout');
+  @include meta.load-css('tag');
+
+  // Feedback
+  @include meta.load-css('alert');
+  @include meta.load-css('loading-spinner');
+
+  // Form
+  @include meta.load-css('form/date-time');
+  @include meta.load-css('form/file');
+  @include meta.load-css('form/validation');
+  @include meta.load-css('form-search/search');
+
+  // Show | Hide
+  @include meta.load-css('accordion');
+  @include meta.load-css('tabs');
+  */
+}
+
+@layer helpers {
+  @include meta.load-css('helpers');
+  /*
+  @include meta.load-css('helpers/content');
+  @include meta.load-css('helpers/display');
+  @include meta.load-css('helpers/flex');
+  @include meta.load-css('helpers/spacing');
+  @include meta.load-css('helpers/width');
+  */
+}
+
+@layer print {
+  @include meta.load-css('print');
+}
+

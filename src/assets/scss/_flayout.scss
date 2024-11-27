@@ -1,0 +1,92 @@
+@use 'abstracts' as *;
+
+// Container
+.e-flayout {
+  --flayout-body-background: var(--color-bg-base);
+  --flayout-body-border-radius: var(--border-radius-base);
+  --flayout-body-border: 0;
+  --flayout-body-box-shadow: var(--box-shadow-level-02);
+  --flayout-body-color: var(--color-ink-text);
+  --flayout-body-width: var(--width-md);
+
+  position: relative;
+}
+
+.e-flayout__body {
+  background-color: var(--flayout-body-background);
+  border-radius: var(--flayout-body-border-radius);
+  border: var(--flayout-body-border);
+  box-shadow: var(--flayout-body-box-shadow);
+  color: var(--flayout-body-color);
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  margin: 0;
+  padding: var(--padding-x-box);
+  opacity: 0;
+  position: absolute;
+  transition: opacity var(--duration-200) var(--easing-base);
+  transition-behavior: allow-discrete;
+  width: var(--flayout-body-width);
+  z-index: var(--zindex-flayout);
+
+  [open] & {
+    opacity: 1;
+
+    @starting-style {
+      opacity: 0;
+    }
+  }
+
+  // Position adjustments
+  .is-up > & {
+    bottom: 100%;
+  }
+
+  .is-right > & {
+    left: auto;
+    right: 0;
+  }
+}
+
+// Summary Marker
+.e-flayout summary::after {
+  background-image: var(--icon-chevron-down);
+  background-position: center;
+  background-repeat: no-repeat;
+  content: '';
+  display: block;
+  margin-inline-start: var(--size-half);
+  transition: rotate var(--duration-50) var(--easing-base);
+  width: var(--size-icon);
+  height: var(--size-icon);
+}
+
+.e-flayout[open] summary::after {
+  rotate: 180deg;
+}
+
+// Share Specific Styles
+.e-flayout.is-share {
+  summary {
+    border-radius: var(--border-radius-small);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--padding-small);
+
+    &:hover {
+      background-color: var(--color-background-hover);
+    }
+
+    &::after {
+      display: none;
+    }
+  }
+
+  .e-flayout__body {
+    bottom: var(--size-offset);
+    right: calc(var(--size-offset) * -1);
+    left: auto;
+  }
+}

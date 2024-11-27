@@ -1,0 +1,16 @@
+@use 'abstracts' as *;
+
+// BASE CONTAINER
+.e-container {
+  @include container;
+}
+
+// CONTENT CONTAINERS
+// For list view, e. g. SERP or blog feed
+.e-col-1\/1 {
+  list-style: none;
+  margin: 0 auto;
+  width: min(100%, var(--width-readable));
+}
+
+// .e-main {}

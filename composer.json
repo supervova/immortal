@@ -1,0 +1,21 @@
+{
+  "name": "echo-immortal",
+  "description": "The website of Echo Immortal",
+  "type": "project",
+  "require": {
+      "twig/twig": "^3.0"
+  },
+  "require-dev": {
+      "squizlabs/php_codesniffer": "^3.7"
+  },
+  "autoload": {
+      "psr-4": {
+          "App\\": "src/php/"
+      }
+  },
+  "scripts": {
+      "start": "php -S localhost:8000 -t public",
+      "cs-check": "phpcs",
+      "cs-fix": "phpcbf"
+  }
+}

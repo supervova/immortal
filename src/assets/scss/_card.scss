@@ -1,0 +1,74 @@
+@use 'sass:math';
+@use 'abstracts' as *;
+
+// Base
+.e-card {
+  background: var(--color-bg-base);
+  border-radius: var(--border-radius-md);
+  box-shadow: var(--box-shadow-level-02);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: left;
+}
+
+.e-card__copy {
+  padding: var(--padding-x-box);
+}
+
+
+
+// Title
+.e-card__title {
+  @include text-format(h3);
+  font-family: var(--font-family-titles);
+  margin-top: 0;
+}
+
+// Summary
+.e-card__summary {
+  color: var(--color-ink-2ry);
+}
+
+// Media
+.e-card__img,
+.e-card video {
+  object-fit: cover;
+  width: 100%;
+  height: auto;
+}
+
+// MODIFIERS
+
+.e-card.is-highlighted {
+  background: linear-gradient(
+    to bottom right,
+    var(--color-gradient-bold-brand)
+  );
+  box-shadow: none;
+
+  .e-eyebrow,
+  .e-card__title,
+  .e-card__summary {
+    color: var(--color-ink-text-inverse);
+  }
+
+  .e-card__title {
+    @include text-format(h2);
+  }
+
+  .e-card__summary {
+    @include text-format(h3);
+  }
+
+  .e-btn {
+    background: var(--color-ink-text-inverse);
+    color: var(--color-ink-2ry)
+  }
+}
+
+.e-card.is-outline {
+  border: 1px solid var(--color-ink-border);
+  box-shadow: none;
+}
+

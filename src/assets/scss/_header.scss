@@ -1,0 +1,102 @@
+@use 'abstracts' as *;
+
+// -----------------------------------------------------------------------------
+// BASE STYLES
+// -----------------------------------------------------------------------------
+// #region
+.e-header {
+  display: flex;
+  justify-content: center;
+  padding-top: rem(19);
+  padding-inline: var(--padding-x-container);
+  width: 100%;
+  z-index: var(--zindex-fab);
+
+  @media (--tablet) {
+    display: block;
+    padding: 0;
+  }
+}
+
+.e-header > .e-container {
+  display: contents;
+
+  @media (--tablet) {
+    display: flex;
+    justify-content: space-between;
+    padding-top: var(--size-2);
+  }
+}
+// #endregion
+
+// -----------------------------------------------------------------------------
+// NAVBAR
+// -----------------------------------------------------------------------------
+// #region
+
+.e-header__menu {
+  background-color: var(--color-bg-base);
+  border-top: 1px solid var(--color-ink-min);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  list-style: none;
+  margin: 0;
+  padding-block: var(--size-1p5);
+  padding-inline: var(--size-1);
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: var(--zindex-fixed);
+
+  @media (--tablet) {
+    background-color: transparent;
+    border-top: 0;
+    align-items: start;
+    gap: var(--size-1);
+    justify-content: end;
+    padding: rem(27) 0 0;
+    position: static;
+  }
+}
+
+.e-header__menu > li {
+  @media (--phone) {
+    flex: 1 0 rem(76);
+    max-width: rem(168);
+  }
+}
+
+.e-header__menu-item {
+  .e-icon {
+    --color-fill-icon: var(--color-ink-min);
+  }
+
+  @media (--phone) {
+    border: 0;
+    border-radius: var(--border-radius-base);
+    color: var(--color-ink-2ry);
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: var(--size-half);
+    font-size: var(--font-size-caption);
+    letter-spacing: var(--letter-spacing-caption);
+    line-height: var(--line-height-caption);
+    padding-top: var(--size-1);
+    width: 100%;
+    height: var(--size-7);
+  }
+}
+
+:where(.e-page.is-home) .e-header__menu-item.is-home {
+  background-color: var(--color-bg-success);
+
+  .e-icon {
+    --color-fill-icon: var(--color-bg-base);
+    --color-stroke-icon: var(--color-ink-2ry-success);
+  }
+}
+// #endregion
+

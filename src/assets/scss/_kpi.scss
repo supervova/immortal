@@ -1,0 +1,35 @@
+@use 'abstracts' as *;
+
+.e-stat {
+  background-color: var(--color-bg-2ry);
+  border-radius: var(--border-radius-base);
+  box-shadow: var(--box-shadow-z1);
+  text-align: center;
+  overflow: hidden;
+  padding-top: 0;
+  padding-bottom: var(--size-line);
+  width: 100%;
+  max-width: var(--width-md);
+}
+
+// Big beauty number
+.e-stat__value {
+  color: var(--color-ink-text-inverse);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-family-titles);
+  font-size: var(--font-size-hero-title);
+  font-weight: 300;
+  letter-spacing: -0.04em;
+  line-height: 1;
+  text-shadow: 0 1px 0 var(--color-ink-min);
+  padding: 0;
+  height: calc(var(--size-1) * 14);
+}
+
+.e-stat__caption {
+  padding-top: var(--padding-top-base);
+  padding-bottom: var(--padding-bottom-base);
+  padding-inline: var(--size-3);
+}
