@@ -627,6 +627,7 @@ html:has(.e-slideshow__details.is-open) .e-slideshow__details {
 @media (--tablet-l) {
   :where(.e-section.is-how-it-works) .tablet-l\:e-flex {
     justify-content: center;
+    perspective: 1000px;
   }
 }
 @media (--laptop) {
@@ -641,6 +642,12 @@ html:has(.e-slideshow__details.is-open) .e-slideshow__details {
 }
 :where(.e-section.is-how-it-works) .e-card {
   overflow: hidden;
+  transition: scale var(--duration-100) var(--easing-base);
+}
+@media (--tablet-l) {
+  :where(.e-section.is-how-it-works) .e-card {
+    will-change: rotate;
+  }
 }
 :where(.e-section.is-how-it-works) .e-card img {
   width: auto;

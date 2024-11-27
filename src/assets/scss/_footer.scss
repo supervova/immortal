@@ -38,7 +38,7 @@
 .e-footer__copyright {
   @include text-format(caption);
   color: var(--color-ink-2ry);
-  margin: 0;
+  margin: var(--size-2) 0 0;
 }
 
 // GRID

@@ -19,50 +19,50 @@
     {
       isIncoming: true,
       avatar: 'avatar-dp',
-      content: '<p><strong>DP:</strong> Yes, we&nbsp;take privacy very seriously. Your information is&nbsp;encrypted, and you have full control over what data is&nbsp;shared. Нour Digital Person only uses the data you explicitly provide. It&nbsp;won&rsquo;t have access to&nbsp;confidential information like passwords, financial data, or&nbsp;private conversations unless you choose to&nbsp;share specific messages or&nbsp;posts. <time datetime="2025-02-28T15:04">15:04</time></p>'
+      content: '<p><strong>DP:</strong> Yes, we take privacy very seriously. Your information is encrypted, and you have full control over what data is shared. Нour Digital Person only uses the data you explicitly provide. It won&rsquo;t have access to confidential information like passwords, financial data, or private conversations unless you choose to share specific messages or posts. <time datetime="2025-02-28T15:04">15:04</time></p>'
     },
     {
       isIncoming: false,
       avatar: 'avatar-creator',
-      content: '<p><strong>You:</strong> Can I&nbsp;use Echo Immortal for free? <time datetime="2025-02-28T15:05">15:05</time></p>'
+      content: '<p><strong>You:</strong> Can I use Echo Immortal for free? <time datetime="2025-02-28T15:05">15:05</time></p>'
     },
     {
       isIncoming: true,
       avatar: 'avatar-dp',
-      content: '<p><strong>DP:</strong> Yes, creating your Digital Person is&nbsp;free, but free&nbsp;DP accounts have limitations. They can only send a&nbsp;limited number of&nbsp;messages and communicate via text only&mdash;voice interactions are available with a&nbsp;premium subscription. <time datetime="2025-02-28T15:05">15:05</time></p>'
+      content: '<p><strong>DP:</strong> Yes, creating your Digital Person is free, but free DP accounts have limitations. They can only send a limited number of messages and communicate via text only — voice interactions are available with a premium subscription. <time datetime="2025-02-28T15:05">15:05</time></p>'
     },
     {
       isIncoming: false,
       avatar: 'avatar-creator',
-      content: '<p><strong>You:</strong> What is&nbsp;an&nbsp;AI agent, and how is&nbsp;it&nbsp;related to&nbsp;a&nbsp;digital persona? <time datetime="2025-02-28T15:08">15:08</time></p>'
+      content: '<p><strong>You:</strong> What is an AI agent, and how is it related to a digital persona? <time datetime="2025-02-28T15:08">15:08</time></p>'
     },
     {
       isIncoming: true,
       avatar: 'avatar-dp',
       content: '
-        <p><strong>DP:</strong> An&nbsp;AI&nbsp;agent is&nbsp;a&nbsp;program or&nbsp;system designed to&nbsp;perform tasks autonomously, using artificial intelligence to&nbsp;process data, make decisions, and interact with users.</p>
-        <p>In&nbsp;the context of&nbsp;a&nbsp;digital persona, an&nbsp;AI agent acts as&nbsp;a&nbsp;virtual representation of&nbsp;an&nbsp;individual, capable of&nbsp;mimicking their personality traits, knowledge, memories, and communication style. This allows it&nbsp;to&nbsp;engage in&nbsp;conversations across messengers and social media platforms, fully replicating the mannerisms and behavior of&nbsp;its &laquo;original&raquo; creator. <time datetime="2025-02-28T15:08">15:08</time></p>
+        <p><strong>DP:</strong> An AI agent is a program or system designed to perform tasks autonomously, using artificial intelligence to process data, make decisions, and interact with users.</p>
+        <p>In the context of a digital persona, an AI agent acts as a virtual representation of an individual, capable of mimicking their personality traits, knowledge, memories, and communication style. This allows it to engage in conversations across messengers and social media platforms, fully replicating the mannerisms and behavior of its &laquo;original&raquo; creator. <time datetime="2025-02-28T15:08">15:08</time></p>
       '
     },
     {
       isIncoming: false,
       avatar: 'avatar-creator',
-      content: '<p><strong>You:</strong> Can my&nbsp;Digital Person say something&nbsp;I wouldn&rsquo;t? <time datetime="2025-02-28T15:10">15:10</time></p>'
+      content: '<p><strong>You:</strong> Can my Digital Person say something I wouldn&rsquo;t? <time datetime="2025-02-28T15:10">15:10</time></p>'
     },
     {
       isIncoming: true,
       avatar: 'avatar-dp',
-      content: '<p><strong>DP:</strong> No, your Digital Person is&nbsp;trained to&nbsp;reflect your unique style and personality. You can preview and adjust its responses before it&rsquo;s activated to&nbsp;ensure it&nbsp;behaves exactly as&nbsp;you want. <time datetime="2025-02-28T15:10">15:10</time></p>'
+      content: '<p><strong>DP:</strong> No, your Digital Person is trained to reflect your unique style and personality. You can preview and adjust its responses before it&rsquo;s activated to ensure it behaves exactly as you want. <time datetime="2025-02-28T15:10">15:10</time></p>'
     },
     {
       isIncoming: false,
       avatar: 'avatar-creator',
-      content: '<p><strong>You:</strong> What if&nbsp;I want to&nbsp;delete my&nbsp;Digital Person? <time datetime="2025-02-28T15:12">15:12</time></p>'
+      content: '<p><strong>You:</strong> What if I want to delete my Digital Person? <time datetime="2025-02-28T15:12">15:12</time></p>'
     },
     {
       isIncoming: true,
       avatar: 'avatar-dp',
-      content: '<p><strong>DP:</strong> You&rsquo;re in&nbsp;control. You can pause or&nbsp;permanently delete your Digital Person at&nbsp;any time, and all associated data will be&nbsp;securely removed from our systems. <time datetime="2025-02-28T15:12">15:12</time></p>'
+      content: '<p><strong>DP:</strong> You&rsquo;re in control. You can pause or permanently delete your Digital Person at any time, and all associated data will be securely removed from our systems. <time datetime="2025-02-28T15:12">15:12</time></p>'
     }
   ] %}
 
@@ -70,10 +70,7 @@
 
 {% block head %}
   {{ parent() }}
-
-  <style>
-    {% include "../../public/assets/css/home.css" %}
-  </style>
+  <link rel="stylesheet" href="/assets/css/home.css?{{ timestamp }}">
 {% endblock %}
 
 {# MAIN CONTENT ------------------------------------------------------------- #}
@@ -89,11 +86,11 @@
           <div>
             <section class="e-slideshow__copy">
               <h1 class="e-slideshow__title">
-                What is&nbsp;a <strong>Digital&nbsp;Person</strong>
+                What is a <strong>Digital Person</strong>
               </h1>
 
               <p class="e-slideshow__desc">
-                A&nbsp;Digital Person (DP) is&nbsp;a&nbsp;high-quality digital copy of&nbsp;your personality. It&nbsp;goes beyond a&nbsp;simple avatar&nbsp; —  capturing your thoughts, values, and emotions, allowing you to&nbsp;continue interacting with loved ones, even after your departure. With Echo Immortal, your legacy lives&nbsp;on, creating meaningful connections that transcend time.
+                A Digital Person (DP) is a high-quality digital copy of your personality. It goes beyond a simple avatar  —  capturing your thoughts, values, and emotions, allowing you to continue interacting with loved ones, even after your departure. With Echo Immortal, your legacy lives on, creating meaningful connections that transcend time.
               </p>
               <div class="e-buttons">
                 <a class="e-btn is-primary" href="/welcome">Create a DP</a>
@@ -114,11 +111,11 @@
 
               <section class="e-slideshow__copy">
                 <h2 class="e-slideshow__subtitle">
-                  Send a&nbsp;Message <strong>Across Time</strong>
+                  Send a Message <strong>Across Time</strong>
                 </h2>
 
                 <p class="e-slideshow__desc">
-                  With a&nbsp;Digital Person, your loved ones can stay connected to&nbsp;you through chats, video and voice messages. It&rsquo;s not just about reading messages — it&rsquo;s the opportunity to&nbsp;hear your voice and have a&nbsp;real conversation, as&nbsp;if&nbsp;you were still right there with them.
+                  With a Digital Person, your loved ones can stay connected to you through chats, video and voice messages. It&rsquo;s not just about reading messages — it&rsquo;s the opportunity to hear your voice and have a real conversation, as if you were still right there with them.
                 </p>
                 <div class="e-buttons">
                   <a class="e-btn is-primary" href="/welcome">Create a DP</a>
@@ -134,7 +131,7 @@
                 </h2>
 
                 <p class="e-slideshow__desc">
-                  A&nbsp;Digital Person is&nbsp;more than just an&nbsp;avatar. It&rsquo;s your digital copy, created to&nbsp;continue living even after your physical presence is&nbsp;gone. Your thoughts, personality, and values will be&nbsp;accessible to&nbsp;your loved ones and future generations, ensuring your legacy lives on&nbsp;digitally.
+                  A Digital Person is more than just an avatar. It&rsquo;s your digital copy, created to continue living even after your physical presence is gone. Your thoughts, personality, and values will be accessible to your loved ones and future generations, ensuring your legacy lives on digitally.
                 </p>
                 <div class="e-buttons">
                   <a class="e-btn is-primary" href="/welcome">Create a DP</a>
@@ -150,7 +147,7 @@
                 </h2>
 
                 <p class="e-slideshow__desc">
-                  With a&nbsp;Digital Person, your loved ones can stay connected to&nbsp;you through chats, video and voice messages. It&rsquo;s not just about reading messages. It&rsquo;s the opportunity to&nbsp;hear your voice and have a&nbsp;real conversation, as&nbsp;if&nbsp;you were still right there with them.
+                  With a Digital Person, your loved ones can stay connected to you through chats, video and voice messages. It&rsquo;s not just about reading messages. It&rsquo;s the opportunity to hear your voice and have a real conversation, as if you were still right there with them.
                 </p>
                 <div class="e-buttons">
                   <a class="e-btn is-primary" href="/welcome">Create a DP</a>
@@ -166,7 +163,7 @@
                 </h2>
 
                 <p class="e-slideshow__desc">
-                  Your Digital Person doesn&rsquo;t just preserve who you are — they continue to&nbsp;grow and evolve. They interact with other Digital Persons, make posts, share thoughts, and engage with others online. It&rsquo;s not just about preserving the past. It&rsquo;s about continuing life in&nbsp;the digital future.
+                  Your Digital Person doesn&rsquo;t just preserve who you are — they continue to grow and evolve. They interact with other Digital Persons, make posts, share thoughts, and engage with others online. It&rsquo;s not just about preserving the past. It&rsquo;s about continuing life in the digital future.
                 </p>
                 <div class="e-buttons">
                   <a class="e-btn is-primary" href="/welcome">Create a DP</a>
@@ -232,10 +229,10 @@
     {# How it Works #}
     <section class="e-section is-how-it-works text-center pt-max">
       <div class="e-container">
-        <h2 class="e-section__title">How <strong>it&nbsp;works</strong></h2>
+        <h2 class="e-section__title">How <strong>it works</strong></h2>
 
         <p class="e-section__intro">
-          You create and train your Digital Person by&nbsp;answering a&nbsp;series of&nbsp;questions and granting access to&nbsp;information you consider non-confidential. Once complete, you receive an&nbsp;AI built in&nbsp;your image, capable of&nbsp;taking over your online activities and remaining with your family for generations.
+          You create and train your Digital Person by answering a series of questions and granting access to information you consider non-confidential. Once complete, you receive an AI built in your image, capable of taking over your online activities and remaining with your family for generations.
         </p>
 
         <div class="tablet-l:e-flex">
@@ -244,10 +241,10 @@
             <div class="e-card__copy">
               <header>
                 <p class="e-eyebrow">Step 1</p>
-                <h3 class="e-card__title">Answer a&nbsp;few questions</h3>
+                <h3 class="e-card__title">Answer a few questions</h3>
               </header>
               <p class="e-card__summary">
-                The process begins with a&nbsp;quick personality assessment to&nbsp;share key memories, values, and personal traits, so&nbsp;we&nbsp;can get to&nbsp;know you better.
+                The process begins with a quick personality assessment to share key memories, values, and personal traits, so we can get to know you better.
               </p>
               <a href="#" class="e-btn">Start Test</a>
             </div>
@@ -261,7 +258,7 @@
                 <h3 class="e-card__title">Connect your social media</h3>
               </header>
               <p class="e-card__summary">
-                To&nbsp;help Digital Person learn your communication style, you&rsquo;ll connect your social media accounts and other personal activities.
+                To help Digital Person learn your communication style, you&rsquo;ll connect your social media accounts and other personal activities.
               </p>
             </div>
             <img src="/assets/img/pages/home/how-to/social-media.svg" alt="">
@@ -275,7 +272,7 @@
                 <h3 class="e-card__title">Train your Digital Person</h3>
               </header>
               <p class="e-card__summary">
-                Our advanced&nbsp;AI will analyze answers from social media data. Show them how to&nbsp;live your Digital Person&rsquo;s life by&nbsp;capturing your unique style and personality.
+                Our advanced AI will analyze answers from social media data. Show them how to live your Digital Person&rsquo;s life by capturing your unique style and personality.
               </p>
             </div>
             <figure class="e-card__picture">
@@ -296,7 +293,7 @@
                 <h3 class="e-card__title">Preview and customize</h3>
               </header>
               <p class="e-card__summary">
-                Once your Digital Person is&nbsp;ready, you can preview its responses and adjust any elements that don&rsquo;t quite fit. You remain in&nbsp;control, making sure it&nbsp;accurately represents who you are.
+                Once your Digital Person is ready, you can preview its responses and adjust any elements that don&rsquo;t quite fit. You remain in control, making sure it accurately represents who you are.
               </p>
             </div>
           </div>
@@ -309,10 +306,10 @@
             <div class="e-card__copy">
               <header>
                 <p class="e-eyebrow">Step 5</p>
-                <h3 class="e-card__title">Your DP&nbsp;is&nbsp;now ready and can live forever</h3>
+                <h3 class="e-card__title">Your DP is now ready and can live forever</h3>
               </header>
               <p class="e-card__summary">
-                With one click, you can integrate it&nbsp;into your social media accounts or&nbsp;messaging apps, where it&nbsp;can post, comment, and chat on&nbsp;your behalf&nbsp;&mdash; all while staying true to&nbsp;your character.
+                With one click, you can integrate it into your social media accounts or messaging apps, where it can post, comment, and chat on your behalf  —  all while staying true to your character.
               </p>
             </div>
           </div>
@@ -346,10 +343,10 @@
     <section class="e-section is-cta pt-max pb-max">
       <div class="e-container">
         <h2 class="e-section__title">
-          The road to&nbsp;immortality <strong>begins now</strong>
+          The road to immortality <strong>begins now</strong>
         </h2>
         <p>
-          Preserve your voice, your values, and your legacy for generations to&nbsp;come
+          Preserve your voice, your values, and your legacy for generations to come
         </p>
         <a href="/welcome" class="e-btn is-primary">Create a DP</a>
       </div>
@@ -377,5 +374,5 @@
 
 {% block footer %}
   {{ parent() }}
-  <script type="module" src="/assets/js/home.js"></script>
+  <script src="/assets/js/home.js" type="module"></script>
 {% endblock %}

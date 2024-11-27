@@ -98,6 +98,33 @@ function initializeAnimation() {
     }
   }
 
+  // How it works
+
+  function animateCards() {
+    const cards = document.querySelectorAll(
+      '.e-section.is-how-it-works .e-card'
+    );
+
+    if (cards.length) {
+      gsap.from(cards, {
+        scrollTrigger: {
+          trigger: '.e-section.is-how-it-works',
+          start: 'top 80%', // Когда верх секции достигает 80% высоты окна
+          end: 'bottom 20%', // Когда низ секции достигает 20% высоты окна
+          toggleActions: 'play none none reverse', // Воспроизвести и отменить при обратной прокрутке
+        },
+        rotateX: 6, // Исходное вращение
+        opacity: 0, // Добавляем плавное появление
+        duration: 1, // Длительность анимации для каждой карточки
+        ease: 'power2.out', // Плавное замедление
+        stagger: 0.2, // Задержка между анимацией карточек
+        delay: 0.4, // Задержка перед началом анимации всей группы
+      });
+    }
+  }
+
+  animateCards();
+
   // FAQ
   const messages = document.querySelectorAll('.e-message');
 
@@ -148,6 +175,41 @@ function initializeAnimation() {
     }
   });
 }
+
+// CTA button
+function animateCtaButton() {
+  const ctaButton = document.querySelector('.e-section.is-cta .e-btn');
+
+  if (!ctaButton) return;
+
+  // Настраиваем наблюдение за концом прокрутки
+  window.addEventListener('scroll', () => {
+    const scrollTop = window.scrollY; // текущая прокрутка
+    const { scrollHeight } = document.documentElement; // полная высота страницы
+    const { clientHeight } = document.documentElement; // высота окна
+
+    // Проверяем, достиг ли пользователь конца страницы
+    if (scrollTop + clientHeight >= scrollHeight - 5) {
+      // Анимация "встряски" кнопки
+      gsap.fromTo(
+        ctaButton,
+        { rotate: 4 }, // Начальное вращение
+        {
+          rotate: 0, // Возврат в начальное положение
+          duration: 0.1, // Длительность одного цикла
+          ease: 'power1.out', // Замедление
+          repeat: 4, // Количество повторений (туда-обратно = 1 повторение)
+          yoyo: true, // Возврат в начальное состояние
+          onComplete: () => {
+            gsap.to(ctaButton, { rotate: 0, duration: 0.2 }); // Устанавливаем окончательный угол 0
+          },
+        }
+      );
+    }
+  });
+}
+
+animateCtaButton();
 
 function destroyAnimations() {
   ScrollTrigger.getAll().forEach((trigger) => trigger.kill());

@@ -7536,6 +7536,37 @@
         });
       }
     }
+    function animateCards() {
+      const cards = document.querySelectorAll(
+        ".e-section.is-how-it-works .e-card"
+      );
+      if (cards.length) {
+        gsapWithCSS.from(cards, {
+          scrollTrigger: {
+            trigger: ".e-section.is-how-it-works",
+            start: "top 80%",
+            // Когда верх секции достигает 80% высоты окна
+            end: "bottom 20%",
+            // Когда низ секции достигает 20% высоты окна
+            toggleActions: "play none none reverse"
+            // Воспроизвести и отменить при обратной прокрутке
+          },
+          rotateX: 6,
+          // Исходное вращение
+          opacity: 0,
+          // Добавляем плавное появление
+          duration: 1,
+          // Длительность анимации для каждой карточки
+          ease: "power2.out",
+          // Плавное замедление
+          stagger: 0.2,
+          // Задержка между анимацией карточек
+          delay: 0.4
+          // Задержка перед началом анимации всей группы
+        });
+      }
+    }
+    animateCards();
     const messages = document.querySelectorAll(".e-message");
     messages.forEach((message) => {
       gsapWithCSS.fromTo(
@@ -7599,6 +7630,38 @@
       }
     });
   }
+  function animateCtaButton() {
+    const ctaButton = document.querySelector(".e-section.is-cta .e-btn");
+    if (!ctaButton) return;
+    window.addEventListener("scroll", () => {
+      const scrollTop = window.scrollY;
+      const { scrollHeight } = document.documentElement;
+      const { clientHeight } = document.documentElement;
+      if (scrollTop + clientHeight >= scrollHeight - 5) {
+        gsapWithCSS.fromTo(
+          ctaButton,
+          { rotate: 4 },
+          // Начальное вращение
+          {
+            rotate: 0,
+            // Возврат в начальное положение
+            duration: 0.1,
+            // Длительность одного цикла
+            ease: "power1.out",
+            // Замедление
+            repeat: 4,
+            // Количество повторений (туда-обратно = 1 повторение)
+            yoyo: true,
+            // Возврат в начальное состояние
+            onComplete: () => {
+              gsapWithCSS.to(ctaButton, { rotate: 0, duration: 0.2 });
+            }
+          }
+        );
+      }
+    });
+  }
+  animateCtaButton();
   function destroyAnimations() {
     ScrollTrigger2.getAll().forEach((trigger) => trigger.kill());
     gsapWithCSS.globalTimeline.clear();

@@ -7,6 +7,7 @@
 // #region
 import { src, dest, watch, series, parallel } from 'gulp';
 
+// import purge from '@fullhuman/postcss-purgecss';
 import * as sass from 'sass';
 import browserSync from 'browser-sync';
 import changed from 'gulp-changed';
@@ -25,7 +26,6 @@ import notify from 'gulp-notify';
 import plumber from 'gulp-plumber';
 import postcss from 'gulp-postcss';
 import prettify from 'gulp-prettier';
-// import purge from '@fullhuman/postcss-purgecss';
 import replace from 'gulp-replace';
 import size from 'gulp-size';
 import sourcemaps from 'gulp-sourcemaps';
@@ -34,7 +34,9 @@ import twig from 'gulp-twig';
 import yargs from 'yargs';
 import { createGulpEsbuild } from 'gulp-esbuild';
 import { deleteAsync } from 'del';
+import { existsSync } from 'fs';
 import { hideBin } from 'yargs/helpers';
+import { join } from 'path';
 
 const bsInstance = browserSync.create();
 const gulpEsbuild = createGulpEsbuild();
@@ -462,6 +464,35 @@ const serve = (done) => {
     },
     port: 9000,
     notify: false,
+
+    // Extensionless URLs
+    middleware: [
+      (req, res, next) => {
+        const baseDir = root.dest.dev;
+
+        // Если URL корневой, перенаправляем на index.html
+        if (req.url === '/') {
+          req.url = '/index.html';
+        } else {
+          // Проверка: если URL заканчивается на `/`, ищем index.html
+          const dirPath = join(baseDir, req.url, 'index.html');
+          if (req.url.endsWith('/') && existsSync(dirPath)) {
+            req.url += 'index.html';
+          } else if (!/\.\w+$/.test(req.url)) {
+            // Если нет расширения, проверяем, существует ли index.html в директории
+            const potentialIndex = join(baseDir, req.url, 'index.html');
+            if (existsSync(potentialIndex)) {
+              req.url += '/index.html';
+            } else {
+              // Иначе просто добавляем .html к URL
+              req.url += '.html';
+            }
+          }
+        }
+
+        next();
+      },
+    ],
   });
   watchFiles();
   done();

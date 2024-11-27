@@ -589,7 +589,7 @@
       right: 0;
       left: 0;
       height: var(--size-1p5);
-      z-index: var(--zindex-fixed);
+      z-index: var(--zindex-flayout);
     }
   }
   @media (--tablet) {
@@ -2818,7 +2818,7 @@
     padding-top: var(--padding-top-caption);
     padding-bottom: var(--padding-bottom-caption);
     color: var(--color-ink-2ry);
-    margin: 0;
+    margin: var(--size-2) 0 0;
   }
   @media (--tablet-l-down) {
     .e-footer .e-grid {
