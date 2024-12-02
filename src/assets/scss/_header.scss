@@ -100,3 +100,20 @@
 }
 // #endregion
 
+// -----------------------------------------------------------------------------
+// MISC
+// -----------------------------------------------------------------------------
+// #region
+.e-header__login-cta {
+  display: none;
+
+  @media (--phone-l) {
+    @include text-format(body-sm);
+
+    display: block;
+    color: var(--color-ink-2ry);
+    margin-top: rem(36);
+    margin-inline-start: var(--size-2);
+  }
+}
+// #endregion

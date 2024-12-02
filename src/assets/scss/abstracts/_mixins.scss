@@ -1,44 +1,46 @@
-/* -----------------------------------------------------------------------------
- * Table of contents
- * -----------------------------------------------------------------------------
- *
- * grid-base                - Base grid layout with default column, row, and gap settings
- * grid-12                  - 12-column grid layout with specific settings
- * grid                     - Responsive grid layout combining base and 12-column layouts
- * grid-columns             - Generates column classes for grid with custom breakpoints
- * flex-base                - Base flex layout with default settings
- * flex-grid                - It can be a row or a 2-dimensional flex layout. Use this one within media query.
- * container                - Centers content with a max-width and auto margins
- * centering-max-width      - Centers elements with a maximum width and customizable margins
- * heading-base             - Basic styles for headings including font and color
- * text-format              - Sets font size, line height, and padding for text elements
- * label                    - Styles for labels with optional uppercase transformation
- * text-truncate            - Single line text truncation with ellipsis
- * multiline-truncate       - Multi-line text truncation with ellipsis
- * multiline-truncate-reset - Resets multi-line truncation
- * border                   - Adds a border overlay with flex display and overflow handling
- * chevron-down             - Adds a chevron down icon with specific positioning and styles
- * utility-classes          - Generates utility classes based on provided properties
- * visually-hidden          - Hides elements visually but keeps them accessible
- * state-disabled           - Uses visual cues to indicate that the button is disabled
- * state-focus              - Adds a focus ring for accessibility
- * state-hover-a            - Adds a :hover underscore to links
- * menu-item                - Styles for menu items with padding, alignment, and focus behavior
- * button-base              - Base styles for buttons including alignment, cursor, and touch-action
- * button                   - Comprehensive button styles with customizable properties
- * button-primary           - Styles for primary buttons with specific background, color, and shadow
- * scrollbar                - Styles for scrollbars with customizable properties
- * -------------------------------------------------------------------------- */
+// -----------------------------------------------------------------------------
+// Table of contents
+// -----------------------------------------------------------------------------
+// grid-base                - Base grid layout with default column, row, and gap settings
+// grid-12                  - 12-column grid layout with specific settings
+// grid                     - Responsive grid layout combining base and 12-column layouts
+// grid-columns             - Generates column classes for grid with custom breakpoints
+// flex-base                - Base flex layout with default settings
+// flex-grid                - It can be a row or a 2-dimensional flex layout. Use this one within media query.
+// container                - Centers content with a max-width and auto margins
+// centering-max-width      - Centers elements with a maximum width and customizable margins
+// heading-base             - Basic styles for headings including font and color
+// text-format              - Sets font size, line height, and padding for text elements
+// label                    - Styles for labels with optional uppercase transformation
+// text-truncate            - Single line text truncation with ellipsis
+// multiline-truncate       - Multi-line text truncation with ellipsis
+// multiline-truncate-reset - Resets multi-line truncation
+// text-inline-block        - Text with inline-block display
+// %ol                      - Ordered list styles
+// border                   - Adds a border overlay with flex display and overflow handling
+// chevron-down             - Adds a chevron down icon with specific positioning and styles
+// utility-classes          - Generates utility classes based on provided properties
+// visually-hidden          - Hides elements visually but keeps them accessible
+// state-disabled           - Uses visual cues to indicate that the button is disabled
+// state-focus              - Adds a focus ring for accessibility
+// state-hover-a            - Adds a :hover underscore to links
+// menu-item                - Styles for menu items with padding, alignment, and focus behavior
+// button-base              - Base styles for buttons including alignment, cursor, and touch-action
+// button                   - Comprehensive button styles with customizable properties
+// button-primary           - Styles for primary buttons with specific background, color, and shadow
+// scrollbar                - Styles for scrollbars with customizable properties
+// -----------------------------------------------------------------------------
 
 @use 'sass:map';
 @use 'sass:math';
 @use 'functions' as *;
 @use 'config' as *;
 
-/* -----------------------------------------------------------------------------
-  * LAYOUT
-  * -------------------------------------------------------------------------- */
+// -----------------------------------------------------------------------------
+// LAYOUT
+// -----------------------------------------------------------------------------
 // #region
+
 @mixin grid-base($gap: var(--size-2)) {
   display: grid;
   gap: var(--grid-gap, $gap);
@@ -168,9 +170,9 @@
 }
 // #endregion
 
-/* -----------------------------------------------------------------------------
-  * TYPOGRAPHY
-  * -------------------------------------------------------------------------- */
+// -----------------------------------------------------------------------------
+// TYPOGRAPHY
+// -----------------------------------------------------------------------------
 // #region
 
 @mixin heading-base() {
@@ -234,11 +236,32 @@
   padding: rem(1) var(--size-1);
   vertical-align: baseline;
 }
+
+@mixin ol($counter: counter(list-item) '.') {
+  --start-counter: 1;
+
+  list-style: none;
+  padding-inline: 0;
+
+  > li {
+    counter-increment: list-item var(--start-counter);
+    position: relative;
+    padding-left: 2em;
+
+    &::before {
+      color: var(--color-ink-2ry);
+      content: $counter;
+      position: absolute;
+      left: 0;
+      text-align: right;
+    }
+  }
+}
 // #endregion
 
-/* -----------------------------------------------------------------------------
-  * GRAPHICS
-  * -------------------------------------------------------------------------- */
+// -----------------------------------------------------------------------------
+// GRAPHICS
+// -----------------------------------------------------------------------------
 // #region
 
 @mixin border() {
@@ -285,9 +308,9 @@
 }
 // #endregion
 
-/* -----------------------------------------------------------------------------
-  * UTILITIES / HELPERS
-  * -------------------------------------------------------------------------- */
+// -----------------------------------------------------------------------------
+// UTILITIES / HELPERS
+// -----------------------------------------------------------------------------
 // #region
 
 @mixin utility-classes($props) {
@@ -333,19 +356,23 @@
 }
 
 @mixin state-disabled() {
-  // cursor 'not-allowed' is set in accessibility helper
+  cursor: not-allowed;
   filter: grayscale(100%);
   opacity: 0.5;
 
+  // Prevent overwrite with --filter-brightness-up
+  filter: grayscale(100%);
+
   &:hover {
+    background-color: inherit;
     // Prevent overwrite with --filter-brightness-up
     filter: grayscale(100%);
   }
 }
 
-@mixin state-focus($size: var(--size-half)) {
-  outline: $size solid Highlight;
-  outline: $size solid solid -webkit-focus-ring-color;
+@mixin state-focus($size: rem(2)) {
+  outline: 0;
+  box-shadow: 0 0 0 $size var(--color-ink-2ry-info);
 }
 
 @mixin state-hover-a {
@@ -356,9 +383,9 @@
 }
 // #endregion
 
-/* -----------------------------------------------------------------------------
-  * ELEMENTS
-  * -------------------------------------------------------------------------- */
+// -----------------------------------------------------------------------------
+// ELEMENTS
+// -----------------------------------------------------------------------------
 // #region
 
 @mixin menu-item() {

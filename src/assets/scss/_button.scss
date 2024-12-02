@@ -1,9 +1,9 @@
 @use 'abstracts' as *;
 
-/* -----------------------------------------------------------------------------
- * BASE STYLES FOR BUTTONS
- * -------------------------------------------------------------------------- */
-
+// -----------------------------------------------------------------------------
+// BASE STYLES FOR BUTTONS
+// -----------------------------------------------------------------------------
+// #region
 .e-btn,
 button,
 input[type='submit'],
@@ -21,15 +21,19 @@ a[role='button'] {
   border-style: none;
   padding: 0;
 }
+// #endregion
 
-/* -----------------------------------------------------------------------------
- * PRIMARY, OUTLINE AND GHOST BUTTONS
- * -------------------------------------------------------------------------- */
+// -----------------------------------------------------------------------------
+// TYPES
+// -----------------------------------------------------------------------------
+// #region
 
+// Primary
 .e-btn.is-primary {
   @include button-primary;
 }
 
+// Outline and ghost
 .e-btn.is-outline,
 .e-btn.is-ghost {
   background: transparent;
@@ -52,19 +56,68 @@ a[role='button'] {
   border: var(--btn-border-outline);
 }
 
-/* -----------------------------------------------------------------------------
- * ICON BUTTONS
- * -------------------------------------------------------------------------- */
-
-.e-btn.is-icon {
+// Link: use instead a(href='#') and a(href='javascript:void(0)')
+.e-btn.is-link {
+  appearance: none;
+  background: transparent;
+  border-radius: 0;
+  color: var(--color-ink-link);
+  font: inherit;
+  letter-spacing: inherit;
+  text-align: inherit;
   padding: 0;
-  width: var(--size-7);
-  height: var(--size-7);
+  transition: filter var(--duration-50) var(--easing-base);
+  vertical-align: baseline;
+  height: auto;
+
+  @media (any-hover: hover) and (pointer: fine) {
+    &:hover {
+      background: transparent;
+      text-decoration: underline;
+    }
+  }
 }
 
-/* -----------------------------------------------------------------------------
- * DISABLED STATE
- * -------------------------------------------------------------------------- */
+// Icon
+.e-btn.is-icon {
+  --height-btn: var(--size-7);
+
+  padding: 0;
+  width: var(--height-btn);
+}
+
+// Close
+.e-btn.is-close {
+  --height-btn: var(--size-5);
+
+  border-radius: var(--border-radius-pill);
+  backdrop-filter: var(--backdrop-filter-blur);
+  padding: 0;
+  position: sticky;
+  top: var(--size-2);
+  margin-inline-start: auto;
+  width: var(--height-btn);
+  z-index: var(--zindex-fixed);
+
+  // Expanded clickable area
+  &::after {
+    background: transparent;
+    content: '';
+    position: absolute;
+    inset: -1 * rem(2);
+    border-radius: inherit;
+  }
+
+  @media (--tablet) {
+    top: 0;
+  }
+}
+// #endregion
+
+// -----------------------------------------------------------------------------
+// DISABLED STATE
+// -----------------------------------------------------------------------------
+// #region
 
 .e-btn[disabled],
 button[disabled],
@@ -74,10 +127,12 @@ input[type='reset'][disabled],
 a[role='button'][disabled] {
   @include state-disabled();
 }
+// #endregion
 
-/* -----------------------------------------------------------------------------
- * BUTTON GROUP
- * -------------------------------------------------------------------------- */
+// -----------------------------------------------------------------------------
+// BUTTON GROUP
+// -----------------------------------------------------------------------------
+// #region
 
 .e-buttons {
   display: flex;
@@ -99,3 +154,4 @@ a[role='button'][disabled] {
     }
   }
 }
+// #endregion

@@ -1,50 +1,4 @@
 @charset "UTF-8";
-/* -----------------------------------------------------------------------------
- * Table of contents
- * -----------------------------------------------------------------------------
- *
- * grid-base                - Base grid layout with default column, row, and gap settings
- * grid-12                  - 12-column grid layout with specific settings
- * grid                     - Responsive grid layout combining base and 12-column layouts
- * grid-columns             - Generates column classes for grid with custom breakpoints
- * flex-base                - Base flex layout with default settings
- * flex-grid                - It can be a row or a 2-dimensional flex layout. Use this one within media query.
- * container                - Centers content with a max-width and auto margins
- * centering-max-width      - Centers elements with a maximum width and customizable margins
- * heading-base             - Basic styles for headings including font and color
- * text-format              - Sets font size, line height, and padding for text elements
- * label                    - Styles for labels with optional uppercase transformation
- * text-truncate            - Single line text truncation with ellipsis
- * multiline-truncate       - Multi-line text truncation with ellipsis
- * multiline-truncate-reset - Resets multi-line truncation
- * border                   - Adds a border overlay with flex display and overflow handling
- * chevron-down             - Adds a chevron down icon with specific positioning and styles
- * utility-classes          - Generates utility classes based on provided properties
- * visually-hidden          - Hides elements visually but keeps them accessible
- * state-disabled           - Uses visual cues to indicate that the button is disabled
- * state-focus              - Adds a focus ring for accessibility
- * state-hover-a            - Adds a :hover underscore to links
- * menu-item                - Styles for menu items with padding, alignment, and focus behavior
- * button-base              - Base styles for buttons including alignment, cursor, and touch-action
- * button                   - Comprehensive button styles with customizable properties
- * button-primary           - Styles for primary buttons with specific background, color, and shadow
- * scrollbar                - Styles for scrollbars with customizable properties
- * -------------------------------------------------------------------------- */
-/* -----------------------------------------------------------------------------
-  * LAYOUT
-  * -------------------------------------------------------------------------- */
-/* -----------------------------------------------------------------------------
-  * TYPOGRAPHY
-  * -------------------------------------------------------------------------- */
-/* -----------------------------------------------------------------------------
-  * GRAPHICS
-  * -------------------------------------------------------------------------- */
-/* -----------------------------------------------------------------------------
-  * UTILITIES / HELPERS
-  * -------------------------------------------------------------------------- */
-/* -----------------------------------------------------------------------------
-  * ELEMENTS
-  * -------------------------------------------------------------------------- */
 /* Mixins were created in order to quickly style the buttons of plugins, like woocommerce */
 @custom-media --phone only screen and (width < 768px);
 @custom-media --phone-p only screen and (width < 568px);
@@ -86,7 +40,7 @@
   --color-alpha-dark-900: rgb(0 0 0 / 0.87);
   --color-alpha-dark-600: rgb(0 0 0 / 0.6);
   --color-alpha-dark-400: rgb(0 0 0 / 0.38);
-  --color-alpha-dark-100: rgb(0 0 0 / 0.12);
+  --color-alpha-dark-100: rgb(0 0 0 / 0.08);
   --color-alpha-dark-min: rgb(0 0 0 / 0.05);
   --color-alpha-light-max: hsl(0 0% 100%);
   --color-alpha-light-900: hsl(0 0% 100% / 0.87);
@@ -95,7 +49,7 @@
   --color-alpha-light-200: hsl(0 0% 100% / 0.2);
   --color-alpha-light-min: hsl(0 0% 100% / 0.07);
   --color-shadow: 0 0% 0%;
-  --color-bg-base-alpha: color-mix(in srgb, var(--color-bg-base) 88%, transparent);
+  --color-bg-base-alpha: color-mix(in srgb, var(--color-bg-base) 64%, transparent);
   --backdrop-filter-elevated: saturate(180%) blur(20px);
   --backdrop-filter-blur: blur(20px);
   --filter-brightness-up: brightness(1.16);
@@ -341,6 +295,7 @@
   --color-ink-2ry: var(--color-alpha-dark-600);
   --color-ink-3ry: var(--color-alpha-dark-400);
   --color-ink-icon: var(--color-ink-3ry);
+  --color-ink-border-bold: hsl(var(--color-shadow) / 0.12);
   --color-ink-border: var(--color-alpha-dark-100);
   --color-ink-min: hsl(var(--color-shadow) / 0.04);
   --color-ink-link: var(--color-ink-text-brand);
@@ -377,7 +332,21 @@
   --icon-sm-checks: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2220%22%20height%3D%2220%22%20viewBox%3D%220%200%2020%2020%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cpath%20d%3D%22M8%2010L12%2014L19%207M3%2010L7%2014M12%209L14%207%22%20stroke%3D%22%23289C16%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%2F%3E%3C%2Fsvg%3E%0A");
   --icon-success: url("data:image/svg+xml;charset=utf-8,%3Csvg%20width%3D%2224%22%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cpath%20d%3D%22M12%2021C16.9706%2021%2021%2016.9706%2021%2012C21%207.02944%2016.9706%203%2012%203C7.02944%203%203%207.02944%203%2012C3%2016.9706%207.02944%2021%2012%2021Z%22%20fill%3D%22%23BBF9AE%22%2F%3E%3Cpath%20d%3D%22M9%2012L11%2014L15%2010%22%20fill%3D%22%23BBF9AE%22%2F%3E%3Cpath%20d%3D%22M9%2012L11%2014L15%2010M21%2012C21%2016.9706%2016.9706%2021%2012%2021C7.02944%2021%203%2016.9706%203%2012C3%207.02944%207.02944%203%2012%203C16.9706%203%2021%207.02944%2021%2012Z%22%20stroke%3D%22%2322990A%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%2F%3E%3C%2Fsvg%3E%0A");
   --color-scroll-thumb: var(--color-alpha-dark-100);
-  --color-scroll-track: var(--color-alpha-dark-min);
+  --color-scroll-track: transparent;
+  --bg-image-base:
+    linear-gradient(
+      rgb(252 252 252 / 0) 80%,
+      var(--color-bg-base) 100%
+    ),
+    linear-gradient(90deg, rgb(252 252 252 / 0) 94%, var(--color-bg-base) 100%),
+    image-set(
+      url("/assets/img/pages/bg-sky.jpg") 1x,
+      url("/assets/img/pages/bg-sky@2x.jpg") 2x
+    );
+  --bg-image-size-base:
+    100% 299px,
+    1360px 299px,
+    1360px 299px;
 }
 
 @layer base, components, pages, helpers, print;
@@ -436,9 +405,6 @@
   select {
     color: inherit;
   }
-  textarea:not([rows]) {
-    min-height: 10em;
-  }
   legend {
     float: left;
     line-height: inherit;
@@ -479,52 +445,6 @@
   #__next {
     isolation: isolate;
   }
-  /* -----------------------------------------------------------------------------
-   * Table of contents
-   * -----------------------------------------------------------------------------
-   *
-   * grid-base                - Base grid layout with default column, row, and gap settings
-   * grid-12                  - 12-column grid layout with specific settings
-   * grid                     - Responsive grid layout combining base and 12-column layouts
-   * grid-columns             - Generates column classes for grid with custom breakpoints
-   * flex-base                - Base flex layout with default settings
-   * flex-grid                - It can be a row or a 2-dimensional flex layout. Use this one within media query.
-   * container                - Centers content with a max-width and auto margins
-   * centering-max-width      - Centers elements with a maximum width and customizable margins
-   * heading-base             - Basic styles for headings including font and color
-   * text-format              - Sets font size, line height, and padding for text elements
-   * label                    - Styles for labels with optional uppercase transformation
-   * text-truncate            - Single line text truncation with ellipsis
-   * multiline-truncate       - Multi-line text truncation with ellipsis
-   * multiline-truncate-reset - Resets multi-line truncation
-   * border                   - Adds a border overlay with flex display and overflow handling
-   * chevron-down             - Adds a chevron down icon with specific positioning and styles
-   * utility-classes          - Generates utility classes based on provided properties
-   * visually-hidden          - Hides elements visually but keeps them accessible
-   * state-disabled           - Uses visual cues to indicate that the button is disabled
-   * state-focus              - Adds a focus ring for accessibility
-   * state-hover-a            - Adds a :hover underscore to links
-   * menu-item                - Styles for menu items with padding, alignment, and focus behavior
-   * button-base              - Base styles for buttons including alignment, cursor, and touch-action
-   * button                   - Comprehensive button styles with customizable properties
-   * button-primary           - Styles for primary buttons with specific background, color, and shadow
-   * scrollbar                - Styles for scrollbars with customizable properties
-   * -------------------------------------------------------------------------- */
-  /* -----------------------------------------------------------------------------
-    * LAYOUT
-    * -------------------------------------------------------------------------- */
-  /* -----------------------------------------------------------------------------
-    * TYPOGRAPHY
-    * -------------------------------------------------------------------------- */
-  /* -----------------------------------------------------------------------------
-    * GRAPHICS
-    * -------------------------------------------------------------------------- */
-  /* -----------------------------------------------------------------------------
-    * UTILITIES / HELPERS
-    * -------------------------------------------------------------------------- */
-  /* -----------------------------------------------------------------------------
-    * ELEMENTS
-    * -------------------------------------------------------------------------- */
   /* Mixins were created in order to quickly style the buttons of plugins, like woocommerce */
   html {
     -moz-osx-font-smoothing: grayscale;
@@ -561,10 +481,10 @@
   body {
     accent-color: var(--color-brand-primary);
     background-color: var(--color-bg-base);
-    background-image: linear-gradient(rgba(252, 252, 252, 0) 80%, var(--color-bg-base) 100%), linear-gradient(90deg, rgba(252, 252, 252, 0) 94%, var(--color-bg-base) 100%), image-set(url("/assets/img/pages/bg-sky.jpg") 1x, url("/assets/img/pages/bg-sky@2x.jpg") 2x);
+    background-image: var(--bg-image-base);
     background-repeat: no-repeat;
     background-position: left top;
-    background-size: 100% 299px, 1360px 299px, 1360px 299px;
+    background-size: var(--bg-image-size-base);
     color: var(--color-ink-text);
     display: flex;
     flex-direction: column;
@@ -611,56 +531,7 @@
       z-index: var(--zindex-fixed);
     }
   }
-  /* -----------------------------------------------------------------------------
-   * Table of contents
-   * -----------------------------------------------------------------------------
-   *
-   * grid-base                - Base grid layout with default column, row, and gap settings
-   * grid-12                  - 12-column grid layout with specific settings
-   * grid                     - Responsive grid layout combining base and 12-column layouts
-   * grid-columns             - Generates column classes for grid with custom breakpoints
-   * flex-base                - Base flex layout with default settings
-   * flex-grid                - It can be a row or a 2-dimensional flex layout. Use this one within media query.
-   * container                - Centers content with a max-width and auto margins
-   * centering-max-width      - Centers elements with a maximum width and customizable margins
-   * heading-base             - Basic styles for headings including font and color
-   * text-format              - Sets font size, line height, and padding for text elements
-   * label                    - Styles for labels with optional uppercase transformation
-   * text-truncate            - Single line text truncation with ellipsis
-   * multiline-truncate       - Multi-line text truncation with ellipsis
-   * multiline-truncate-reset - Resets multi-line truncation
-   * border                   - Adds a border overlay with flex display and overflow handling
-   * chevron-down             - Adds a chevron down icon with specific positioning and styles
-   * utility-classes          - Generates utility classes based on provided properties
-   * visually-hidden          - Hides elements visually but keeps them accessible
-   * state-disabled           - Uses visual cues to indicate that the button is disabled
-   * state-focus              - Adds a focus ring for accessibility
-   * state-hover-a            - Adds a :hover underscore to links
-   * menu-item                - Styles for menu items with padding, alignment, and focus behavior
-   * button-base              - Base styles for buttons including alignment, cursor, and touch-action
-   * button                   - Comprehensive button styles with customizable properties
-   * button-primary           - Styles for primary buttons with specific background, color, and shadow
-   * scrollbar                - Styles for scrollbars with customizable properties
-   * -------------------------------------------------------------------------- */
-  /* -----------------------------------------------------------------------------
-    * LAYOUT
-    * -------------------------------------------------------------------------- */
-  /* -----------------------------------------------------------------------------
-    * TYPOGRAPHY
-    * -------------------------------------------------------------------------- */
-  /* -----------------------------------------------------------------------------
-    * GRAPHICS
-    * -------------------------------------------------------------------------- */
-  /* -----------------------------------------------------------------------------
-    * UTILITIES / HELPERS
-    * -------------------------------------------------------------------------- */
-  /* -----------------------------------------------------------------------------
-    * ELEMENTS
-    * -------------------------------------------------------------------------- */
   /* Mixins were created in order to quickly style the buttons of plugins, like woocommerce */
-  /* -----------------------------------------------------------------------------
-   * BASE STYLES FOR HEADINGS
-   * -------------------------------------------------------------------------- */
   h1, .h1,
   h2, .h2,
   h3, .h3,
@@ -671,9 +542,6 @@
     margin-top: 0;
     margin-bottom: var(--size-2);
   }
-  /* -----------------------------------------------------------------------------
-   * H1
-   * -------------------------------------------------------------------------- */
   h1, .h1 {
     font-size: var(--font-size-title);
     line-height: var(--line-height-title);
@@ -682,9 +550,6 @@
     font-weight: var(--font-weight-title, bold);
     letter-spacing: var(--letter-spacing-title, normal);
   }
-  /* -----------------------------------------------------------------------------
-   * H2
-   * -------------------------------------------------------------------------- */
   h2, .h2 {
     font-size: var(--font-size-h2);
     line-height: var(--line-height-h2);
@@ -693,9 +558,6 @@
     font-weight: var(--font-weight-h2, bold);
     letter-spacing: var(--letter-spacing-h2, normal);
   }
-  /* -----------------------------------------------------------------------------
-   * H3
-   * -------------------------------------------------------------------------- */
   h3, .h3 {
     font-size: var(--font-size-h3);
     line-height: var(--line-height-h3);
@@ -703,9 +565,6 @@
     padding-bottom: var(--padding-bottom-h3);
     font-weight: var(--font-weight-h3, bold);
   }
-  /* -----------------------------------------------------------------------------
-   * H4, H5, H6
-   * -------------------------------------------------------------------------- */
   h4, .h4,
   h5, h6 {
     font-size: var(--font-size-base);
@@ -714,9 +573,6 @@
     padding-bottom: var(--padding-bottom-base);
     font-weight: var(--font-weight-h4, bold);
   }
-  /* -----------------------------------------------------------------------------
-   * ADDITIONAL STYLES
-   * -------------------------------------------------------------------------- */
   :where(address, blockquote, div, dl, figure, form, ol, p, pre, table, ul) + :is(h2, h3, h4, h5, h6) {
     margin-top: var(--margin-top-subhead, var(--size-line));
   }
@@ -735,59 +591,10 @@
     padding-top: var(--padding-top-caption);
     padding-bottom: var(--padding-bottom-caption);
   }
-  /* -----------------------------------------------------------------------------
-   * Table of contents
-   * -----------------------------------------------------------------------------
-   *
-   * grid-base                - Base grid layout with default column, row, and gap settings
-   * grid-12                  - 12-column grid layout with specific settings
-   * grid                     - Responsive grid layout combining base and 12-column layouts
-   * grid-columns             - Generates column classes for grid with custom breakpoints
-   * flex-base                - Base flex layout with default settings
-   * flex-grid                - It can be a row or a 2-dimensional flex layout. Use this one within media query.
-   * container                - Centers content with a max-width and auto margins
-   * centering-max-width      - Centers elements with a maximum width and customizable margins
-   * heading-base             - Basic styles for headings including font and color
-   * text-format              - Sets font size, line height, and padding for text elements
-   * label                    - Styles for labels with optional uppercase transformation
-   * text-truncate            - Single line text truncation with ellipsis
-   * multiline-truncate       - Multi-line text truncation with ellipsis
-   * multiline-truncate-reset - Resets multi-line truncation
-   * border                   - Adds a border overlay with flex display and overflow handling
-   * chevron-down             - Adds a chevron down icon with specific positioning and styles
-   * utility-classes          - Generates utility classes based on provided properties
-   * visually-hidden          - Hides elements visually but keeps them accessible
-   * state-disabled           - Uses visual cues to indicate that the button is disabled
-   * state-focus              - Adds a focus ring for accessibility
-   * state-hover-a            - Adds a :hover underscore to links
-   * menu-item                - Styles for menu items with padding, alignment, and focus behavior
-   * button-base              - Base styles for buttons including alignment, cursor, and touch-action
-   * button                   - Comprehensive button styles with customizable properties
-   * button-primary           - Styles for primary buttons with specific background, color, and shadow
-   * scrollbar                - Styles for scrollbars with customizable properties
-   * -------------------------------------------------------------------------- */
-  /* -----------------------------------------------------------------------------
-    * LAYOUT
-    * -------------------------------------------------------------------------- */
-  /* -----------------------------------------------------------------------------
-    * TYPOGRAPHY
-    * -------------------------------------------------------------------------- */
-  /* -----------------------------------------------------------------------------
-    * GRAPHICS
-    * -------------------------------------------------------------------------- */
-  /* -----------------------------------------------------------------------------
-    * UTILITIES / HELPERS
-    * -------------------------------------------------------------------------- */
-  /* -----------------------------------------------------------------------------
-    * ELEMENTS
-    * -------------------------------------------------------------------------- */
   /* Mixins were created in order to quickly style the buttons of plugins, like woocommerce */
   :focus-visible {
     scroll-padding-block-end: var(--scroll-padding-end, 8vh);
   }
-  /* -----------------------------------------------------------------------------
-   * BLOCK
-   * -------------------------------------------------------------------------- */
   address,
   dd,
   dt,
@@ -848,22 +655,22 @@
     color: var(--color-brand-primary);
     content: "•  ";
   }
-  ol {
+  :where(ol:not([class], nav ol)) {
+    --start-counter: 1;
     list-style: none;
     padding-inline: 0;
   }
-  ol > li {
+  :where(ol:not([class], nav ol)) > li {
+    counter-increment: list-item var(--start-counter);
     position: relative;
     padding-left: 2em;
   }
-  ol > li::before {
+  :where(ol:not([class], nav ol)) > li::before {
     color: var(--color-ink-2ry);
     content: counter(list-item) ".";
-    font-variant-numeric: lining-nums tabular-nums;
-    font-weight: 400;
     position: absolute;
-    top: var(--padding-top-base);
     left: 0;
+    text-align: right;
   }
   li {
     padding-top: var(--padding-top-base);
@@ -918,9 +725,6 @@
     margin-top: calc(var(--margin) - var(--border-width));
     margin-bottom: var(--margin);
   }
-  /* -----------------------------------------------------------------------------
-   * INLINE
-   * -------------------------------------------------------------------------- */
   :where(a:not(.e-btn):not([role=button])),
   [role=link] {
     --background-focus: var(--color-bg-brand);
@@ -998,56 +802,7 @@
   sup {
     top: -0.5em;
   }
-  /* -----------------------------------------------------------------------------
-   * Table of contents
-   * -----------------------------------------------------------------------------
-   *
-   * grid-base                - Base grid layout with default column, row, and gap settings
-   * grid-12                  - 12-column grid layout with specific settings
-   * grid                     - Responsive grid layout combining base and 12-column layouts
-   * grid-columns             - Generates column classes for grid with custom breakpoints
-   * flex-base                - Base flex layout with default settings
-   * flex-grid                - It can be a row or a 2-dimensional flex layout. Use this one within media query.
-   * container                - Centers content with a max-width and auto margins
-   * centering-max-width      - Centers elements with a maximum width and customizable margins
-   * heading-base             - Basic styles for headings including font and color
-   * text-format              - Sets font size, line height, and padding for text elements
-   * label                    - Styles for labels with optional uppercase transformation
-   * text-truncate            - Single line text truncation with ellipsis
-   * multiline-truncate       - Multi-line text truncation with ellipsis
-   * multiline-truncate-reset - Resets multi-line truncation
-   * border                   - Adds a border overlay with flex display and overflow handling
-   * chevron-down             - Adds a chevron down icon with specific positioning and styles
-   * utility-classes          - Generates utility classes based on provided properties
-   * visually-hidden          - Hides elements visually but keeps them accessible
-   * state-disabled           - Uses visual cues to indicate that the button is disabled
-   * state-focus              - Adds a focus ring for accessibility
-   * state-hover-a            - Adds a :hover underscore to links
-   * menu-item                - Styles for menu items with padding, alignment, and focus behavior
-   * button-base              - Base styles for buttons including alignment, cursor, and touch-action
-   * button                   - Comprehensive button styles with customizable properties
-   * button-primary           - Styles for primary buttons with specific background, color, and shadow
-   * scrollbar                - Styles for scrollbars with customizable properties
-   * -------------------------------------------------------------------------- */
-  /* -----------------------------------------------------------------------------
-    * LAYOUT
-    * -------------------------------------------------------------------------- */
-  /* -----------------------------------------------------------------------------
-    * TYPOGRAPHY
-    * -------------------------------------------------------------------------- */
-  /* -----------------------------------------------------------------------------
-    * GRAPHICS
-    * -------------------------------------------------------------------------- */
-  /* -----------------------------------------------------------------------------
-    * UTILITIES / HELPERS
-    * -------------------------------------------------------------------------- */
-  /* -----------------------------------------------------------------------------
-    * ELEMENTS
-    * -------------------------------------------------------------------------- */
   /* Mixins were created in order to quickly style the buttons of plugins, like woocommerce */
-  /* -----------------------------------------------------------------------------
-   * BORDER FOR MEDIA ELEMENTS
-   * -------------------------------------------------------------------------- */
   .e-border {
     border-radius: var(--border-radius-base);
     display: flex;
@@ -1074,9 +829,6 @@
     margin-bottom: 0;
     width: 100%;
   }
-  /* -----------------------------------------------------------------------------
-   * FIGURES AND IFRAMES
-   * -------------------------------------------------------------------------- */
   iframe {
     border-style: none;
   }
@@ -1090,9 +842,6 @@
     padding-top: var(--padding-top-base);
     padding-bottom: var(--padding-bottom-base);
   }
-  /* -----------------------------------------------------------------------------
-   * IMAGES, VIDEO, SVG
-   * -------------------------------------------------------------------------- */
   img,
   video {
     border-style: none;
@@ -1106,52 +855,6 @@
   svg:not(:root) {
     overflow: hidden;
   }
-  /* -----------------------------------------------------------------------------
-   * Table of contents
-   * -----------------------------------------------------------------------------
-   *
-   * grid-base                - Base grid layout with default column, row, and gap settings
-   * grid-12                  - 12-column grid layout with specific settings
-   * grid                     - Responsive grid layout combining base and 12-column layouts
-   * grid-columns             - Generates column classes for grid with custom breakpoints
-   * flex-base                - Base flex layout with default settings
-   * flex-grid                - It can be a row or a 2-dimensional flex layout. Use this one within media query.
-   * container                - Centers content with a max-width and auto margins
-   * centering-max-width      - Centers elements with a maximum width and customizable margins
-   * heading-base             - Basic styles for headings including font and color
-   * text-format              - Sets font size, line height, and padding for text elements
-   * label                    - Styles for labels with optional uppercase transformation
-   * text-truncate            - Single line text truncation with ellipsis
-   * multiline-truncate       - Multi-line text truncation with ellipsis
-   * multiline-truncate-reset - Resets multi-line truncation
-   * border                   - Adds a border overlay with flex display and overflow handling
-   * chevron-down             - Adds a chevron down icon with specific positioning and styles
-   * utility-classes          - Generates utility classes based on provided properties
-   * visually-hidden          - Hides elements visually but keeps them accessible
-   * state-disabled           - Uses visual cues to indicate that the button is disabled
-   * state-focus              - Adds a focus ring for accessibility
-   * state-hover-a            - Adds a :hover underscore to links
-   * menu-item                - Styles for menu items with padding, alignment, and focus behavior
-   * button-base              - Base styles for buttons including alignment, cursor, and touch-action
-   * button                   - Comprehensive button styles with customizable properties
-   * button-primary           - Styles for primary buttons with specific background, color, and shadow
-   * scrollbar                - Styles for scrollbars with customizable properties
-   * -------------------------------------------------------------------------- */
-  /* -----------------------------------------------------------------------------
-    * LAYOUT
-    * -------------------------------------------------------------------------- */
-  /* -----------------------------------------------------------------------------
-    * TYPOGRAPHY
-    * -------------------------------------------------------------------------- */
-  /* -----------------------------------------------------------------------------
-    * GRAPHICS
-    * -------------------------------------------------------------------------- */
-  /* -----------------------------------------------------------------------------
-    * UTILITIES / HELPERS
-    * -------------------------------------------------------------------------- */
-  /* -----------------------------------------------------------------------------
-    * ELEMENTS
-    * -------------------------------------------------------------------------- */
   /* Mixins were created in order to quickly style the buttons of plugins, like woocommerce */
   .e-container {
     margin-inline: auto;
@@ -1165,54 +868,16 @@
     margin: 0 auto;
     width: min(100%, var(--width-readable));
   }
+  .e-main {
+    flex-grow: 1;
+    height: 100%;
+  }
+  .e-main.is-flex-column {
+    display: flex;
+    flex-direction: column;
+  }
 }
 @layer base {
-  /* -----------------------------------------------------------------------------
-   * Table of contents
-   * -----------------------------------------------------------------------------
-   *
-   * grid-base                - Base grid layout with default column, row, and gap settings
-   * grid-12                  - 12-column grid layout with specific settings
-   * grid                     - Responsive grid layout combining base and 12-column layouts
-   * grid-columns             - Generates column classes for grid with custom breakpoints
-   * flex-base                - Base flex layout with default settings
-   * flex-grid                - It can be a row or a 2-dimensional flex layout. Use this one within media query.
-   * container                - Centers content with a max-width and auto margins
-   * centering-max-width      - Centers elements with a maximum width and customizable margins
-   * heading-base             - Basic styles for headings including font and color
-   * text-format              - Sets font size, line height, and padding for text elements
-   * label                    - Styles for labels with optional uppercase transformation
-   * text-truncate            - Single line text truncation with ellipsis
-   * multiline-truncate       - Multi-line text truncation with ellipsis
-   * multiline-truncate-reset - Resets multi-line truncation
-   * border                   - Adds a border overlay with flex display and overflow handling
-   * chevron-down             - Adds a chevron down icon with specific positioning and styles
-   * utility-classes          - Generates utility classes based on provided properties
-   * visually-hidden          - Hides elements visually but keeps them accessible
-   * state-disabled           - Uses visual cues to indicate that the button is disabled
-   * state-focus              - Adds a focus ring for accessibility
-   * state-hover-a            - Adds a :hover underscore to links
-   * menu-item                - Styles for menu items with padding, alignment, and focus behavior
-   * button-base              - Base styles for buttons including alignment, cursor, and touch-action
-   * button                   - Comprehensive button styles with customizable properties
-   * button-primary           - Styles for primary buttons with specific background, color, and shadow
-   * scrollbar                - Styles for scrollbars with customizable properties
-   * -------------------------------------------------------------------------- */
-  /* -----------------------------------------------------------------------------
-    * LAYOUT
-    * -------------------------------------------------------------------------- */
-  /* -----------------------------------------------------------------------------
-    * TYPOGRAPHY
-    * -------------------------------------------------------------------------- */
-  /* -----------------------------------------------------------------------------
-    * GRAPHICS
-    * -------------------------------------------------------------------------- */
-  /* -----------------------------------------------------------------------------
-    * UTILITIES / HELPERS
-    * -------------------------------------------------------------------------- */
-  /* -----------------------------------------------------------------------------
-    * ELEMENTS
-    * -------------------------------------------------------------------------- */
   /* Mixins were created in order to quickly style the buttons of plugins, like woocommerce */
   .e-icon {
     --color-fill-icon: none;
@@ -1240,56 +905,7 @@
     width: var(--size-icon-sm);
     height: var(--size-icon-sm);
   }
-  /* -----------------------------------------------------------------------------
-   * Table of contents
-   * -----------------------------------------------------------------------------
-   *
-   * grid-base                - Base grid layout with default column, row, and gap settings
-   * grid-12                  - 12-column grid layout with specific settings
-   * grid                     - Responsive grid layout combining base and 12-column layouts
-   * grid-columns             - Generates column classes for grid with custom breakpoints
-   * flex-base                - Base flex layout with default settings
-   * flex-grid                - It can be a row or a 2-dimensional flex layout. Use this one within media query.
-   * container                - Centers content with a max-width and auto margins
-   * centering-max-width      - Centers elements with a maximum width and customizable margins
-   * heading-base             - Basic styles for headings including font and color
-   * text-format              - Sets font size, line height, and padding for text elements
-   * label                    - Styles for labels with optional uppercase transformation
-   * text-truncate            - Single line text truncation with ellipsis
-   * multiline-truncate       - Multi-line text truncation with ellipsis
-   * multiline-truncate-reset - Resets multi-line truncation
-   * border                   - Adds a border overlay with flex display and overflow handling
-   * chevron-down             - Adds a chevron down icon with specific positioning and styles
-   * utility-classes          - Generates utility classes based on provided properties
-   * visually-hidden          - Hides elements visually but keeps them accessible
-   * state-disabled           - Uses visual cues to indicate that the button is disabled
-   * state-focus              - Adds a focus ring for accessibility
-   * state-hover-a            - Adds a :hover underscore to links
-   * menu-item                - Styles for menu items with padding, alignment, and focus behavior
-   * button-base              - Base styles for buttons including alignment, cursor, and touch-action
-   * button                   - Comprehensive button styles with customizable properties
-   * button-primary           - Styles for primary buttons with specific background, color, and shadow
-   * scrollbar                - Styles for scrollbars with customizable properties
-   * -------------------------------------------------------------------------- */
-  /* -----------------------------------------------------------------------------
-    * LAYOUT
-    * -------------------------------------------------------------------------- */
-  /* -----------------------------------------------------------------------------
-    * TYPOGRAPHY
-    * -------------------------------------------------------------------------- */
-  /* -----------------------------------------------------------------------------
-    * GRAPHICS
-    * -------------------------------------------------------------------------- */
-  /* -----------------------------------------------------------------------------
-    * UTILITIES / HELPERS
-    * -------------------------------------------------------------------------- */
-  /* -----------------------------------------------------------------------------
-    * ELEMENTS
-    * -------------------------------------------------------------------------- */
   /* Mixins were created in order to quickly style the buttons of plugins, like woocommerce */
-  /* -----------------------------------------------------------------------------
-   * BASE STYLES FOR BUTTONS
-   * -------------------------------------------------------------------------- */
   .e-btn,
   button,
   input[type=submit],
@@ -1340,8 +956,8 @@
   input[type=button]:focus-visible,
   input[type=reset]:focus-visible,
   a[role=button]:focus-visible {
-    outline: var(--size-half) solid Highlight;
-    outline: var(--size-half) solid solid -webkit-focus-ring-color;
+    outline: 0;
+    box-shadow: 0 0 0 0.125rem var(--color-ink-2ry-info);
   }
   .e-btn > span,
   button > span,
@@ -1378,9 +994,6 @@
     border-style: none;
     padding: 0;
   }
-  /* -----------------------------------------------------------------------------
-   * PRIMARY, OUTLINE AND GHOST BUTTONS
-   * -------------------------------------------------------------------------- */
   .e-btn.is-primary {
     text-shadow: 0 1px 0 var(--color-ink-min);
     transition: filter var(--duration-50) var(--easing-base), box-shadow var(--duration-50) var(--easing-base);
@@ -1421,8 +1034,8 @@
     min-width: 0;
   }
   .e-btn.is-primary:focus-visible {
-    outline: var(--size-half) solid Highlight;
-    outline: var(--size-half) solid solid -webkit-focus-ring-color;
+    outline: 0;
+    box-shadow: 0 0 0 0.125rem var(--color-ink-2ry-info);
   }
   .e-btn.is-primary > span {
     text-overflow: ellipsis;
@@ -1464,25 +1077,63 @@
   .e-btn.is-outline {
     border: var(--btn-border-outline);
   }
-  /* -----------------------------------------------------------------------------
-   * ICON BUTTONS
-   * -------------------------------------------------------------------------- */
-  .e-btn.is-icon {
+  .e-btn.is-link {
+    appearance: none;
+    background: transparent;
+    border-radius: 0;
+    color: var(--color-ink-link);
+    font: inherit;
+    letter-spacing: inherit;
+    text-align: inherit;
     padding: 0;
-    width: var(--size-7);
-    height: var(--size-7);
+    transition: filter var(--duration-50) var(--easing-base);
+    vertical-align: baseline;
+    height: auto;
   }
-  /* -----------------------------------------------------------------------------
-   * DISABLED STATE
-   * -------------------------------------------------------------------------- */
+  @media (any-hover: hover) and (pointer: fine) {
+    .e-btn.is-link:hover {
+      background: transparent;
+      text-decoration: underline;
+    }
+  }
+  .e-btn.is-icon {
+    --height-btn: var(--size-7);
+    padding: 0;
+    width: var(--height-btn);
+  }
+  .e-btn.is-close {
+    --height-btn: var(--size-5);
+    border-radius: var(--border-radius-pill);
+    backdrop-filter: var(--backdrop-filter-blur);
+    padding: 0;
+    position: sticky;
+    top: var(--size-2);
+    margin-inline-start: auto;
+    width: var(--height-btn);
+    z-index: var(--zindex-fixed);
+  }
+  .e-btn.is-close::after {
+    background: transparent;
+    content: "";
+    position: absolute;
+    inset: -0.125rem;
+    border-radius: inherit;
+  }
+  @media (--tablet) {
+    .e-btn.is-close {
+      top: 0;
+    }
+  }
   .e-btn[disabled],
   button[disabled],
   input[type=submit][disabled],
   input[type=button][disabled],
   input[type=reset][disabled],
   a[role=button][disabled] {
+    cursor: not-allowed;
     filter: grayscale(100%);
     opacity: 0.5;
+    filter: grayscale(100%);
   }
   .e-btn[disabled]:hover,
   button[disabled]:hover,
@@ -1490,11 +1141,9 @@
   input[type=button][disabled]:hover,
   input[type=reset][disabled]:hover,
   a[role=button][disabled]:hover {
+    background-color: inherit;
     filter: grayscale(100%);
   }
-  /* -----------------------------------------------------------------------------
-   * BUTTON GROUP
-   * -------------------------------------------------------------------------- */
   .e-buttons {
     display: flex;
     align-items: center;
@@ -1514,56 +1163,7 @@
       margin-left: var(--size-1);
     }
   }
-  /* -----------------------------------------------------------------------------
-   * Table of contents
-   * -----------------------------------------------------------------------------
-   *
-   * grid-base                - Base grid layout with default column, row, and gap settings
-   * grid-12                  - 12-column grid layout with specific settings
-   * grid                     - Responsive grid layout combining base and 12-column layouts
-   * grid-columns             - Generates column classes for grid with custom breakpoints
-   * flex-base                - Base flex layout with default settings
-   * flex-grid                - It can be a row or a 2-dimensional flex layout. Use this one within media query.
-   * container                - Centers content with a max-width and auto margins
-   * centering-max-width      - Centers elements with a maximum width and customizable margins
-   * heading-base             - Basic styles for headings including font and color
-   * text-format              - Sets font size, line height, and padding for text elements
-   * label                    - Styles for labels with optional uppercase transformation
-   * text-truncate            - Single line text truncation with ellipsis
-   * multiline-truncate       - Multi-line text truncation with ellipsis
-   * multiline-truncate-reset - Resets multi-line truncation
-   * border                   - Adds a border overlay with flex display and overflow handling
-   * chevron-down             - Adds a chevron down icon with specific positioning and styles
-   * utility-classes          - Generates utility classes based on provided properties
-   * visually-hidden          - Hides elements visually but keeps them accessible
-   * state-disabled           - Uses visual cues to indicate that the button is disabled
-   * state-focus              - Adds a focus ring for accessibility
-   * state-hover-a            - Adds a :hover underscore to links
-   * menu-item                - Styles for menu items with padding, alignment, and focus behavior
-   * button-base              - Base styles for buttons including alignment, cursor, and touch-action
-   * button                   - Comprehensive button styles with customizable properties
-   * button-primary           - Styles for primary buttons with specific background, color, and shadow
-   * scrollbar                - Styles for scrollbars with customizable properties
-   * -------------------------------------------------------------------------- */
-  /* -----------------------------------------------------------------------------
-    * LAYOUT
-    * -------------------------------------------------------------------------- */
-  /* -----------------------------------------------------------------------------
-    * TYPOGRAPHY
-    * -------------------------------------------------------------------------- */
-  /* -----------------------------------------------------------------------------
-    * GRAPHICS
-    * -------------------------------------------------------------------------- */
-  /* -----------------------------------------------------------------------------
-    * UTILITIES / HELPERS
-    * -------------------------------------------------------------------------- */
-  /* -----------------------------------------------------------------------------
-    * ELEMENTS
-    * -------------------------------------------------------------------------- */
   /* Mixins were created in order to quickly style the buttons of plugins, like woocommerce */
-  /* -----------------------------------------------------------------------------
-   * CONTAINERS
-   * -------------------------------------------------------------------------- */
   form {
     accent-color: var(--color-ink-text-brand);
     caret-color: var(--color-ink-2ry-brand);
@@ -1578,9 +1178,6 @@
     position: relative;
     padding: 0;
   }
-  /* -----------------------------------------------------------------------------
-   * LEGEND AND LABELS
-   * -------------------------------------------------------------------------- */
   label,
   legend {
     display: block;
@@ -1600,9 +1197,6 @@
     padding-bottom: var(--padding-bottom-label);
     position: relative;
   }
-  /* -----------------------------------------------------------------------------
-   * FIELDS NORMALIZE
-   * -------------------------------------------------------------------------- */
   ::-moz-focus-inner {
     border-style: none;
     padding: 0;
@@ -1616,16 +1210,13 @@
   ::-ms-expand {
     display: none;
   }
-  /* -----------------------------------------------------------------------------
-   * INPUT, TEXTAREA, SELECT BASE
-   * -------------------------------------------------------------------------- */
   input,
   optgroup,
   select,
   textarea {
     font-family: inherit;
-    font-size: var(--font-size-base);
-    line-height: var(--line-height-base);
+    font-size: var(--font-size-label);
+    line-height: var(--line-height-label);
     letter-spacing: inherit;
   }
   input,
@@ -1648,11 +1239,13 @@
     width: 100%;
     min-height: calc(var(--size-line) * 2);
   }
-  select:focus-visible,
+  select:focus, select:focus-visible,
+  textarea:focus,
   textarea:focus-visible,
+  input:not([type=checkbox]):not([type=radio]):not([type=submit]):not([type=reset]):focus,
   input:not([type=checkbox]):not([type=radio]):not([type=submit]):not([type=reset]):focus-visible {
-    outline: var(--size-half) solid Highlight;
-    outline: var(--size-half) solid solid -webkit-focus-ring-color;
+    outline: 0;
+    box-shadow: 0 0 0 0.125rem var(--color-ink-2ry-info);
     color: var(--color-ink-text);
     border-color: transparent;
   }
@@ -1671,29 +1264,26 @@
   [type=password] {
     padding-inline-end: var(--padding-x-input-lg);
   }
-  /* -----------------------------------------------------------------------------
-   * SPECIFIC
-   * -------------------------------------------------------------------------- */
   textarea {
     padding-top: 0.6875rem;
     overflow: auto;
     resize: vertical;
   }
-  textarea:not([rows]) {
+  textarea:not([rows]):not(.is-chat-input textarea) {
     height: calc(var(--size-line) * 6);
   }
   [disabled],
   [readonly] {
+    cursor: not-allowed;
     filter: grayscale(100%);
     opacity: 0.5;
+    filter: grayscale(100%);
   }
   [disabled]:hover,
   [readonly]:hover {
+    background-color: inherit;
     filter: grayscale(100%);
   }
-  /* -----------------------------------------------------------------------------
-   * HINTS
-   * -------------------------------------------------------------------------- */
   form small {
     color: var(--color-ink-2ry);
     margin-top: var(--size-1);
@@ -1703,9 +1293,6 @@
   .e-form__disclaimer {
     margin-block: var(--size-line);
   }
-  /* -----------------------------------------------------------------------------
-   * BUTTONS
-   * -------------------------------------------------------------------------- */
   .e-form__footer > * {
     margin-bottom: var(--size-2);
   }
@@ -1720,59 +1307,10 @@
       margin-right: var(--size-2);
     }
   }
-  /* -----------------------------------------------------------------------------
-   * CAPTCHA
-   * -------------------------------------------------------------------------- */
   .grecaptcha-badge {
     opacity: 0;
     pointer-events: none;
   }
-  /* -----------------------------------------------------------------------------
-   * Table of contents
-   * -----------------------------------------------------------------------------
-   *
-   * grid-base                - Base grid layout with default column, row, and gap settings
-   * grid-12                  - 12-column grid layout with specific settings
-   * grid                     - Responsive grid layout combining base and 12-column layouts
-   * grid-columns             - Generates column classes for grid with custom breakpoints
-   * flex-base                - Base flex layout with default settings
-   * flex-grid                - It can be a row or a 2-dimensional flex layout. Use this one within media query.
-   * container                - Centers content with a max-width and auto margins
-   * centering-max-width      - Centers elements with a maximum width and customizable margins
-   * heading-base             - Basic styles for headings including font and color
-   * text-format              - Sets font size, line height, and padding for text elements
-   * label                    - Styles for labels with optional uppercase transformation
-   * text-truncate            - Single line text truncation with ellipsis
-   * multiline-truncate       - Multi-line text truncation with ellipsis
-   * multiline-truncate-reset - Resets multi-line truncation
-   * border                   - Adds a border overlay with flex display and overflow handling
-   * chevron-down             - Adds a chevron down icon with specific positioning and styles
-   * utility-classes          - Generates utility classes based on provided properties
-   * visually-hidden          - Hides elements visually but keeps them accessible
-   * state-disabled           - Uses visual cues to indicate that the button is disabled
-   * state-focus              - Adds a focus ring for accessibility
-   * state-hover-a            - Adds a :hover underscore to links
-   * menu-item                - Styles for menu items with padding, alignment, and focus behavior
-   * button-base              - Base styles for buttons including alignment, cursor, and touch-action
-   * button                   - Comprehensive button styles with customizable properties
-   * button-primary           - Styles for primary buttons with specific background, color, and shadow
-   * scrollbar                - Styles for scrollbars with customizable properties
-   * -------------------------------------------------------------------------- */
-  /* -----------------------------------------------------------------------------
-    * LAYOUT
-    * -------------------------------------------------------------------------- */
-  /* -----------------------------------------------------------------------------
-    * TYPOGRAPHY
-    * -------------------------------------------------------------------------- */
-  /* -----------------------------------------------------------------------------
-    * GRAPHICS
-    * -------------------------------------------------------------------------- */
-  /* -----------------------------------------------------------------------------
-    * UTILITIES / HELPERS
-    * -------------------------------------------------------------------------- */
-  /* -----------------------------------------------------------------------------
-    * ELEMENTS
-    * -------------------------------------------------------------------------- */
   /* Mixins were created in order to quickly style the buttons of plugins, like woocommerce */
   .e-grid {
     display: grid;
@@ -2068,52 +1606,6 @@
       grid-column-start: 11;
     }
   }
-  /* -----------------------------------------------------------------------------
-   * Table of contents
-   * -----------------------------------------------------------------------------
-   *
-   * grid-base                - Base grid layout with default column, row, and gap settings
-   * grid-12                  - 12-column grid layout with specific settings
-   * grid                     - Responsive grid layout combining base and 12-column layouts
-   * grid-columns             - Generates column classes for grid with custom breakpoints
-   * flex-base                - Base flex layout with default settings
-   * flex-grid                - It can be a row or a 2-dimensional flex layout. Use this one within media query.
-   * container                - Centers content with a max-width and auto margins
-   * centering-max-width      - Centers elements with a maximum width and customizable margins
-   * heading-base             - Basic styles for headings including font and color
-   * text-format              - Sets font size, line height, and padding for text elements
-   * label                    - Styles for labels with optional uppercase transformation
-   * text-truncate            - Single line text truncation with ellipsis
-   * multiline-truncate       - Multi-line text truncation with ellipsis
-   * multiline-truncate-reset - Resets multi-line truncation
-   * border                   - Adds a border overlay with flex display and overflow handling
-   * chevron-down             - Adds a chevron down icon with specific positioning and styles
-   * utility-classes          - Generates utility classes based on provided properties
-   * visually-hidden          - Hides elements visually but keeps them accessible
-   * state-disabled           - Uses visual cues to indicate that the button is disabled
-   * state-focus              - Adds a focus ring for accessibility
-   * state-hover-a            - Adds a :hover underscore to links
-   * menu-item                - Styles for menu items with padding, alignment, and focus behavior
-   * button-base              - Base styles for buttons including alignment, cursor, and touch-action
-   * button                   - Comprehensive button styles with customizable properties
-   * button-primary           - Styles for primary buttons with specific background, color, and shadow
-   * scrollbar                - Styles for scrollbars with customizable properties
-   * -------------------------------------------------------------------------- */
-  /* -----------------------------------------------------------------------------
-    * LAYOUT
-    * -------------------------------------------------------------------------- */
-  /* -----------------------------------------------------------------------------
-    * TYPOGRAPHY
-    * -------------------------------------------------------------------------- */
-  /* -----------------------------------------------------------------------------
-    * GRAPHICS
-    * -------------------------------------------------------------------------- */
-  /* -----------------------------------------------------------------------------
-    * UTILITIES / HELPERS
-    * -------------------------------------------------------------------------- */
-  /* -----------------------------------------------------------------------------
-    * ELEMENTS
-    * -------------------------------------------------------------------------- */
   /* Mixins were created in order to quickly style the buttons of plugins, like woocommerce */
   .e-flex {
     --columns: 1;
@@ -2159,52 +1651,6 @@
   */
 }
 @layer components {
-  /* -----------------------------------------------------------------------------
-   * Table of contents
-   * -----------------------------------------------------------------------------
-   *
-   * grid-base                - Base grid layout with default column, row, and gap settings
-   * grid-12                  - 12-column grid layout with specific settings
-   * grid                     - Responsive grid layout combining base and 12-column layouts
-   * grid-columns             - Generates column classes for grid with custom breakpoints
-   * flex-base                - Base flex layout with default settings
-   * flex-grid                - It can be a row or a 2-dimensional flex layout. Use this one within media query.
-   * container                - Centers content with a max-width and auto margins
-   * centering-max-width      - Centers elements with a maximum width and customizable margins
-   * heading-base             - Basic styles for headings including font and color
-   * text-format              - Sets font size, line height, and padding for text elements
-   * label                    - Styles for labels with optional uppercase transformation
-   * text-truncate            - Single line text truncation with ellipsis
-   * multiline-truncate       - Multi-line text truncation with ellipsis
-   * multiline-truncate-reset - Resets multi-line truncation
-   * border                   - Adds a border overlay with flex display and overflow handling
-   * chevron-down             - Adds a chevron down icon with specific positioning and styles
-   * utility-classes          - Generates utility classes based on provided properties
-   * visually-hidden          - Hides elements visually but keeps them accessible
-   * state-disabled           - Uses visual cues to indicate that the button is disabled
-   * state-focus              - Adds a focus ring for accessibility
-   * state-hover-a            - Adds a :hover underscore to links
-   * menu-item                - Styles for menu items with padding, alignment, and focus behavior
-   * button-base              - Base styles for buttons including alignment, cursor, and touch-action
-   * button                   - Comprehensive button styles with customizable properties
-   * button-primary           - Styles for primary buttons with specific background, color, and shadow
-   * scrollbar                - Styles for scrollbars with customizable properties
-   * -------------------------------------------------------------------------- */
-  /* -----------------------------------------------------------------------------
-    * LAYOUT
-    * -------------------------------------------------------------------------- */
-  /* -----------------------------------------------------------------------------
-    * TYPOGRAPHY
-    * -------------------------------------------------------------------------- */
-  /* -----------------------------------------------------------------------------
-    * GRAPHICS
-    * -------------------------------------------------------------------------- */
-  /* -----------------------------------------------------------------------------
-    * UTILITIES / HELPERS
-    * -------------------------------------------------------------------------- */
-  /* -----------------------------------------------------------------------------
-    * ELEMENTS
-    * -------------------------------------------------------------------------- */
   /* Mixins were created in order to quickly style the buttons of plugins, like woocommerce */
   .e-card {
     background: var(--color-bg-base);
@@ -2264,52 +1710,6 @@
     border: 1px solid var(--color-ink-border);
     box-shadow: none;
   }
-  /* -----------------------------------------------------------------------------
-   * Table of contents
-   * -----------------------------------------------------------------------------
-   *
-   * grid-base                - Base grid layout with default column, row, and gap settings
-   * grid-12                  - 12-column grid layout with specific settings
-   * grid                     - Responsive grid layout combining base and 12-column layouts
-   * grid-columns             - Generates column classes for grid with custom breakpoints
-   * flex-base                - Base flex layout with default settings
-   * flex-grid                - It can be a row or a 2-dimensional flex layout. Use this one within media query.
-   * container                - Centers content with a max-width and auto margins
-   * centering-max-width      - Centers elements with a maximum width and customizable margins
-   * heading-base             - Basic styles for headings including font and color
-   * text-format              - Sets font size, line height, and padding for text elements
-   * label                    - Styles for labels with optional uppercase transformation
-   * text-truncate            - Single line text truncation with ellipsis
-   * multiline-truncate       - Multi-line text truncation with ellipsis
-   * multiline-truncate-reset - Resets multi-line truncation
-   * border                   - Adds a border overlay with flex display and overflow handling
-   * chevron-down             - Adds a chevron down icon with specific positioning and styles
-   * utility-classes          - Generates utility classes based on provided properties
-   * visually-hidden          - Hides elements visually but keeps them accessible
-   * state-disabled           - Uses visual cues to indicate that the button is disabled
-   * state-focus              - Adds a focus ring for accessibility
-   * state-hover-a            - Adds a :hover underscore to links
-   * menu-item                - Styles for menu items with padding, alignment, and focus behavior
-   * button-base              - Base styles for buttons including alignment, cursor, and touch-action
-   * button                   - Comprehensive button styles with customizable properties
-   * button-primary           - Styles for primary buttons with specific background, color, and shadow
-   * scrollbar                - Styles for scrollbars with customizable properties
-   * -------------------------------------------------------------------------- */
-  /* -----------------------------------------------------------------------------
-    * LAYOUT
-    * -------------------------------------------------------------------------- */
-  /* -----------------------------------------------------------------------------
-    * TYPOGRAPHY
-    * -------------------------------------------------------------------------- */
-  /* -----------------------------------------------------------------------------
-    * GRAPHICS
-    * -------------------------------------------------------------------------- */
-  /* -----------------------------------------------------------------------------
-    * UTILITIES / HELPERS
-    * -------------------------------------------------------------------------- */
-  /* -----------------------------------------------------------------------------
-    * ELEMENTS
-    * -------------------------------------------------------------------------- */
   /* Mixins were created in order to quickly style the buttons of plugins, like woocommerce */
   .e-messages {
     display: flex;
@@ -2325,7 +1725,16 @@
       gap: var(--size-6);
     }
   }
+  .e-messages.is-centering {
+    justify-content: center;
+    flex-grow: 1;
+    margin: 0 auto;
+    padding-top: var(--size-line);
+    padding-bottom: 10rem;
+    width: min(100%, 40.25rem + var(--padding-x-container) * 2);
+  }
   .e-message {
+    --avatar-size: var(--size-5);
     display: flex;
     align-items: flex-start;
     gap: var(--size-2);
@@ -2336,8 +1745,10 @@
       max-width: 70%;
     }
   }
+  .e-message.has-large-avatar {
+    --avatar-size: 5.5rem;
+  }
   .e-message__avatar {
-    --avatar-size: var(--size-5);
     background-color: var(--color-base-yellow-soft);
     border-radius: 50%;
     flex-shrink: 0;
@@ -2359,26 +1770,36 @@
     bottom: 0;
     left: 0;
   }
+  .has-large-avatar .e-message__avatar {
+    display: none;
+  }
+  @media (--phone-l) {
+    .has-large-avatar .e-message__avatar {
+      display: block;
+    }
+  }
   .e-message__avatar img {
     object-fit: cover;
     width: 100%;
     height: 100%;
   }
   .e-message__bubble {
+    padding-block: var(--size-2);
+    padding-inline: var(--size-3);
+    position: relative;
+    min-height: var(--avatar-size);
+  }
+  .e-message.is-compact .e-message__bubble {
     font-size: var(--font-size-body-sm);
     line-height: var(--line-height-body-sm);
     padding-top: var(--padding-top-body-sm);
     padding-bottom: var(--padding-bottom-body-sm);
-    padding-block: var(--size-2);
-    padding-inline: var(--size-3);
-    position: relative;
-    min-height: 5.5rem;
   }
   .e-message__bubble p {
     font-weight: 400;
   }
-  .e-message__bubble p:last-child {
-    margin-bottom: 0;
+  .e-message__bubble p:last-of-type {
+    display: contents;
   }
   .e-message__bubble time {
     font-size: var(--font-size-caption);
@@ -2415,56 +1836,77 @@
   .e-message.is-incoming time {
     color: var(--color-ink-2ry-info);
   }
-  /* -----------------------------------------------------------------------------
-   * Table of contents
-   * -----------------------------------------------------------------------------
-   *
-   * grid-base                - Base grid layout with default column, row, and gap settings
-   * grid-12                  - 12-column grid layout with specific settings
-   * grid                     - Responsive grid layout combining base and 12-column layouts
-   * grid-columns             - Generates column classes for grid with custom breakpoints
-   * flex-base                - Base flex layout with default settings
-   * flex-grid                - It can be a row or a 2-dimensional flex layout. Use this one within media query.
-   * container                - Centers content with a max-width and auto margins
-   * centering-max-width      - Centers elements with a maximum width and customizable margins
-   * heading-base             - Basic styles for headings including font and color
-   * text-format              - Sets font size, line height, and padding for text elements
-   * label                    - Styles for labels with optional uppercase transformation
-   * text-truncate            - Single line text truncation with ellipsis
-   * multiline-truncate       - Multi-line text truncation with ellipsis
-   * multiline-truncate-reset - Resets multi-line truncation
-   * border                   - Adds a border overlay with flex display and overflow handling
-   * chevron-down             - Adds a chevron down icon with specific positioning and styles
-   * utility-classes          - Generates utility classes based on provided properties
-   * visually-hidden          - Hides elements visually but keeps them accessible
-   * state-disabled           - Uses visual cues to indicate that the button is disabled
-   * state-focus              - Adds a focus ring for accessibility
-   * state-hover-a            - Adds a :hover underscore to links
-   * menu-item                - Styles for menu items with padding, alignment, and focus behavior
-   * button-base              - Base styles for buttons including alignment, cursor, and touch-action
-   * button                   - Comprehensive button styles with customizable properties
-   * button-primary           - Styles for primary buttons with specific background, color, and shadow
-   * scrollbar                - Styles for scrollbars with customizable properties
-   * -------------------------------------------------------------------------- */
-  /* -----------------------------------------------------------------------------
-    * LAYOUT
-    * -------------------------------------------------------------------------- */
-  /* -----------------------------------------------------------------------------
-    * TYPOGRAPHY
-    * -------------------------------------------------------------------------- */
-  /* -----------------------------------------------------------------------------
-    * GRAPHICS
-    * -------------------------------------------------------------------------- */
-  /* -----------------------------------------------------------------------------
-    * UTILITIES / HELPERS
-    * -------------------------------------------------------------------------- */
-  /* -----------------------------------------------------------------------------
-    * ELEMENTS
-    * -------------------------------------------------------------------------- */
+  .is-chat-input {
+    background-color: var(--color-bg-base-alpha);
+    backdrop-filter: var(--backdrop-filter-elevated);
+    padding-inline: var(--padding-x-container);
+    padding-top: var(--size-3);
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: var(--zindex-fixed);
+  }
+  .is-chat-input .e-form__control {
+    margin-inline: auto;
+    position: relative;
+    max-width: 40.25rem;
+  }
+  .is-chat-input textarea {
+    line-height: var(--size-line);
+    word-wrap: break-word;
+    padding-block: var(--size-2);
+    padding-inline-end: var(--size-8);
+    overflow-y: auto;
+    resize: none;
+    transition: height var(--duration-500) var(--easing-base);
+    min-height: var(--size-7);
+    height: var(--size-7);
+  }
+  @media (--tablet) {
+    .is-chat-input textarea {
+      max-height: calc(8 * var(--size-line) + var(--size-2));
+    }
+  }
+  .is-chat-input .e-btn.is-icon {
+    --height-btn: var(--size-4);
+    background-color: var(--color-ink-2ry);
+    border-radius: 50%;
+    padding-inline: 0;
+    position: absolute;
+    bottom: var(--size-1p5);
+    right: var(--size-1p5);
+  }
+  .is-chat-input .e-btn.is-icon::after {
+    background-color: transparent;
+    border-radius: 50%;
+    content: "";
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    translate: -50% -50%;
+    width: var(--size-6);
+    height: var(--size-6);
+  }
+  .is-chat-input .e-btn.is-icon .e-icon {
+    --color-stroke-icon: var(--color-ink-text-inverse);
+  }
+  .form__footer {
+    font-size: var(--font-size-caption);
+    line-height: var(--line-height-caption);
+    padding-top: var(--padding-top-caption);
+    padding-bottom: var(--padding-bottom-caption);
+    color: var(--color-ink-2ry);
+    margin: 0;
+    padding-block: var(--size-2p5);
+    text-align: center;
+  }
+  .form__footer .is-sm-lock {
+    margin-right: var(--size-half);
+    translate: 0 -0.125rem;
+  }
   /* Mixins were created in order to quickly style the buttons of plugins, like woocommerce */
-  /* -----------------------------------------------------------------------------
-   * CODE STYLES
-   * -------------------------------------------------------------------------- */
   code,
   kbd,
   pre,
@@ -2512,52 +1954,6 @@
     margin-block: 0;
     padding: 0;
   }
-  /* -----------------------------------------------------------------------------
-   * Table of contents
-   * -----------------------------------------------------------------------------
-   *
-   * grid-base                - Base grid layout with default column, row, and gap settings
-   * grid-12                  - 12-column grid layout with specific settings
-   * grid                     - Responsive grid layout combining base and 12-column layouts
-   * grid-columns             - Generates column classes for grid with custom breakpoints
-   * flex-base                - Base flex layout with default settings
-   * flex-grid                - It can be a row or a 2-dimensional flex layout. Use this one within media query.
-   * container                - Centers content with a max-width and auto margins
-   * centering-max-width      - Centers elements with a maximum width and customizable margins
-   * heading-base             - Basic styles for headings including font and color
-   * text-format              - Sets font size, line height, and padding for text elements
-   * label                    - Styles for labels with optional uppercase transformation
-   * text-truncate            - Single line text truncation with ellipsis
-   * multiline-truncate       - Multi-line text truncation with ellipsis
-   * multiline-truncate-reset - Resets multi-line truncation
-   * border                   - Adds a border overlay with flex display and overflow handling
-   * chevron-down             - Adds a chevron down icon with specific positioning and styles
-   * utility-classes          - Generates utility classes based on provided properties
-   * visually-hidden          - Hides elements visually but keeps them accessible
-   * state-disabled           - Uses visual cues to indicate that the button is disabled
-   * state-focus              - Adds a focus ring for accessibility
-   * state-hover-a            - Adds a :hover underscore to links
-   * menu-item                - Styles for menu items with padding, alignment, and focus behavior
-   * button-base              - Base styles for buttons including alignment, cursor, and touch-action
-   * button                   - Comprehensive button styles with customizable properties
-   * button-primary           - Styles for primary buttons with specific background, color, and shadow
-   * scrollbar                - Styles for scrollbars with customizable properties
-   * -------------------------------------------------------------------------- */
-  /* -----------------------------------------------------------------------------
-    * LAYOUT
-    * -------------------------------------------------------------------------- */
-  /* -----------------------------------------------------------------------------
-    * TYPOGRAPHY
-    * -------------------------------------------------------------------------- */
-  /* -----------------------------------------------------------------------------
-    * GRAPHICS
-    * -------------------------------------------------------------------------- */
-  /* -----------------------------------------------------------------------------
-    * UTILITIES / HELPERS
-    * -------------------------------------------------------------------------- */
-  /* -----------------------------------------------------------------------------
-    * ELEMENTS
-    * -------------------------------------------------------------------------- */
   /* Mixins were created in order to quickly style the buttons of plugins, like woocommerce */
   table {
     --table-border-color: var(--color-ink-border);
@@ -2615,52 +2011,6 @@
   .e-scroller th {
     scroll-snap-align: start;
   }
-  /* -----------------------------------------------------------------------------
-   * Table of contents
-   * -----------------------------------------------------------------------------
-   *
-   * grid-base                - Base grid layout with default column, row, and gap settings
-   * grid-12                  - 12-column grid layout with specific settings
-   * grid                     - Responsive grid layout combining base and 12-column layouts
-   * grid-columns             - Generates column classes for grid with custom breakpoints
-   * flex-base                - Base flex layout with default settings
-   * flex-grid                - It can be a row or a 2-dimensional flex layout. Use this one within media query.
-   * container                - Centers content with a max-width and auto margins
-   * centering-max-width      - Centers elements with a maximum width and customizable margins
-   * heading-base             - Basic styles for headings including font and color
-   * text-format              - Sets font size, line height, and padding for text elements
-   * label                    - Styles for labels with optional uppercase transformation
-   * text-truncate            - Single line text truncation with ellipsis
-   * multiline-truncate       - Multi-line text truncation with ellipsis
-   * multiline-truncate-reset - Resets multi-line truncation
-   * border                   - Adds a border overlay with flex display and overflow handling
-   * chevron-down             - Adds a chevron down icon with specific positioning and styles
-   * utility-classes          - Generates utility classes based on provided properties
-   * visually-hidden          - Hides elements visually but keeps them accessible
-   * state-disabled           - Uses visual cues to indicate that the button is disabled
-   * state-focus              - Adds a focus ring for accessibility
-   * state-hover-a            - Adds a :hover underscore to links
-   * menu-item                - Styles for menu items with padding, alignment, and focus behavior
-   * button-base              - Base styles for buttons including alignment, cursor, and touch-action
-   * button                   - Comprehensive button styles with customizable properties
-   * button-primary           - Styles for primary buttons with specific background, color, and shadow
-   * scrollbar                - Styles for scrollbars with customizable properties
-   * -------------------------------------------------------------------------- */
-  /* -----------------------------------------------------------------------------
-    * LAYOUT
-    * -------------------------------------------------------------------------- */
-  /* -----------------------------------------------------------------------------
-    * TYPOGRAPHY
-    * -------------------------------------------------------------------------- */
-  /* -----------------------------------------------------------------------------
-    * GRAPHICS
-    * -------------------------------------------------------------------------- */
-  /* -----------------------------------------------------------------------------
-    * UTILITIES / HELPERS
-    * -------------------------------------------------------------------------- */
-  /* -----------------------------------------------------------------------------
-    * ELEMENTS
-    * -------------------------------------------------------------------------- */
   /* Mixins were created in order to quickly style the buttons of plugins, like woocommerce */
   .e-flayout {
     --flayout-body-background: var(--color-bg-base);
@@ -2736,52 +2086,6 @@
     right: calc(var(--size-offset) * -1);
     left: auto;
   }
-  /* -----------------------------------------------------------------------------
-   * Table of contents
-   * -----------------------------------------------------------------------------
-   *
-   * grid-base                - Base grid layout with default column, row, and gap settings
-   * grid-12                  - 12-column grid layout with specific settings
-   * grid                     - Responsive grid layout combining base and 12-column layouts
-   * grid-columns             - Generates column classes for grid with custom breakpoints
-   * flex-base                - Base flex layout with default settings
-   * flex-grid                - It can be a row or a 2-dimensional flex layout. Use this one within media query.
-   * container                - Centers content with a max-width and auto margins
-   * centering-max-width      - Centers elements with a maximum width and customizable margins
-   * heading-base             - Basic styles for headings including font and color
-   * text-format              - Sets font size, line height, and padding for text elements
-   * label                    - Styles for labels with optional uppercase transformation
-   * text-truncate            - Single line text truncation with ellipsis
-   * multiline-truncate       - Multi-line text truncation with ellipsis
-   * multiline-truncate-reset - Resets multi-line truncation
-   * border                   - Adds a border overlay with flex display and overflow handling
-   * chevron-down             - Adds a chevron down icon with specific positioning and styles
-   * utility-classes          - Generates utility classes based on provided properties
-   * visually-hidden          - Hides elements visually but keeps them accessible
-   * state-disabled           - Uses visual cues to indicate that the button is disabled
-   * state-focus              - Adds a focus ring for accessibility
-   * state-hover-a            - Adds a :hover underscore to links
-   * menu-item                - Styles for menu items with padding, alignment, and focus behavior
-   * button-base              - Base styles for buttons including alignment, cursor, and touch-action
-   * button                   - Comprehensive button styles with customizable properties
-   * button-primary           - Styles for primary buttons with specific background, color, and shadow
-   * scrollbar                - Styles for scrollbars with customizable properties
-   * -------------------------------------------------------------------------- */
-  /* -----------------------------------------------------------------------------
-    * LAYOUT
-    * -------------------------------------------------------------------------- */
-  /* -----------------------------------------------------------------------------
-    * TYPOGRAPHY
-    * -------------------------------------------------------------------------- */
-  /* -----------------------------------------------------------------------------
-    * GRAPHICS
-    * -------------------------------------------------------------------------- */
-  /* -----------------------------------------------------------------------------
-    * UTILITIES / HELPERS
-    * -------------------------------------------------------------------------- */
-  /* -----------------------------------------------------------------------------
-    * ELEMENTS
-    * -------------------------------------------------------------------------- */
   /* Mixins were created in order to quickly style the buttons of plugins, like woocommerce */
   .e-footer {
     padding-top: var(--spacer-max);
@@ -2867,52 +2171,6 @@
       padding-top: 1.6875rem;
     }
   }
-  /* -----------------------------------------------------------------------------
-   * Table of contents
-   * -----------------------------------------------------------------------------
-   *
-   * grid-base                - Base grid layout with default column, row, and gap settings
-   * grid-12                  - 12-column grid layout with specific settings
-   * grid                     - Responsive grid layout combining base and 12-column layouts
-   * grid-columns             - Generates column classes for grid with custom breakpoints
-   * flex-base                - Base flex layout with default settings
-   * flex-grid                - It can be a row or a 2-dimensional flex layout. Use this one within media query.
-   * container                - Centers content with a max-width and auto margins
-   * centering-max-width      - Centers elements with a maximum width and customizable margins
-   * heading-base             - Basic styles for headings including font and color
-   * text-format              - Sets font size, line height, and padding for text elements
-   * label                    - Styles for labels with optional uppercase transformation
-   * text-truncate            - Single line text truncation with ellipsis
-   * multiline-truncate       - Multi-line text truncation with ellipsis
-   * multiline-truncate-reset - Resets multi-line truncation
-   * border                   - Adds a border overlay with flex display and overflow handling
-   * chevron-down             - Adds a chevron down icon with specific positioning and styles
-   * utility-classes          - Generates utility classes based on provided properties
-   * visually-hidden          - Hides elements visually but keeps them accessible
-   * state-disabled           - Uses visual cues to indicate that the button is disabled
-   * state-focus              - Adds a focus ring for accessibility
-   * state-hover-a            - Adds a :hover underscore to links
-   * menu-item                - Styles for menu items with padding, alignment, and focus behavior
-   * button-base              - Base styles for buttons including alignment, cursor, and touch-action
-   * button                   - Comprehensive button styles with customizable properties
-   * button-primary           - Styles for primary buttons with specific background, color, and shadow
-   * scrollbar                - Styles for scrollbars with customizable properties
-   * -------------------------------------------------------------------------- */
-  /* -----------------------------------------------------------------------------
-    * LAYOUT
-    * -------------------------------------------------------------------------- */
-  /* -----------------------------------------------------------------------------
-    * TYPOGRAPHY
-    * -------------------------------------------------------------------------- */
-  /* -----------------------------------------------------------------------------
-    * GRAPHICS
-    * -------------------------------------------------------------------------- */
-  /* -----------------------------------------------------------------------------
-    * UTILITIES / HELPERS
-    * -------------------------------------------------------------------------- */
-  /* -----------------------------------------------------------------------------
-    * ELEMENTS
-    * -------------------------------------------------------------------------- */
   /* Mixins were created in order to quickly style the buttons of plugins, like woocommerce */
   /* form */
   [role=search] {
@@ -3010,52 +2268,6 @@
       display: none;
     }
   }
-  /* -----------------------------------------------------------------------------
-   * Table of contents
-   * -----------------------------------------------------------------------------
-   *
-   * grid-base                - Base grid layout with default column, row, and gap settings
-   * grid-12                  - 12-column grid layout with specific settings
-   * grid                     - Responsive grid layout combining base and 12-column layouts
-   * grid-columns             - Generates column classes for grid with custom breakpoints
-   * flex-base                - Base flex layout with default settings
-   * flex-grid                - It can be a row or a 2-dimensional flex layout. Use this one within media query.
-   * container                - Centers content with a max-width and auto margins
-   * centering-max-width      - Centers elements with a maximum width and customizable margins
-   * heading-base             - Basic styles for headings including font and color
-   * text-format              - Sets font size, line height, and padding for text elements
-   * label                    - Styles for labels with optional uppercase transformation
-   * text-truncate            - Single line text truncation with ellipsis
-   * multiline-truncate       - Multi-line text truncation with ellipsis
-   * multiline-truncate-reset - Resets multi-line truncation
-   * border                   - Adds a border overlay with flex display and overflow handling
-   * chevron-down             - Adds a chevron down icon with specific positioning and styles
-   * utility-classes          - Generates utility classes based on provided properties
-   * visually-hidden          - Hides elements visually but keeps them accessible
-   * state-disabled           - Uses visual cues to indicate that the button is disabled
-   * state-focus              - Adds a focus ring for accessibility
-   * state-hover-a            - Adds a :hover underscore to links
-   * menu-item                - Styles for menu items with padding, alignment, and focus behavior
-   * button-base              - Base styles for buttons including alignment, cursor, and touch-action
-   * button                   - Comprehensive button styles with customizable properties
-   * button-primary           - Styles for primary buttons with specific background, color, and shadow
-   * scrollbar                - Styles for scrollbars with customizable properties
-   * -------------------------------------------------------------------------- */
-  /* -----------------------------------------------------------------------------
-    * LAYOUT
-    * -------------------------------------------------------------------------- */
-  /* -----------------------------------------------------------------------------
-    * TYPOGRAPHY
-    * -------------------------------------------------------------------------- */
-  /* -----------------------------------------------------------------------------
-    * GRAPHICS
-    * -------------------------------------------------------------------------- */
-  /* -----------------------------------------------------------------------------
-    * UTILITIES / HELPERS
-    * -------------------------------------------------------------------------- */
-  /* -----------------------------------------------------------------------------
-    * ELEMENTS
-    * -------------------------------------------------------------------------- */
   /* Mixins were created in order to quickly style the buttons of plugins, like woocommerce */
   .e-header {
     display: flex;
@@ -3141,61 +2353,27 @@
     --color-fill-icon: var(--color-bg-base);
     --color-stroke-icon: var(--color-ink-2ry-success);
   }
-  /* -----------------------------------------------------------------------------
-   * Table of contents
-   * -----------------------------------------------------------------------------
-   *
-   * grid-base                - Base grid layout with default column, row, and gap settings
-   * grid-12                  - 12-column grid layout with specific settings
-   * grid                     - Responsive grid layout combining base and 12-column layouts
-   * grid-columns             - Generates column classes for grid with custom breakpoints
-   * flex-base                - Base flex layout with default settings
-   * flex-grid                - It can be a row or a 2-dimensional flex layout. Use this one within media query.
-   * container                - Centers content with a max-width and auto margins
-   * centering-max-width      - Centers elements with a maximum width and customizable margins
-   * heading-base             - Basic styles for headings including font and color
-   * text-format              - Sets font size, line height, and padding for text elements
-   * label                    - Styles for labels with optional uppercase transformation
-   * text-truncate            - Single line text truncation with ellipsis
-   * multiline-truncate       - Multi-line text truncation with ellipsis
-   * multiline-truncate-reset - Resets multi-line truncation
-   * border                   - Adds a border overlay with flex display and overflow handling
-   * chevron-down             - Adds a chevron down icon with specific positioning and styles
-   * utility-classes          - Generates utility classes based on provided properties
-   * visually-hidden          - Hides elements visually but keeps them accessible
-   * state-disabled           - Uses visual cues to indicate that the button is disabled
-   * state-focus              - Adds a focus ring for accessibility
-   * state-hover-a            - Adds a :hover underscore to links
-   * menu-item                - Styles for menu items with padding, alignment, and focus behavior
-   * button-base              - Base styles for buttons including alignment, cursor, and touch-action
-   * button                   - Comprehensive button styles with customizable properties
-   * button-primary           - Styles for primary buttons with specific background, color, and shadow
-   * scrollbar                - Styles for scrollbars with customizable properties
-   * -------------------------------------------------------------------------- */
-  /* -----------------------------------------------------------------------------
-    * LAYOUT
-    * -------------------------------------------------------------------------- */
-  /* -----------------------------------------------------------------------------
-    * TYPOGRAPHY
-    * -------------------------------------------------------------------------- */
-  /* -----------------------------------------------------------------------------
-    * GRAPHICS
-    * -------------------------------------------------------------------------- */
-  /* -----------------------------------------------------------------------------
-    * UTILITIES / HELPERS
-    * -------------------------------------------------------------------------- */
-  /* -----------------------------------------------------------------------------
-    * ELEMENTS
-    * -------------------------------------------------------------------------- */
+  .e-header__login-cta {
+    display: none;
+  }
+  @media (--phone-l) {
+    .e-header__login-cta {
+      font-size: var(--font-size-body-sm);
+      line-height: var(--line-height-body-sm);
+      padding-top: var(--padding-top-body-sm);
+      padding-bottom: var(--padding-bottom-body-sm);
+      display: block;
+      color: var(--color-ink-2ry);
+      margin-top: 2.25rem;
+      margin-inline-start: var(--size-2);
+    }
+  }
   /* Mixins were created in order to quickly style the buttons of plugins, like woocommerce */
-  /* -----------------------------------------------------------------------------
-   * BASE
-   * -------------------------------------------------------------------------- */
   .e-modal {
     --modal-background: var(--color-bg-base);
     --modal-border-radius: var(--border-radius-lg) var(--border-radius-lg) 0 0;
     --modal-padding-x: var(--size-2p5);
-    --modal-overlay-background-color: var(--color-bg-scrim);
+    --modal-overlay-background-color: var(--color-bg-base-alpha);
     background-color: var(--modal-overlay-background-color);
     backdrop-filter: blur(var(--size-2p5));
     border: 0;
@@ -3211,6 +2389,7 @@
     min-width: 100%;
     height: inherit;
     min-height: 100%;
+    z-index: var(--zindex-modal);
   }
   .e-modal:not([open]) {
     display: none;
@@ -3255,7 +2434,7 @@
     transition: translate var(--duration-500) var(--easing-base), opacity var(--duration-500) var(--easing-base);
     translate: 0;
     width: min(100%, var(--width-xl));
-    height: calc(100% - var(--size-5));
+    max-height: calc(100% - var(--size-5));
   }
   @starting-style {
     .e-modal__base {
@@ -3309,17 +2488,45 @@
       translate: 0 -50%;
     }
   }
-  /* -----------------------------------------------------------------------------
-   * CONTENT
-   * -------------------------------------------------------------------------- */
+  .e-modal__base.is-small {
+    --modal-border-radius: var(--border-radius-lg);
+    background-image: var(--bg-image-base);
+    background-repeat: no-repeat;
+    background-position: calc(-1 * var(--size-1)) calc(-1 * var(--size-8));
+    background-size: var(--bg-image-size-base);
+    box-shadow: 0 0 0 0.0625rem var(--color-bg-base-alpha), var(--box-shadow-level-03);
+    inset: 0;
+    width: min(100% - var(--size-4), var(--width-md));
+    height: max-content;
+  }
+  .e-modal__base.is-small::before {
+    background: linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.16) 49.9%, rgba(255, 255, 255, 0) 50%), linear-gradient(90deg, var(--color-gradient-brand));
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: var(--size-1p5);
+    z-index: var(--zindex-fixed);
+  }
+  @media (--tablet) {
+    .e-modal__base.is-small {
+      --modal-border-radius: var(--border-radius-lg);
+    }
+  }
+  @media (--phone) {
+    .e-modal__base.is-small:has(:not(header)) .e-modal__body {
+      padding-block: var(--modal-padding-x);
+    }
+    .e-modal__base.is-small:has(:not(header)) > footer {
+      padding-bottom: var(--modal-padding-x);
+    }
+  }
   /* Basic padding for modal content */
   .e-modal__body,
   .e-modal__content {
     padding-inline: var(--modal-padding-x);
   }
-  /* -----------------------------------------------------------------------------
-   * HEADER
-   * -------------------------------------------------------------------------- */
   .e-modal__base > header {
     padding-inline: var(--modal-padding-x);
   }
@@ -3329,39 +2536,19 @@
     }
   }
   @media (--tablet) {
-    .e-modal__base:has(.e-modal__close) > header {
+    .e-modal__base:has(.e-btn.is-close) > header {
       padding-top: 0;
     }
   }
-  .e-modal__close {
-    --height-btn: var(--size-5);
-    border-radius: var(--border-radius-pill);
-    backdrop-filter: var(--backdrop-filter-blur);
-    padding: 0;
-    position: sticky;
-    top: var(--size-2);
-    margin-inline-start: auto;
+  .e-modal__base .e-btn.is-close {
     margin-inline-end: 0.125rem;
     margin-bottom: calc(-1 * var(--size-2));
-    width: var(--height-btn);
-    z-index: var(--zindex-fixed);
-  }
-  .e-modal__close::after {
-    background: transparent;
-    content: "";
-    position: absolute;
-    inset: -0.125rem;
-    border-radius: inherit;
   }
   @media (--tablet) {
-    .e-modal__close {
-      top: 0;
+    .e-modal__base .e-btn.is-close {
       margin-inline-end: var(--size-3);
     }
   }
-  /* -----------------------------------------------------------------------------
-   * FOOTER - BUTTONS
-   * -------------------------------------------------------------------------- */
   /* Footer with buttons aligned to the right */
   .e-modal__base > footer {
     display: flex;
@@ -3373,9 +2560,6 @@
     position: sticky;
     z-index: 3;
   }
-  /* -----------------------------------------------------------------------------
-   * LOWER UI LOCK
-   * -------------------------------------------------------------------------- */
   /* Disable scroll on the html root when the modal is open */
   html:has(dialog[open]) {
     overflow: hidden;
@@ -3384,74 +2568,6 @@
     pointer-events: auto;
     touch-action: auto;
   }
-  /* -----------------------------------------------------------------------------
-   * SCRIMS
-   * -------------------------------------------------------------------------- */
-  /* Optional: Scrims (faded areas) at the top and bottom of the modal */
-  .e-modal::before,
-  .e-modal::after {
-    display: block;
-    content: "";
-    position: sticky;
-    right: 0;
-    left: 0;
-    height: var(--size-4);
-    z-index: 1;
-  }
-  .e-modal::before {
-    background-image: linear-gradient(var(--modal-background) 1%, transparent 33.33%, transparent);
-    top: 0;
-  }
-  .e-modal::after {
-    background-image: linear-gradient(transparent, transparent 66.67%, var(--modal-background));
-    bottom: 0;
-  }
-  /* -----------------------------------------------------------------------------
-   * Table of contents
-   * -----------------------------------------------------------------------------
-   *
-   * grid-base                - Base grid layout with default column, row, and gap settings
-   * grid-12                  - 12-column grid layout with specific settings
-   * grid                     - Responsive grid layout combining base and 12-column layouts
-   * grid-columns             - Generates column classes for grid with custom breakpoints
-   * flex-base                - Base flex layout with default settings
-   * flex-grid                - It can be a row or a 2-dimensional flex layout. Use this one within media query.
-   * container                - Centers content with a max-width and auto margins
-   * centering-max-width      - Centers elements with a maximum width and customizable margins
-   * heading-base             - Basic styles for headings including font and color
-   * text-format              - Sets font size, line height, and padding for text elements
-   * label                    - Styles for labels with optional uppercase transformation
-   * text-truncate            - Single line text truncation with ellipsis
-   * multiline-truncate       - Multi-line text truncation with ellipsis
-   * multiline-truncate-reset - Resets multi-line truncation
-   * border                   - Adds a border overlay with flex display and overflow handling
-   * chevron-down             - Adds a chevron down icon with specific positioning and styles
-   * utility-classes          - Generates utility classes based on provided properties
-   * visually-hidden          - Hides elements visually but keeps them accessible
-   * state-disabled           - Uses visual cues to indicate that the button is disabled
-   * state-focus              - Adds a focus ring for accessibility
-   * state-hover-a            - Adds a :hover underscore to links
-   * menu-item                - Styles for menu items with padding, alignment, and focus behavior
-   * button-base              - Base styles for buttons including alignment, cursor, and touch-action
-   * button                   - Comprehensive button styles with customizable properties
-   * button-primary           - Styles for primary buttons with specific background, color, and shadow
-   * scrollbar                - Styles for scrollbars with customizable properties
-   * -------------------------------------------------------------------------- */
-  /* -----------------------------------------------------------------------------
-    * LAYOUT
-    * -------------------------------------------------------------------------- */
-  /* -----------------------------------------------------------------------------
-    * TYPOGRAPHY
-    * -------------------------------------------------------------------------- */
-  /* -----------------------------------------------------------------------------
-    * GRAPHICS
-    * -------------------------------------------------------------------------- */
-  /* -----------------------------------------------------------------------------
-    * UTILITIES / HELPERS
-    * -------------------------------------------------------------------------- */
-  /* -----------------------------------------------------------------------------
-    * ELEMENTS
-    * -------------------------------------------------------------------------- */
   /* Mixins were created in order to quickly style the buttons of plugins, like woocommerce */
   .e-navbar {
     --menu-height-phone: calc(var(--size-5) * 2);
@@ -3634,8 +2750,8 @@
     min-width: 0;
   }
   .e-navbar .is-more summary:focus-visible {
-    outline: var(--size-half) solid Highlight;
-    outline: var(--size-half) solid solid -webkit-focus-ring-color;
+    outline: 0;
+    box-shadow: 0 0 0 0.125rem var(--color-ink-2ry-info);
   }
   .e-navbar .is-more summary:is(:active, :focus-visible) {
     background-color: var(--color-ink-min);
@@ -3687,52 +2803,6 @@
       width: 100%;
     }
   }
-  /* -----------------------------------------------------------------------------
-   * Table of contents
-   * -----------------------------------------------------------------------------
-   *
-   * grid-base                - Base grid layout with default column, row, and gap settings
-   * grid-12                  - 12-column grid layout with specific settings
-   * grid                     - Responsive grid layout combining base and 12-column layouts
-   * grid-columns             - Generates column classes for grid with custom breakpoints
-   * flex-base                - Base flex layout with default settings
-   * flex-grid                - It can be a row or a 2-dimensional flex layout. Use this one within media query.
-   * container                - Centers content with a max-width and auto margins
-   * centering-max-width      - Centers elements with a maximum width and customizable margins
-   * heading-base             - Basic styles for headings including font and color
-   * text-format              - Sets font size, line height, and padding for text elements
-   * label                    - Styles for labels with optional uppercase transformation
-   * text-truncate            - Single line text truncation with ellipsis
-   * multiline-truncate       - Multi-line text truncation with ellipsis
-   * multiline-truncate-reset - Resets multi-line truncation
-   * border                   - Adds a border overlay with flex display and overflow handling
-   * chevron-down             - Adds a chevron down icon with specific positioning and styles
-   * utility-classes          - Generates utility classes based on provided properties
-   * visually-hidden          - Hides elements visually but keeps them accessible
-   * state-disabled           - Uses visual cues to indicate that the button is disabled
-   * state-focus              - Adds a focus ring for accessibility
-   * state-hover-a            - Adds a :hover underscore to links
-   * menu-item                - Styles for menu items with padding, alignment, and focus behavior
-   * button-base              - Base styles for buttons including alignment, cursor, and touch-action
-   * button                   - Comprehensive button styles with customizable properties
-   * button-primary           - Styles for primary buttons with specific background, color, and shadow
-   * scrollbar                - Styles for scrollbars with customizable properties
-   * -------------------------------------------------------------------------- */
-  /* -----------------------------------------------------------------------------
-    * LAYOUT
-    * -------------------------------------------------------------------------- */
-  /* -----------------------------------------------------------------------------
-    * TYPOGRAPHY
-    * -------------------------------------------------------------------------- */
-  /* -----------------------------------------------------------------------------
-    * GRAPHICS
-    * -------------------------------------------------------------------------- */
-  /* -----------------------------------------------------------------------------
-    * UTILITIES / HELPERS
-    * -------------------------------------------------------------------------- */
-  /* -----------------------------------------------------------------------------
-    * ELEMENTS
-    * -------------------------------------------------------------------------- */
   /* Mixins were created in order to quickly style the buttons of plugins, like woocommerce */
   .e-scroller {
     --scroller-shadow-size: 24px;
@@ -3760,8 +2830,8 @@
     background-size: var(--scroller-shadow-size) 100%, var(--scroller-shadow-size) 100%, calc(var(--scroller-shadow-size) / 2) 100%, calc(var(--scroller-shadow-size) / 2) 100%;
   }
   .e-scroller:focus-visible {
-    outline: var(--size-half) solid Highlight;
-    outline: var(--size-half) solid solid -webkit-focus-ring-color;
+    outline: 0;
+    box-shadow: 0 0 0 0.125rem var(--color-ink-2ry-info);
   }
   @media (pointer: fine) {
     .e-scroller {
@@ -3791,52 +2861,241 @@
     color: var(--color-ink-text);
     font-weight: inherit;
   }
-  /* -----------------------------------------------------------------------------
-   * Table of contents
-   * -----------------------------------------------------------------------------
-   *
-   * grid-base                - Base grid layout with default column, row, and gap settings
-   * grid-12                  - 12-column grid layout with specific settings
-   * grid                     - Responsive grid layout combining base and 12-column layouts
-   * grid-columns             - Generates column classes for grid with custom breakpoints
-   * flex-base                - Base flex layout with default settings
-   * flex-grid                - It can be a row or a 2-dimensional flex layout. Use this one within media query.
-   * container                - Centers content with a max-width and auto margins
-   * centering-max-width      - Centers elements with a maximum width and customizable margins
-   * heading-base             - Basic styles for headings including font and color
-   * text-format              - Sets font size, line height, and padding for text elements
-   * label                    - Styles for labels with optional uppercase transformation
-   * text-truncate            - Single line text truncation with ellipsis
-   * multiline-truncate       - Multi-line text truncation with ellipsis
-   * multiline-truncate-reset - Resets multi-line truncation
-   * border                   - Adds a border overlay with flex display and overflow handling
-   * chevron-down             - Adds a chevron down icon with specific positioning and styles
-   * utility-classes          - Generates utility classes based on provided properties
-   * visually-hidden          - Hides elements visually but keeps them accessible
-   * state-disabled           - Uses visual cues to indicate that the button is disabled
-   * state-focus              - Adds a focus ring for accessibility
-   * state-hover-a            - Adds a :hover underscore to links
-   * menu-item                - Styles for menu items with padding, alignment, and focus behavior
-   * button-base              - Base styles for buttons including alignment, cursor, and touch-action
-   * button                   - Comprehensive button styles with customizable properties
-   * button-primary           - Styles for primary buttons with specific background, color, and shadow
-   * scrollbar                - Styles for scrollbars with customizable properties
-   * -------------------------------------------------------------------------- */
-  /* -----------------------------------------------------------------------------
-    * LAYOUT
-    * -------------------------------------------------------------------------- */
-  /* -----------------------------------------------------------------------------
-    * TYPOGRAPHY
-    * -------------------------------------------------------------------------- */
-  /* -----------------------------------------------------------------------------
-    * GRAPHICS
-    * -------------------------------------------------------------------------- */
-  /* -----------------------------------------------------------------------------
-    * UTILITIES / HELPERS
-    * -------------------------------------------------------------------------- */
-  /* -----------------------------------------------------------------------------
-    * ELEMENTS
-    * -------------------------------------------------------------------------- */
+  /* Mixins were created in order to quickly style the buttons of plugins, like woocommerce */
+  .e-stepper {
+    --stepper-header-height: 10rem;
+    background: var(--color-bg-base);
+    border-radius: var(--border-radius-lg) var(--border-radius-lg) 0 0;
+    box-shadow: var(--box-shadow-level-03);
+    overflow: hidden;
+    opacity: 0;
+    position: fixed;
+    inset: auto 0 0;
+    transition: translate var(--duration-500) var(--easing-base), opacity var(--duration-500) var(--easing-base);
+    translate: 0 100%;
+    width: min(100%, var(--width-xl));
+    max-height: calc(100% - var(--size-5));
+    z-index: var(--zindex-modal);
+  }
+  .e-stepper.is-open {
+    opacity: 1;
+    translate: 0;
+  }
+  @media (--tablet) {
+    .e-stepper {
+      --stepper-header-height: 10rem;
+      border-radius: var(--border-radius-lg) 0 0 var(--border-radius-lg);
+      inset: 0 0 0 auto;
+      translate: 100% 0;
+      width: var(--width-base);
+      max-height: none;
+    }
+  }
+  @media (--tablet-l) {
+    .e-stepper {
+      --stepper-header-height: 9rem;
+      border-radius: 0;
+      border-inline-start: 1px solid var(--color-ink-border);
+      box-shadow: none;
+      opacity: 1;
+      translate: 0;
+    }
+  }
+  html:has(.e-stepper.is-open) {
+    overflow: hidden;
+  }
+  html:has(.e-stepper.is-open) .e-modal {
+    pointer-events: auto;
+    touch-action: auto;
+  }
+  .e-stepper__header {
+    background-color: var(--color-bg-base-alpha);
+    backdrop-filter: var(--backdrop-filter-elevated);
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    padding-top: var(--size-7);
+    padding-inline: var(--size-2p5);
+    position: sticky;
+    top: 0;
+    height: var(--stepper-header-height);
+    z-index: var(--zindex-fixed);
+  }
+  @media (--tablet-l) {
+    .e-stepper__header .e-btn.is-close {
+      display: none;
+    }
+  }
+  .e-stepper__header .h3 {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    margin-bottom: var(--size-1);
+  }
+  .e-stepper__header .h3 span {
+    color: var(--color-ink-2ry);
+    font-size: var(--font-size-body-sm);
+    line-height: 1;
+    font-weight: 400;
+  }
+  .e-stepper__header progress {
+    appearance: none;
+    background-color: var(--color-ink-min);
+    border: 0;
+    border-radius: var(--border-radius-pill);
+    width: 100%;
+    height: var(--size-1);
+  }
+  .e-stepper__header progress::-webkit-progress-bar {
+    background-color: var(--color-ink-min);
+    border-radius: var(--border-radius-pill);
+  }
+  .e-stepper__header progress::-webkit-progress-value {
+    background-color: var(--color-base-success);
+    background-image: linear-gradient(to right, var(--color-gradient-brand));
+    background-size: 17.5rem auto;
+    background-repeat: no-repeat;
+    border-radius: var(--border-radius-pill);
+  }
+  .e-stepper__header progress::-moz-progress-bar {
+    background-color: var(--color-base-success);
+    background-image: linear-gradient(to right, var(--color-gradient-brand));
+    background-size: 17.5rem auto;
+    background-repeat: no-repeat;
+    border-radius: var(--border-radius-pill);
+  }
+  @media (--tablet) {
+    .e-stepper__header {
+      padding-inline: var(--size-4);
+    }
+  }
+  .e-stepper__header small {
+    @text-format (caption);
+    color: var(--color-ink-2ry);
+    display: flex;
+    justify-content: space-between;
+    padding-top: var(--size-1p5);
+  }
+  .e-stepper__header small span {
+    position: relative;
+  }
+  .e-stepper__header small span::before {
+    border-left: var(--color-ink-border-bold) solid 1px;
+    content: "";
+    display: inline-block;
+    position: absolute;
+    left: 50%;
+    bottom: 100%;
+    translate: 0 0;
+    width: 0;
+    height: var(--size-1);
+  }
+  .e-stepper__header small span:last-child::before {
+    left: auto;
+    right: 0;
+  }
+  .e-stepper__list {
+    --start-counter: 1;
+    list-style: none;
+    padding-inline: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    padding-block: var(--size-line);
+    padding-inline: var(--size-2p5);
+    overflow-y: auto;
+    max-height: calc(100% - var(--stepper-header-height));
+  }
+  .e-stepper__list > li {
+    counter-increment: list-item var(--start-counter);
+    position: relative;
+    padding-left: 2em;
+  }
+  .e-stepper__list > li::before {
+    color: var(--color-ink-2ry);
+    content: counter(list-item);
+    position: absolute;
+    left: 0;
+    text-align: right;
+  }
+  .e-stepper__list li {
+    padding-inline-start: var(--size-6);
+  }
+  @media (--tablet) {
+    .e-stepper__list {
+      padding-inline: var(--size-4);
+    }
+  }
+  .e-stepper__item {
+    color: var(--color-ink-2ry);
+    padding-bottom: 0.3125rem;
+  }
+  .e-stepper__item::before {
+    border: 1px solid var(--color-ink-border);
+    border-radius: var(--border-radius-pill);
+    content: counter(list-item);
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    font-size: var(--font-size-body-sm);
+    line-height: 1;
+    top: var(--size-1);
+    width: var(--size-4);
+    height: var(--size-4);
+  }
+  .e-stepper__item:not(:last-child)::after {
+    border-left: 1px solid var(--color-ink-border);
+    content: "";
+    position: absolute;
+    top: var(--size-6);
+    bottom: 0;
+    inset-inline-start: var(--size-2);
+    width: 0;
+  }
+  .e-stepper__item h3 {
+    font-size: var(--font-size-body-sm);
+    line-height: var(--line-height-body-sm);
+    padding-top: var(--padding-top-body-sm);
+    padding-bottom: var(--padding-bottom-body-sm);
+    font-weight: normal;
+    margin-bottom: -2px;
+  }
+  .e-stepper__item.is-active h3 {
+    color: var(--color-ink-text);
+  }
+  .e-stepper__item.is-active::before {
+    background: var(--color-bg-success);
+    border: 0;
+    color: var(--color-ink-text-success);
+  }
+  .e-stepper__item.is-complete::before {
+    background: var(--color-bg-success);
+    border: 0;
+    color: var(--color-ink-text-success);
+    content: "✓";
+    font-weight: 600;
+  }
+  .e-stepper .e-btn.is-save {
+    box-shadow: var(--box-shadow-level-02);
+    position: fixed;
+    bottom: var(--size-3);
+    right: var(--size-3);
+    z-index: var(--zindex-fab);
+  }
+  .e-stepper .e-btn.is-save:disabled {
+    opacity: 1;
+  }
+  .e-stepper .e-btn.is-save:disabled::after {
+    background-color: var(--color-bg-base);
+    border-radius: var(--border-radius-lg);
+    display: block;
+    content: "";
+    opacity: 0.5;
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+  }
   /* Mixins were created in order to quickly style the buttons of plugins, like woocommerce */
   .has-tooltip {
     --tooltip-background: rgb(0 0 0 / 0.8);
@@ -4018,52 +3277,6 @@
   */
 }
 @layer helpers {
-  /* -----------------------------------------------------------------------------
-   * Table of contents
-   * -----------------------------------------------------------------------------
-   *
-   * grid-base                - Base grid layout with default column, row, and gap settings
-   * grid-12                  - 12-column grid layout with specific settings
-   * grid                     - Responsive grid layout combining base and 12-column layouts
-   * grid-columns             - Generates column classes for grid with custom breakpoints
-   * flex-base                - Base flex layout with default settings
-   * flex-grid                - It can be a row or a 2-dimensional flex layout. Use this one within media query.
-   * container                - Centers content with a max-width and auto margins
-   * centering-max-width      - Centers elements with a maximum width and customizable margins
-   * heading-base             - Basic styles for headings including font and color
-   * text-format              - Sets font size, line height, and padding for text elements
-   * label                    - Styles for labels with optional uppercase transformation
-   * text-truncate            - Single line text truncation with ellipsis
-   * multiline-truncate       - Multi-line text truncation with ellipsis
-   * multiline-truncate-reset - Resets multi-line truncation
-   * border                   - Adds a border overlay with flex display and overflow handling
-   * chevron-down             - Adds a chevron down icon with specific positioning and styles
-   * utility-classes          - Generates utility classes based on provided properties
-   * visually-hidden          - Hides elements visually but keeps them accessible
-   * state-disabled           - Uses visual cues to indicate that the button is disabled
-   * state-focus              - Adds a focus ring for accessibility
-   * state-hover-a            - Adds a :hover underscore to links
-   * menu-item                - Styles for menu items with padding, alignment, and focus behavior
-   * button-base              - Base styles for buttons including alignment, cursor, and touch-action
-   * button                   - Comprehensive button styles with customizable properties
-   * button-primary           - Styles for primary buttons with specific background, color, and shadow
-   * scrollbar                - Styles for scrollbars with customizable properties
-   * -------------------------------------------------------------------------- */
-  /* -----------------------------------------------------------------------------
-    * LAYOUT
-    * -------------------------------------------------------------------------- */
-  /* -----------------------------------------------------------------------------
-    * TYPOGRAPHY
-    * -------------------------------------------------------------------------- */
-  /* -----------------------------------------------------------------------------
-    * GRAPHICS
-    * -------------------------------------------------------------------------- */
-  /* -----------------------------------------------------------------------------
-    * UTILITIES / HELPERS
-    * -------------------------------------------------------------------------- */
-  /* -----------------------------------------------------------------------------
-    * ELEMENTS
-    * -------------------------------------------------------------------------- */
   /* Mixins were created in order to quickly style the buttons of plugins, like woocommerce */
   .mt-1 {
     margin-top: var(--size-1);
@@ -4099,8 +3312,14 @@
   .pb-max {
     padding-bottom: var(--spacer-max);
   }
+  .max-w-none {
+    max-width: none;
+  }
   .d-none {
     display: none;
+  }
+  .d-flex {
+    display: flex;
   }
   @media (--tablet) {
     .tablet\:d-none {

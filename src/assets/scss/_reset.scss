@@ -70,11 +70,6 @@ select {
   color: inherit;
 }
 
-// Make sure textareas without a rows attribute are not tiny
-textarea:not([rows]) {
-  min-height: 10em;
-}
-
 // Legend
 // 1. By using `float: left`, the legend will behave like a block element.
 //    This way the border of a fieldset wraps around the legend if present.

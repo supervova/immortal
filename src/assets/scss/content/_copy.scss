@@ -5,9 +5,9 @@
   scroll-padding-block-end: var(--scroll-padding-end, 8vh);
 }
 
-/* -----------------------------------------------------------------------------
- * BLOCK
- * -------------------------------------------------------------------------- */
+// -----------------------------------------------------------------------------
+// BLOCK
+// -----------------------------------------------------------------------------
 
 // Basic block elements
 address,
@@ -82,24 +82,9 @@ ul.list.is-ul > li::marker, {
   content: '\2022\00a0\00a0';
 }
 
-ol {
-  list-style: none;
-  padding-inline: 0;
-
-  > li {
-    position: relative;
-    padding-left: 2em;
-
-    &::before {
-      color: var(--color-ink-2ry);
-      content: counter(list-item) '.';
-      font-variant-numeric: lining-nums tabular-nums;
-      font-weight: 400;
-      position: absolute;
-      top: var(--padding-top-base);
-      left: 0;
-    }
-  }
+// Ordered list
+:where(ol:not([class], nav ol)) {
+  @include ol;
 }
 
 li {
@@ -167,9 +152,9 @@ hr {
   margin-bottom: var(--margin);
 }
 
-/* -----------------------------------------------------------------------------
- * INLINE
- * -------------------------------------------------------------------------- */
+// -----------------------------------------------------------------------------
+// INLINE
+// -----------------------------------------------------------------------------
 
 :where(a:not(.e-btn):not([role='button'])),
 [role='link'] {

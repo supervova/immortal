@@ -13,4 +13,14 @@
   width: min(100%, var(--width-readable));
 }
 
-// .e-main {}
+.e-main {
+  flex-grow: 1;
+  height: 100%;
+
+  &.is-flex-column {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+

@@ -54,6 +54,7 @@
   --color-ink-2ry:          var(--color-alpha-dark-600);
   --color-ink-3ry:          var(--color-alpha-dark-400);
   --color-ink-icon:         var(--color-ink-3ry);
+  --color-ink-border-bold:  hsl(var(--color-shadow) / 0.12);
   --color-ink-border:       var(--color-alpha-dark-100);
   --color-ink-min:          hsl(var(--color-shadow) / 0.04);
   --color-ink-link:         var(--color-ink-text-brand);
@@ -105,6 +106,22 @@
 
   // #region: Components 🍱
   --color-scroll-thumb: var(--color-alpha-dark-100);
-  --color-scroll-track: var(--color-alpha-dark-min);
+  // --color-scroll-track: var(--color-alpha-dark-min);
+  --color-scroll-track: transparent;
+
+  --bg-image-base:
+    linear-gradient(
+      rgb(252 252 252 / 0) 80%,
+      var(--color-bg-base) 100%
+    ),
+    linear-gradient(90deg, rgb(252 252 252 / 0) 94%, var(--color-bg-base) 100%),
+    image-set(
+      url('/assets/img/pages/bg-sky.jpg') 1x,
+      url('/assets/img/pages/bg-sky@2x.jpg') 2x
+    );
+  --bg-image-size-base:
+    100% 299px,
+    1360px 299px,
+    1360px 299px;
   // #endregion
 }

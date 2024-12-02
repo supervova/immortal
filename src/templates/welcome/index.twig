@@ -1,69 +1,144 @@
 {% extends "base/base.twig" %}
 {% from "base/macros.twig" import icon %}
-{# {% from "base/macros.twig" import icon, snippet, form_item, button %} #}
 
 {% block config %}
   {{ parent() }}
 
   {% set page = {
+    is_onboarding: true,
     title: 'Create Your Digital Person — Echo Immortal',
     desc: 'Start creating your Digital Person by sharing your memories, values, and personality traits. Our simple onboarding process helps craft an AI avatar that reflects who you truly are.',
-    body_classes: 'e-page is-focused'
+    user_email: 'vladimir.nikishin@gmail.com',
+    body_classes: 'page has-stepper'
   } %}
+
+  {% set questions = [
+    '<p><strong>Hello! Let’s get straight to the point:</strong> let’s create your digital persona. Please start by providing your email address.</p>'
+  ] %}
+
+
 
 {% endblock %}
 
 {% block head %}
   {{ parent() }}
-
-{% endblock %}
-
-{% block header %}
-  <header class="e-header">
-    <div class="e-container">
-      <a href="/" class="e-logo">
-        <img src="/assets/img/components/logo.svg" alt="Echo Immortal">
-      </a>
-      <nav>
-        <ul class="e-header__menu">
-          <li class="tablet:d-none">
-            <a class="e-header__menu-item is-home" href="/">
-              {{ icon('home') }}
-              Home
-            </a>
-          </li>
-          <li>
-            <a class="e-header__menu-item e-btn is-ghost" href="/prising">
-              {{ icon('price', 'tablet:d-none') }}
-              <span class="tablet:d-none">Price</span>
-              <span class="d-none tablet:d-inline">Pricing</span>
-            </a>
-          </li>
-          <li class="tablet:d-none">
-            <a class="e-header__menu-item is-welcome" href="/welcome">
-              {{ icon('add') }}
-              Create
-            </a>
-          </li>
-          <li>
-            <button class="e-header__menu-item e-btn is-outline" data-role="open-modal" data-target="signin">
-              {{ icon('pixels', 'tablet:d-none') }}
-              Sign In
-            </button>
-          </li>
-        </ul>
-      </nav>
-    </div>
-  </header>
+  <link rel="stylesheet" href="/assets/css/onboarding.css?{{ timestamp }}">
 {% endblock %}
 
 {# MAIN CONTENT ------------------------------------------------------------- #}
 {% block content %}
 
-  <main class="e-main"></main>
+  <main class="e-main is-flex-column">
+    {# Progress component #}
 
+    <div class="e-messages is-centering">
+      {% include 'components/message.twig' with {
+        content: questions[0],
+        avatar: 'avatar-dp',
+        is_incoming: true,
+        classes: 'has-large-avatar max-w-none',
+        send_time: 'now'|date('H:i')
+      } %}
+    </div>
+
+    <form class="e-form is-chat-input" action="/welcome" method="get" novalidate>
+      <div class="e-form__control">
+        <label for="form-chat-input" class="visually-hidden">Message Echo Immortal</label>
+        <textarea id="form-chat-input" autofocus spellcheck="false" placeholder="Enter your email address"></textarea>
+        <button class="e-btn is-icon" type="submit" disabled aria-label="Send answer">
+          {{ icon('arrow-up') }}
+        </button>
+      </div>
+      <footer class="form__footer">
+        {{ icon('sm-lock', 'is-sm') }}
+        <span>
+          Secure SSL Encryption
+          <button class="e-btn is-link" type="button" data-role="open-overlay" data-target="freewall">
+            🔴
+          </button>
+        </span>
+      </footer>
+    </form>
+  </main>
+
+  {% include "components/stepper.twig" %}
 {% endblock %}
 
-{% block footer %}
+{% block footer %}{% endblock %}
 
+{% block body_suffix %}
+  {{ parent() }}
+
+  <div class="e-modal is-freewall" id="freewall">
+    <form class="e-modal__base is-small" id="form-confirmation" action="/welcome">
+      <div class="e-modal__body">
+        {{ icon('mail') }}
+        <h2>Please enter the code sent to <strong>{{ page.user_email }}</strong></h2>
+        <fieldset class="d-flex">
+          <input type="number">
+          <input type="number">
+          <input type="number">
+          <input type="number">
+          <input type="number">
+          <input type="number">
+        </fieldset>
+      </div>
+      <footer>
+        <button class="e-btn is-outline" type="submit" disabled>Verify email</button>
+      </footer>
+    </form>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const form = document.getElementById('form-confirmation');
+      const inputs = form.querySelectorAll('input[type="number"]');
+      const submitButton = form.querySelector('button[type="submit"]');
+
+      inputs.forEach((input, index) => {
+        // Ограничение ввода до 1 символа
+        input.addEventListener('input', () => {
+          input.value = input.value.slice(0, 1);
+
+          // Переключение фокуса на следующее поле
+          if (input.value && index < inputs.length - 1) {
+            inputs[index + 1].focus();
+          }
+
+          // Проверка заполненности всех полей
+          checkFormCompletion();
+        });
+
+        // Удаление фокуса при нажатии Backspace на пустом поле
+        input.addEventListener('keydown', (e) => {
+          if (e.key === 'Backspace' && input.value === '' && index > 0) {
+            inputs[index - 1].focus();
+          }
+        });
+      });
+
+      // Проверка, заполнены ли все поля
+      function checkFormCompletion() {
+        const allFilled = Array.from(inputs).every((input) => input.value !== '');
+        submitButton.disabled = !allFilled;
+      }
+
+      // Запрет на отправку формы, если не все поля заполнены
+      form.addEventListener('submit', (e) => {
+        const allFilled = Array.from(inputs).every((input) => input.value !== '');
+        if (!allFilled) {
+          e.preventDefault();
+        }
+      });
+
+      // Open freewall
+      document
+        .querySelector('[data-role="open-overlay"]')
+        .addEventListener('click', (event) => {
+          const trigger = event.currentTarget;
+          const overlay = trigger.getAttribute('data-target');
+          document.getElementById(overlay).classList.add('is-open');
+        });
+    });
+  </script>
 {% endblock %}

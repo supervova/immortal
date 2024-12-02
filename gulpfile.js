@@ -14,7 +14,7 @@ import changed from 'gulp-changed';
 import cssnano from 'cssnano';
 import futureFeatures from 'postcss-preset-env';
 import gulpSass from 'gulp-sass';
-import gulpif from 'gulp-if';
+// import gulpif from 'gulp-if';
 import imagemin from 'gulp-imagemin';
 import imageminGIF from 'imagemin-gifsicle';
 import imageminJPG from 'imagemin-mozjpeg';
@@ -28,7 +28,7 @@ import postcss from 'gulp-postcss';
 import prettify from 'gulp-prettier';
 import replace from 'gulp-replace';
 import size from 'gulp-size';
-import sourcemaps from 'gulp-sourcemaps';
+// import sourcemaps from 'gulp-sourcemaps';
 import svgSprite from 'gulp-svg-sprite';
 import twig from 'gulp-twig';
 import yargs from 'yargs';
@@ -70,6 +70,7 @@ const paths = {
     src: {
       main: `${srcBase}/assets/scss/main.scss`,
       home: `${srcBase}/assets/scss/pages/home.scss`,
+      onboarding: `${srcBase}/assets/scss/pages/onboarding.scss`,
     },
     watch: `${srcBase}/assets/scss/**/*.scss`,
     tmp: `${srcBase}/assets/css/`,
@@ -164,8 +165,9 @@ const js = () => {
         .pipe(handleError('JS Compile Error'))
         .pipe(
           gulpEsbuild({
-            outfile: `${name}.js`, // Каждому файлу своё имя
+            outfile: `${name}.js`,
             bundle: true,
+            format: PRODUCTION ? 'iife' : 'esm', // В разработке поддерживаем ESM
             minify: PRODUCTION,
             define: {
               'process.env.NODE_ENV': JSON.stringify(
@@ -303,9 +305,9 @@ const pages = (done) => {
 const processStyles = (
   source,
   subtitle,
-  destination,
+  destination
   // purgeContent,
-  forceProduction = false
+  // forceProduction = false
 ) =>
   src(source)
     .pipe(newer(destination))
@@ -314,12 +316,12 @@ const processStyles = (
         errorHandler: notify.onError('Error: <%= error.message %>'),
       })
     )
-    .pipe(gulpif(!(PRODUCTION || forceProduction), sourcemaps.init()))
+    // .pipe(gulpif(!(PRODUCTION || forceProduction), sourcemaps.init()))
     .pipe(
       sassCompiler({
         precision: 4,
         includePaths: ['.'],
-      }).on('error', (err) => {
+      }).on('error', function errorHandler(err) {
         console.error('Error compiling Sass:', err.message);
         this.emit('end');
       })
@@ -348,32 +350,17 @@ const processStyles = (
           },
           autoprefixer: { cascade: false },
         }),
-        ...(PRODUCTION || forceProduction
-          ? [
-              // Configure purge if needed
-              // purge({
-              //   content: purgeContent,
-              //   dynamicAttributes: ['aria-selected'],
-              //   fontFace: true,
-              //   keyframes: true,
-              //   safelist: selectorsToIgnore,
-              //   variables: true,
-              // }),
-              cssnano({ reduceIdents: { keyframes: false } }),
-            ]
-          : [
-              cssnano({
-                preset: [
-                  'lite',
-                  {
-                    normalizeWhitespace: false,
-                  },
-                ],
-              }),
-            ]),
+        cssnano({
+          preset: [
+            'lite',
+            {
+              normalizeWhitespace: false,
+            },
+          ],
+        }),
       ])
     )
-    .pipe(gulpif(!(PRODUCTION || forceProduction), sourcemaps.write()))
+    // .pipe(gulpif(!(PRODUCTION || forceProduction), sourcemaps.write()))
     .pipe(size({ title: `styles: ${subtitle}` }))
     .pipe(dest(destination))
     .pipe(bsInstance.stream());
@@ -399,7 +386,18 @@ const cssHome = (done) => {
   done();
 };
 
-const css = series(cssBase, cssHome);
+const cssOnboarding = (done) => {
+  processStyles(
+    paths.css.src.onboarding,
+    'onboarding',
+    paths.css.dest,
+    // [`${srcBase}/pages/uncss/**/*.html`],
+    true // Force production mode
+  );
+  done();
+};
+
+const css = series(cssBase, cssHome, cssOnboarding);
 // #endregion
 
 /**

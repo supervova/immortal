@@ -106,6 +106,7 @@ They might well be outsourced to an external stylesheet of course.
 
 <style>
   icon-add { width: 24px; height: 24px; }
+  icon-arrow-up { width: 24px; height: 24px; }
   icon-bell { width: 24px; height: 24px; }
   icon-book { width: 24px; height: 24px; }
   icon-brand-facebook { width: 24px; height: 24px; }
@@ -150,6 +151,7 @@ for further details on how to create this embeddable sprite variant.
 
 <svg width="0" height="0" style="position:absolute">
      <symbol fill="none" viewBox="0 0 24 24" id="icon-add" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="12" fill="var(--color-fill-icon)"/><path d="M12 5v14m-7-7h14" stroke="var(--color-stroke-icon)" stroke-width="var(--width-stroke-icon)" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+     <symbol fill="none" viewBox="0 0 24 24" id="icon-arrow-up" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="12" fill="var(--color-fill-icon)"/><path d="M12 19V5m0 0L8 9m4-4 4 4" stroke="var(--color-stroke-icon)" stroke-width="var(--width-stroke-icon)" stroke-linecap="round" stroke-linejoin="round"/></symbol>
      <symbol fill="none" viewBox="0 0 24 24" id="icon-bell" xmlns="http://www.w3.org/2000/svg"><path d="M9 17v1a3 3 0 0 0 6 0v-1M10 5a2 2 0 1 1 4 0 7 7 0 0 1 4 6v3a4 4 0 0 0 2 3H4a4 4 0 0 0 2-3v-3a7 7 0 0 1 4-6Z" stroke="var(--color-stroke-icon)" stroke-width="var(--width-stroke-icon)" stroke-linecap="round" stroke-linejoin="round"/></symbol>
      <symbol fill="none" viewBox="0 0 24 24" id="icon-book" xmlns="http://www.w3.org/2000/svg"><path fill="var(--color-fill-icon)" d="M9 4h10v16H9z"/><path d="M9 4v18m4-14h2m-2 4h2M6 4h11a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H6a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1Z" stroke="var(--color-stroke-icon)" stroke-width="var(--width-stroke-icon)" stroke-linecap="round" stroke-linejoin="round"/></symbol>
      <symbol fill="none" viewBox="0 0 24 24" id="icon-brand-facebook" xmlns="http://www.w3.org/2000/svg"><path d="M11 21a1 1 0 1 0 2 0h-2Zm5-12a1 1 0 1 0 0-2v2Zm-6 3a1 1 0 1 0 0 2v-2Zm6 2a1 1 0 1 0 0-2v2Zm-3 7v-9h-2v9h2Zm0-9c0-1.07.136-1.766.478-2.208C13.774 9.41 14.407 9 16 9V7c-1.907 0-3.274.497-4.103 1.568C11.114 9.579 11 10.883 11 12h2Zm-3 2h6v-2h-6v2ZM5 4h14V2H5v2Zm15 1v14h2V5h-2Zm-1 15H5v2h14v-2ZM4 19V5H2v14h2Zm1 1a1 1 0 0 1-1-1H2a3 3 0 0 0 3 3v-2Zm15-1a1 1 0 0 1-1 1v2a3 3 0 0 0 3-3h-2ZM19 4a1 1 0 0 1 1 1h2a3 3 0 0 0-3-3v2ZM5 2a3 3 0 0 0-3 3h2a1 1 0 0 1 1-1V2Z" fill="#000"/></symbol>
@@ -205,6 +207,14 @@ embedded above. They may be styled via CSS.
                         </svg>
                     </div>
                     <h2>icon-add, </h2>
+                </li>
+             <li title="icon-arrow-up">
+                    <div class="icon-box">
+                        <svg class="icon-arrow-up">
+                            <use xlink:href="#icon-arrow-up"></use>
+                        </svg>
+                    </div>
+                    <h2>icon-arrow-up, </h2>
                 </li>
              <li title="icon-bell">
                     <div class="icon-box">
@@ -409,6 +419,14 @@ SVG sprite. They may be styled via CSS.
                     </div>
                     <h2>icon-add</h2>
                 </li>
+             <li title="icon-arrow-up">
+                    <div class="icon-box">
+                        <svg class="icon-arrow-up">
+                            <use xlink:href="sprite.svg#icon-arrow-up"></use>
+                        </svg>
+                    </div>
+                    <h2>icon-arrow-up</h2>
+                </li>
              <li title="icon-bell">
                     <div class="icon-box">
                         <svg class="icon-bell">
@@ -593,7 +611,7 @@ SVG sprite. They may be styled via CSS.
 
         </section>
         <footer>
-            <p>Generated at Wed, 27 Nov 2024 11:18:37 GMT by <a href="https://github.com/svg-sprite/svg-sprite" target="_blank" rel="noopener noreferrer">svg-sprite</a>.</p>
+            <p>Generated at Mon, 02 Dec 2024 21:23:51 GMT by <a href="https://github.com/svg-sprite/svg-sprite" target="_blank" rel="noopener noreferrer">svg-sprite</a>.</p>
         </footer>
     </body>
 </html>

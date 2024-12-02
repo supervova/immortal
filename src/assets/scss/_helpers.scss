@@ -20,10 +20,18 @@
 .pt-max { padding-top: var(--spacer-max); }
 .pb-max { padding-bottom: var(--spacer-max); }
 
+// SIZE
+.max-w-none	{ max-width: none; }
+
+
 // DISPLAY
 
 .d-none {
   display: none;
+}
+
+.d-flex {
+  display: flex;
 }
 
 @media (--tablet) {

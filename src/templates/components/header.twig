@@ -5,34 +5,41 @@
     <a href="/" class="e-logo">
       <img src="/assets/img/components/logo.svg" alt="Echo Immortal">
     </a>
-    <nav>
-      <ul class="e-header__menu">
-        <li class="tablet:d-none">
-          <a class="e-header__menu-item is-home" href="/">
-            {{ icon('home') }}
-            Home
-          </a>
-        </li>
-        <li>
-          <a class="e-header__menu-item e-btn is-ghost" href="/prising">
-            {{ icon('price', 'tablet:d-none') }}
-            <span class="tablet:d-none">Price</span>
-            <span class="d-none tablet:d-inline">Pricing</span>
-          </a>
-        </li>
-        <li class="tablet:d-none">
-          <a class="e-header__menu-item is-welcome" href="/welcome">
-            {{ icon('add') }}
-            Create
-          </a>
-        </li>
-        <li>
-          <button class="e-header__menu-item e-btn is-outline" data-role="open-modal" data-target="signin">
-            {{ icon('pixels', 'tablet:d-none') }}
-            Sign In
-          </button>
-        </li>
-      </ul>
-    </nav>
+
+    {% if page.is_onboarding %}
+      <p class="e-header__login-cta">
+        Already have an account?
+        <button class="e-btn is-link" type="button" data-role="open-modal" data-target="signin">
+          Sign In
+        </button>
+      </p>
+    {% else %}
+      <nav>
+        <ul class="e-header__menu">
+          <li class="tablet:d-none">
+            <a class="e-header__menu-item is-home" href="/">
+              {{ icon('home') }} Home
+            </a>
+          </li>
+          <li>
+            <a class="e-header__menu-item e-btn is-ghost" href="/prising">
+              {{ icon('price', 'tablet:d-none') }}
+              <span class="tablet:d-none">Price</span>
+              <span class="d-none tablet:d-inline">Pricing</span>
+            </a>
+          </li>
+          <li class="tablet:d-none">
+            <a class="e-header__menu-item is-welcome" href="/welcome">
+              {{ icon('add') }} Create
+            </a>
+          </li>
+          <li>
+            <button class="e-header__menu-item e-btn is-outline" data-role="open-modal" data-target="signin">
+              {{ icon('pixels', 'tablet:d-none') }} Sign In
+            </button>
+          </li>
+        </ul>
+      </nav>
+    {% endif %}
   </div>
 </header>

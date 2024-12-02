@@ -27,7 +27,7 @@
   --color-alpha-dark-900: rgb(0 0 0 / 0.87);
   --color-alpha-dark-600: rgb(0 0 0 / 0.6);
   --color-alpha-dark-400: rgb(0 0 0 / 0.38);
-  --color-alpha-dark-100: rgb(0 0 0 / 0.12);
+  --color-alpha-dark-100: rgb(0 0 0 / 0.08);
   --color-alpha-dark-min: rgb(0 0 0 / 0.05);
 
   --color-alpha-light-max: hsl(0 0% 100%);
@@ -39,7 +39,7 @@
 
   --color-shadow:          0 0% 0%;
 
-  --color-bg-base-alpha:      #{color-mix(in srgb, var(--color-bg-base) 88%, transparent)};
+  --color-bg-base-alpha:      #{color-mix(in srgb, var(--color-bg-base) 64%, transparent)};
   --backdrop-filter-elevated: #{saturate(180%) blur(20px)};
   --backdrop-filter-blur:     #{blur(20px)};
 

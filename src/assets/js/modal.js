@@ -1,4 +1,4 @@
-const animationDuration = 400; // ms
+const animationDuration = 400;
 let visibleModal = null;
 
 // Add `is-pinned` class to a modal header
@@ -39,24 +39,21 @@ const getExternalContent = (event) => {
   });
 };
 
-// Close modal
+// 👉 Close modal
 const closeModal = (modal) => {
-  if (!modal) {
-    return;
+  if (!modal || modal.hasAttribute('closing')) {
+    return; // Если модальное окно уже закрывается, выходим
   }
 
   visibleModal = null;
+  modal.setAttribute('closing', ''); // Устанавливаем атрибут closing
 
-  // Добавляем атрибут closing для запуска анимации
-  modal.setAttribute('closing', '');
-
-  // Ждем завершения анимации перед реальным закрытием
   modal.addEventListener(
     'transitionend',
     () => {
-      modal.removeAttribute('closing');
+      modal.removeAttribute('closing'); // Убираем атрибут после анимации
       if (typeof modal.close === 'function') {
-        modal.close(); // Используем close только для <dialog>
+        modal.close(); // Закрываем диалог
       }
     },
     { once: true }
@@ -64,7 +61,7 @@ const closeModal = (modal) => {
 };
 
 // Open modal
-const openModal = (modal) => {
+export const openModal = (modal) => {
   setTimeout(() => {
     visibleModal = modal;
   }, animationDuration);
@@ -100,9 +97,11 @@ const modalToggle = (event) => {
 const initModals = () => {
   // Close with a click outside
   document.addEventListener('click', (event) => {
-    if (visibleModal === null) return;
-    const modalContent = visibleModal.firstElementChild; // Get the first child element of the modal
+    if (!visibleModal) return;
+
+    const modalContent = visibleModal.firstElementChild;
     const isClickInside = modalContent.contains(event.target);
+
     if (!isClickInside) {
       closeModal(visibleModal);
     }

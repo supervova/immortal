@@ -1,15 +1,38 @@
+{#
+  We can pass both objects...
+  {% include 'components/message.twig' with { message: my_message } %}
+
+  ...and individual arguments to parameters
+  {% include 'components/message.twig' with {
+    content: my_var,
+    avatar: 'avatar-dp',
+    is_incoming: true,
+} %}
+#}
+
+{% set content = content|default(message.content|default('')) %}
+{% set is_incoming = is_incoming|default(message.is_incoming|default(true)) %}
+{% set avatar = avatar|default(message.avatar|default('default-avatar')) %}
+{% set classes = classes|default(message.classes|default(false)) %}
+{% set send_time = send_time|default(message.send_time|default(false)) %}
+
+{% if content is not empty %}
 <section
-  class="e-message {{ message.isIncoming ? 'is-incoming' : 'is-outgoing' }}"
-  aria-label="{{ message.isIncoming ? 'Answer' : 'Question' }}"
+  class="e-message {{ is_incoming ? 'is-incoming' : 'is-outgoing' }}{% if classes %} {{ classes }}{% endif %}"
+  aria-label="{{ is_incoming ? 'Answer' : 'Question' }}"
 >
   <div class="e-message__bubble">
-    {{ message.content|raw }}
+    {{ content|raw }}
+    {% if send_time %}
+      <time datetime="{{ send_time }}">{{ send_time|date('H:i') }}</time>
+    {% endif %}
   </div>
   <figure class="e-message__avatar">
     <img
-      src="/assets/img/pages/home/{{ message.avatar }}.png"
-      srcset="/assets/img/pages/home/{{ message.avatar }}@2x.png 2x"
+      src="/assets/img/pages/home/{{ avatar }}.png"
+      srcset="/assets/img/pages/home/{{ avatar }}@2x.png 2x"
       alt=""
     >
   </figure>
 </section>
+{% endif %}

@@ -1,0 +1,49 @@
+{% from "base/macros.twig" import icon %}
+
+{% set progress = {
+  percent: 3,
+  steps: [
+    {title: 'Email', completed: 1, total: 1, complete: true},
+    {title: 'Personal Information', completed: 0, total: 6, active: true},
+    {title: 'Biography', completed: 0, total: 6},
+    {title: 'Interests', completed: 0, total: 6},
+    {title: 'Habits', completed: 0, total: 6},
+    {title: 'Psychological Profile', completed: 0, total: 39},
+    {title: 'Memories', completed: 0, total: 6},
+    {title: 'Values and Principles', completed: 0, total: 6},
+    {title: 'Personalization', completed: 0, total: 6},
+    {title: 'Privacy', completed: 0, total: 6},
+    {title: 'Social Media', completed: 0, total: 6}
+  ]
+} %}
+
+<aside class="e-stepper">
+
+  <header class="e-stepper__header">
+    <button class="e-btn is-close" type="button"  data-role="close-modal" aria-label="Close">
+      {{ icon('sm-x-mark', 'is-sm') }}
+    </button>
+    <h2 class="h3" id="title-stepper">
+      Progress
+      <span>{{ progress.percent }}%</span>
+    </h2>
+    <progress id="progress-onboarding" max="100" value="{{ progress.percent }}" aria-labelledby="title-stepper">{{ progress.percent }}%</progress>
+    <small>
+      <span>Minimum</span>
+      <span>Good enough</span>
+      <span>100 Qs</span>
+    </small>
+  </header>
+
+  <ol class="e-stepper__list">
+    {% for step in progress.steps %}
+      <li class="e-stepper__item{% if step.active %} is-active{% endif %}{% if step.complete %} is-complete{% endif %}">
+        <h3>{{ step.title }}</h3>
+        <small>{{ step.completed }}/{{ step.total }}</small>
+      </li>
+    {% endfor %}
+  </ol>
+  <button class="e-btn is-save" type="button" disabled>
+    Save
+  </button>
+</aside>

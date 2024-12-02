@@ -1,9 +1,9 @@
 @use 'sass:map';
 @use 'abstracts' as *;
 
-/* -----------------------------------------------------------------------------
- * BASE
- * -------------------------------------------------------------------------- */
+// -----------------------------------------------------------------------------
+// BASE
+// -----------------------------------------------------------------------------
 // #region
 
 // Container
@@ -11,7 +11,7 @@
   --modal-background: var(--color-bg-base);
   --modal-border-radius: var(--border-radius-lg) var(--border-radius-lg) 0 0;
   --modal-padding-x: var(--size-2p5);
-  --modal-overlay-background-color: var(--color-bg-scrim);
+  --modal-overlay-background-color: var(--color-bg-base-alpha);
 
   background-color: var(--modal-overlay-background-color);
   backdrop-filter: blur(var(--size-2p5));
@@ -28,6 +28,7 @@
   min-width: 100%;
   height: inherit;
   min-height: 100%;
+  z-index: var(--zindex-modal);
 
   &:not([open]) {
     display: none;
@@ -75,7 +76,7 @@
     opacity var(--duration-500) var(--easing-base);
   translate: 0;
   width: min(100%, var(--width-xl));
-  height: calc(100% - var(--size-5));
+  max-height: calc(100% - var(--size-5));
 
   @starting-style {
     translate: 0 50%;
@@ -111,11 +112,58 @@
     translate: 0 -50%;
   }
 }
+
+// Sizing
+.e-modal__base.is-small {
+  --modal-border-radius: var(--border-radius-lg);
+  background-image: var(--bg-image-base);
+  background-repeat: no-repeat;
+  background-position: calc(-1 * var(--size-1)) calc(-1 * var(--size-8));
+  background-size: var(--bg-image-size-base);
+  box-shadow:
+    0 0 0 rem(1) var(--color-bg-base-alpha),
+    var(--box-shadow-level-03);
+  inset: 0;
+  width: min(calc(100% - var(--size-4)), var(--width-md));
+  height: max-content;
+
+  &::before {
+    background:
+      linear-gradient(
+        rgb(255 255 255 / 0.5),
+        rgb(255 255 255 / 0.16) 49.9%,
+        rgb(255 255 255 / 0) 50%),
+        linear-gradient(90deg, var(--color-gradient-brand));
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: var(--size-1p5);
+    z-index: var(--zindex-fixed);
+  }
+
+  @media (--tablet) {
+    --modal-border-radius: var(--border-radius-lg);
+  }
+}
+
+.e-modal__base.is-small:has(:not(header)) {
+  @media (--phone) {
+    .e-modal__body {
+      padding-block: var(--modal-padding-x);
+    }
+
+    > footer {
+      padding-bottom: var(--modal-padding-x);
+    }
+  }
+}
 // #endregion
 
-/* -----------------------------------------------------------------------------
- * CONTENT
- * -------------------------------------------------------------------------- */
+// -----------------------------------------------------------------------------
+// CONTENT
+// -----------------------------------------------------------------------------
 // #region
 
 /* Basic padding for modal content */
@@ -126,9 +174,9 @@
 
 // #endregion
 
-/* -----------------------------------------------------------------------------
- * HEADER
- * -------------------------------------------------------------------------- */
+// -----------------------------------------------------------------------------
+// HEADER
+// -----------------------------------------------------------------------------
 // #region
 
 .e-modal__base > header {
@@ -139,47 +187,26 @@
   }
 }
 
-.e-modal__base:has(.e-modal__close) > header {
+.e-modal__base:has(.e-btn.is-close) > header {
   @media (--tablet) {
     padding-top: 0;
   }
 }
 
-.e-modal__close {
-  --height-btn: var(--size-5);
-
-  border-radius: var(--border-radius-pill);
-  backdrop-filter: var(--backdrop-filter-blur);
-  padding: 0;
-  position: sticky;
-  top: var(--size-2);
-  margin-inline-start: auto;
+.e-modal__base .e-btn.is-close {
   // Compensate ::after to prevent x-scroll
   margin-inline-end: rem(2);
   margin-bottom: calc(-1 * var(--size-2));
-  width: var(--height-btn);
-  z-index: var(--zindex-fixed);
-
-  // Expanded clickable area
-  &::after {
-    background: transparent;
-    content: '';
-    position: absolute;
-    inset: -1 * rem(2);
-    border-radius: inherit;
-  }
 
   @media (--tablet) {
-    top: 0;
     margin-inline-end: var(--size-3);
   }
 }
-
 // #endregion
 
-/* -----------------------------------------------------------------------------
- * FOOTER - BUTTONS
- * -------------------------------------------------------------------------- */
+// -----------------------------------------------------------------------------
+// FOOTER - BUTTONS
+// -----------------------------------------------------------------------------
 // #region
 
 /* Footer with buttons aligned to the right */
@@ -196,9 +223,9 @@
 
 // #endregion
 
-/* -----------------------------------------------------------------------------
- * LOWER UI LOCK
- * -------------------------------------------------------------------------- */
+// -----------------------------------------------------------------------------
+// LOWER UI LOCK
+// -----------------------------------------------------------------------------
 // #region
 
 /* Disable scroll on the html root when the modal is open */
@@ -211,39 +238,4 @@ html:has(dialog[open]) {
   }
 }
 
-// #endregion
-
-/* -----------------------------------------------------------------------------
- * SCRIMS
- * -------------------------------------------------------------------------- */
-// #region
-/* Optional: Scrims (faded areas) at the top and bottom of the modal */
-.e-modal::before,
-.e-modal::after {
-  display: block;
-  content: '';
-  position: sticky;
-  right: 0;
-  left: 0;
-  height: var(--size-4);
-  z-index: 1;
-}
-
-.e-modal::before {
-  background-image: linear-gradient(
-    var(--modal-background) 1%,
-    transparent 33.33%,
-    transparent
-  );
-  top: 0;
-}
-
-.e-modal::after {
-  background-image: linear-gradient(
-    transparent,
-    transparent 66.67%,
-    var(--modal-background)
-  );
-  bottom: 0;
-}
 // #endregion

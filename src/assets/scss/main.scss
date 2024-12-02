@@ -55,7 +55,7 @@
   @include meta.load-css('navbar');
   @include meta.load-css('scroller');
   @include meta.load-css('section');
-  // @include meta.load-css('slideshow');
+  @include meta.load-css('stepper');
   @include meta.load-css('tooltip');
 
   /*

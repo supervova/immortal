@@ -10,59 +10,69 @@
   } %}
 
   {% set initial_question = {
-    isIncoming: false,
+    is_incoming: false,
     avatar: 'avatar-creator',
-    content: '<p><strong>You:</strong> Is my data secure? <time datetime="2025-02-28T15:04">15:04</time></p>'
+    content: '<p><strong>You:</strong> Is my data secure?</p>',
+    send_time: '2025-02-28T15:04:00'
   } %}
 
   {% set faqs = [
     {
-      isIncoming: true,
+      is_incoming: true,
       avatar: 'avatar-dp',
-      content: '<p><strong>DP:</strong> Yes, we take privacy very seriously. Your information is encrypted, and you have full control over what data is shared. Нour Digital Person only uses the data you explicitly provide. It won&rsquo;t have access to confidential information like passwords, financial data, or private conversations unless you choose to share specific messages or posts. <time datetime="2025-02-28T15:04">15:04</time></p>'
+      content: '<p><strong>DP:</strong> Yes, we take privacy very seriously. Your information is encrypted, and you have full control over what data is shared. Нour Digital Person only uses the data you explicitly provide. It won&rsquo;t have access to confidential information like passwords, financial data, or private conversations unless you choose to share specific messages or posts.</p>',
+      send_time: '2025-02-28T15:04:00'
     },
     {
-      isIncoming: false,
+      is_incoming: false,
       avatar: 'avatar-creator',
-      content: '<p><strong>You:</strong> Can I use Echo Immortal for free? <time datetime="2025-02-28T15:05">15:05</time></p>'
+      content: '<p><strong>You:</strong> Can I use Echo Immortal for free?</p>',
+      send_time: '2025-02-28T15:08:00'
     },
     {
-      isIncoming: true,
+      is_incoming: true,
       avatar: 'avatar-dp',
-      content: '<p><strong>DP:</strong> Yes, creating your Digital Person is free, but free DP accounts have limitations. They can only send a limited number of messages and communicate via text only — voice interactions are available with a premium subscription. <time datetime="2025-02-28T15:05">15:05</time></p>'
+      content: '<p><strong>DP:</strong> Yes, creating your Digital Person is free, but free DP accounts have limitations. They can only send a limited number of messages and communicate via text only — voice interactions are available with a premium subscription.</p>',
+      send_time: '2025-02-28T15:08:00'
     },
     {
-      isIncoming: false,
+      is_incoming: false,
       avatar: 'avatar-creator',
-      content: '<p><strong>You:</strong> What is an AI agent, and how is it related to a digital persona? <time datetime="2025-02-28T15:08">15:08</time></p>'
+      content: '<p><strong>You:</strong> What is an AI agent, and how is it related to a digital persona?</p>',
+      send_time: '2025-02-28T15:09:00'
     },
     {
-      isIncoming: true,
+      is_incoming: true,
       avatar: 'avatar-dp',
       content: '
         <p><strong>DP:</strong> An AI agent is a program or system designed to perform tasks autonomously, using artificial intelligence to process data, make decisions, and interact with users.</p>
-        <p>In the context of a digital persona, an AI agent acts as a virtual representation of an individual, capable of mimicking their personality traits, knowledge, memories, and communication style. This allows it to engage in conversations across messengers and social media platforms, fully replicating the mannerisms and behavior of its &laquo;original&raquo; creator. <time datetime="2025-02-28T15:08">15:08</time></p>
-      '
+        <p>In the context of a digital persona, an AI agent acts as a virtual representation of an individual, capable of mimicking their personality traits, knowledge, memories, and communication style. This allows it to engage in conversations across messengers and social media platforms, fully replicating the mannerisms and behavior of its &laquo;original&raquo; creator.</p>
+      ',
+      send_time: '2025-02-28T15:09:00'
     },
     {
-      isIncoming: false,
+      is_incoming: false,
       avatar: 'avatar-creator',
-      content: '<p><strong>You:</strong> Can my Digital Person say something I wouldn&rsquo;t? <time datetime="2025-02-28T15:10">15:10</time></p>'
+      content: '<p><strong>You:</strong> Can my Digital Person say something I wouldn&rsquo;t?</p>',
+      send_time: '2025-02-28T15:12:00'
     },
     {
-      isIncoming: true,
+      is_incoming: true,
       avatar: 'avatar-dp',
-      content: '<p><strong>DP:</strong> No, your Digital Person is trained to reflect your unique style and personality. You can preview and adjust its responses before it&rsquo;s activated to ensure it behaves exactly as you want. <time datetime="2025-02-28T15:10">15:10</time></p>'
+      content: '<p><strong>DP:</strong> No, your Digital Person is trained to reflect your unique style and personality. You can preview and adjust its responses before it&rsquo;s activated to ensure it behaves exactly as you want.</p>',
+      send_time: '2025-02-28T15:12:00'
     },
     {
-      isIncoming: false,
+      is_incoming: false,
       avatar: 'avatar-creator',
-      content: '<p><strong>You:</strong> What if I want to delete my Digital Person? <time datetime="2025-02-28T15:12">15:12</time></p>'
+      content: '<p><strong>You:</strong> What if I want to delete my Digital Person?</p>',
+      send_time: '2025-02-28T15:20:00'
     },
     {
-      isIncoming: true,
+      is_incoming: true,
       avatar: 'avatar-dp',
-      content: '<p><strong>DP:</strong> You&rsquo;re in control. You can pause or permanently delete your Digital Person at any time, and all associated data will be securely removed from our systems. <time datetime="2025-02-28T15:12">15:12</time></p>'
+      content: '<p><strong>DP:</strong> You&rsquo;re in control. You can pause or permanently delete your Digital Person at any time, and all associated data will be securely removed from our systems.</p>',
+      send_time: '2025-02-28T15:20:00'
     }
   ] %}
 
@@ -105,7 +115,7 @@
 
             <div class="e-slideshow__details" id="modal-intro-modal">
 
-              <button class="e-modal__close tablet-l:d-none" type="button" data-role="close-modal" aria-label="Close">
+              <button class="e-btn is-close tablet-l:d-none" type="button" data-role="close-modal" aria-label="Close">
                 {{ icon('sm-x-mark', 'is-sm') }}
               </button>
 
@@ -356,7 +366,7 @@
   <!-- Modals -->
   <dialog class="e-modal" id="modal-intro">
     <div class="e-modal__base">
-      <button class="e-modal__close" type="button" data-role="close-modal" aria-label="Close">
+      <button class="e-btn is-close" type="button" data-role="close-modal" aria-label="Close">
         {{ icon('sm-x-mark', 'is-sm') }}
       </button>
       <header>
@@ -373,6 +383,10 @@
 {% endblock %}
 
 {% block footer %}
+  {{ parent() }}
+{% endblock %}
+
+{% block body_suffix %}
   {{ parent() }}
   <script src="/assets/js/home.js" type="module"></script>
 {% endblock %}
