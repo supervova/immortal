@@ -53,6 +53,7 @@
   @include meta.load-css('header');
   @include meta.load-css('modal');
   @include meta.load-css('navbar');
+  @include meta.load-css('progress');
   @include meta.load-css('scroller');
   @include meta.load-css('section');
   @include meta.load-css('stepper');

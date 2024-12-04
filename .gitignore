@@ -38,8 +38,7 @@ src/templates/html-ipsum.twig
 *.wmv
 
 # Editors
-.vscode/*
-!.vscode/settings.json
+.vscode
 
 # Build related
 *.sass-cache*

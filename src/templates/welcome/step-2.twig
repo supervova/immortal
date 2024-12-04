@@ -8,15 +8,31 @@
     is_onboarding: true,
     title: 'Create Your Digital Person — Echo Immortal',
     desc: 'Start creating your Digital Person by sharing your memories, values, and personality traits. Our simple onboarding process helps craft an AI avatar that reflects who you truly are.',
-    user_email: 'vladimir.nikishin@gmail.com',
-    body_classes: 'page has-stepper'
+    body_classes: 'page has-stepper',
+    prev: '#'
   } %}
 
   {% set questions = [
-    '<p><strong>Hello! Let’s get straight to the point:</strong> let’s create your digital persona. Please start by providing your email address.</p>'
+    '<p><strong>Hello! Let’s get straight to the point:</strong> let’s create your digital persona. Please start by providing your email address.</p>',
+    '<p>Great! Now, please introduce yourself.</p>'
   ] %}
 
-
+  {% set progress = {
+    percent: 3,
+    steps: [
+      {title: 'Email', completed: 1, total: 1, complete: true, link: 'email'},
+      {title: 'Personal Information', completed: 0, total: 6, active: true, link: 'personal'},
+      {title: 'Biography', completed: 0, total: 6, link: 'biography'},
+      {title: 'Interests', completed: 0, total: 6, link: 'interests'},
+      {title: 'Habits', completed: 0, total: 6, link: 'habits'},
+      {title: 'Psychological Profile', completed: 0, total: 39, link: 'psychological'},
+      {title: 'Memories', completed: 0, total: 6, link: 'memories'},
+      {title: 'Values and Principles', completed: 0, total: 6, link: 'values'},
+      {title: 'Personalization', completed: 0, total: 6, link: 'personalization'},
+      {title: 'Privacy', completed: 0, total: 6, link: 'privacy'},
+      {title: 'Social Media', completed: 0, total: 6, link: 'social'}
+    ]
+  } %}
 
 {% endblock %}
 
@@ -33,7 +49,7 @@
 
     <div class="e-messages is-centering">
       {% include 'components/message.twig' with {
-        content: questions[0],
+        content: questions[1],
         avatar: 'avatar-dp',
         is_incoming: true,
         classes: 'has-large-avatar max-w-none',
@@ -43,102 +59,30 @@
 
     <form class="e-form is-chat-input" action="/welcome" method="get" novalidate>
       <div class="e-form__control">
+        <a class="e-link is-prev" href="{{ page.prev }}">
+          {{ icon('sm-chevron-left', 'is-sm') }}
+          <span class="label">Prev</span>
+        </a>
         <label for="form-chat-input" class="visually-hidden">Message Echo Immortal</label>
-        <textarea id="form-chat-input" autofocus spellcheck="false" placeholder="Enter your email address"></textarea>
+        <textarea id="form-chat-input" autofocus spellcheck="false" placeholder="Your answer"></textarea>
         <button class="e-btn is-icon" type="submit" disabled aria-label="Send answer">
           {{ icon('arrow-up') }}
         </button>
       </div>
-      <footer class="form__footer">
+      <footer class="e-form__footer is-security">
         {{ icon('sm-lock', 'is-sm') }}
-        <span>
-          Secure SSL Encryption
-          <button class="e-btn is-link" type="button" data-role="open-overlay" data-target="freewall">
-            🔴
-          </button>
-        </span>
+        <span>Secure SSL Encryption</span>
       </footer>
     </form>
   </main>
-
-  {% include "components/stepper.twig" %}
 {% endblock %}
 
 {% block footer %}{% endblock %}
 
 {% block body_suffix %}
   {{ parent() }}
-
-  <div class="e-modal is-freewall" id="freewall">
-    <form class="e-modal__base is-small" id="form-confirmation" action="/welcome">
-      <div class="e-modal__body">
-        {{ icon('mail') }}
-        <h2>Please enter the code sent to <strong>{{ page.user_email }}</strong></h2>
-        <fieldset class="d-flex">
-          <input type="number">
-          <input type="number">
-          <input type="number">
-          <input type="number">
-          <input type="number">
-          <input type="number">
-        </fieldset>
-      </div>
-      <footer>
-        <button class="e-btn is-outline" type="submit" disabled>Verify email</button>
-      </footer>
-    </form>
-  </div>
-
+  {% include "components/stepper.twig" %}
   <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      const form = document.getElementById('form-confirmation');
-      const inputs = form.querySelectorAll('input[type="number"]');
-      const submitButton = form.querySelector('button[type="submit"]');
 
-      inputs.forEach((input, index) => {
-        // Ограничение ввода до 1 символа
-        input.addEventListener('input', () => {
-          input.value = input.value.slice(0, 1);
-
-          // Переключение фокуса на следующее поле
-          if (input.value && index < inputs.length - 1) {
-            inputs[index + 1].focus();
-          }
-
-          // Проверка заполненности всех полей
-          checkFormCompletion();
-        });
-
-        // Удаление фокуса при нажатии Backspace на пустом поле
-        input.addEventListener('keydown', (e) => {
-          if (e.key === 'Backspace' && input.value === '' && index > 0) {
-            inputs[index - 1].focus();
-          }
-        });
-      });
-
-      // Проверка, заполнены ли все поля
-      function checkFormCompletion() {
-        const allFilled = Array.from(inputs).every((input) => input.value !== '');
-        submitButton.disabled = !allFilled;
-      }
-
-      // Запрет на отправку формы, если не все поля заполнены
-      form.addEventListener('submit', (e) => {
-        const allFilled = Array.from(inputs).every((input) => input.value !== '');
-        if (!allFilled) {
-          e.preventDefault();
-        }
-      });
-
-      // Open freewall
-      document
-        .querySelector('[data-role="open-overlay"]')
-        .addEventListener('click', (event) => {
-          const trigger = event.currentTarget;
-          const overlay = trigger.getAttribute('data-target');
-          document.getElementById(overlay).classList.add('is-open');
-        });
-    });
   </script>
 {% endblock %}

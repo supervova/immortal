@@ -51,9 +51,13 @@
 html:has(.e-stepper.is-open) {
   overflow: hidden;
 
-  .e-modal {
+  .e-stepper {
     pointer-events: auto;
     touch-action: auto;
+  }
+
+  @media (--tablet) {
+    overflow: auto;
   }
 }
 
@@ -69,14 +73,20 @@ html:has(.e-stepper.is-open) {
   display: flex;
   flex-direction: column;
   gap: 0;
-  padding-top: var(--size-7);
+  padding-top: rem(53);
   padding-inline: var(--size-2p5);
-  position: sticky;
+  position: fixed;
   top: 0;
+  right: 0;
+  width: 100%;
   height: var(--stepper-header-height);
   z-index: var(--zindex-fixed);
 
   .e-btn.is-close {
+    position: absolute;
+    top: var(--size-1p5);
+    right: var(--size-1p5);
+
     @media (--tablet-l) {
       display: none;
     }
@@ -175,10 +185,12 @@ html:has(.e-stepper.is-open) {
   display: flex;
   flex-direction: column;
   gap: 0;
-  padding-block: var(--size-line);
+  padding-top: calc(var(--stepper-header-height) + var(--size-line));
+  padding-bottom: var(--size-8);
   padding-inline: var(--size-2p5);
   overflow-y: auto;
-  max-height: calc(100% - var(--stepper-header-height));
+  height: 100vh;
+  max-height: 100%;
 
   // override include values
   li {
@@ -220,9 +232,10 @@ html:has(.e-stepper.is-open) {
     width: 0;
   }
 
-  h3 {
+  a {
     @include text-format(body-sm);
-    font-weight: normal;
+
+    display: block;
     margin-bottom: -2px;
   }
 

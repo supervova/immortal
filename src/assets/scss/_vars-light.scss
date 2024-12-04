@@ -44,8 +44,8 @@
   --color-bg-2ry:          hsl(0 0% 97%);
   --color-bg-inverse:      hsl(0 0% 24%);
   --color-bg-layer-01:     var(--color-bg-base);
-  --color-bg-layer-02:     color-mix(in srgb, var(--color-bg-base) 88%, transparent);
-  --color-bg-2ry-layer-02: color-mix(in srgb, var(--color-bg-2ry) 88%, transparent);
+  --color-bg-layer-02:     hsl(from var(--color-bg-base) / 0.64);
+  --color-bg-2ry-layer-02: hsl(from var(--color-bg-2ry) / 0.64);
   --color-bg-layer-03:     var(--color-bg-layer-02);
 
   --color-bg-scrim:        var(--color-alpha-dark-600);

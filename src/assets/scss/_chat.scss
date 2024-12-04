@@ -128,6 +128,7 @@
 
 .e-message.is-incoming {
   flex-direction: row-reverse;
+  justify-content: flex-end;
 
   .e-message__bubble {
     background-color: var(--color-bg-info);
@@ -161,6 +162,9 @@
   z-index: var(--zindex-fixed);
 
   .e-form__control {
+    display: flex;
+    align-items: center;
+    gap: var(--size-2);
     margin-inline: auto;
     position: relative;
     max-width: rem(644);
@@ -176,7 +180,6 @@
     transition: height var(--duration-500) var(--easing-base);
     min-height: var(--size-7); // 56px
     height: var(--size-7);
-
 
     @media (--tablet) {
       max-height: calc(8 * var(--size-line) + var(--size-2));  // 208px
@@ -213,7 +216,26 @@
   }
 }
 
-.form__footer {
+.is-chat-input .e-link.is-prev {
+  @include text-format(body-sm);
+
+  display: flex;
+  align-items: center;
+  gap: var(--size-1);
+  translate: 0 -0.1875rem;
+
+  @media (--phone) {
+    .label {
+      @include visually-hidden;
+    }
+  }
+
+  @media (--tablet) {
+    width: rem(88);
+  }
+}
+
+.e-form__footer.is-security {
   @include text-format(caption);
   color: var(--color-ink-2ry);
   margin: 0;

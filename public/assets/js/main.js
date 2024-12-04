@@ -94,6 +94,45 @@ var initModals = () => {
 };
 var modal_default = initModals;
 
+// src/assets/js/drawer.js
+var initDrawer = () => {
+  document.addEventListener("click", (event) => {
+    const openButton = event.target.closest('[data-role="open-drawer"]');
+    if (openButton) {
+      const targetId = openButton.dataset.target;
+      const drawer = document.getElementById(targetId);
+      if (drawer) {
+        drawer.classList.toggle("is-open");
+      }
+    }
+  });
+  document.addEventListener("click", (event) => {
+    const closeButton = event.target.closest('[data-role="close-drawer"]');
+    if (closeButton) {
+      const drawer = closeButton.closest('[data-role="drawer"]');
+      if (drawer) {
+        drawer.classList.remove("is-open");
+      }
+    }
+    const openDrawer = document.querySelector('[data-role="drawer"].is-open');
+    if (openDrawer && !openDrawer.contains(event.target)) {
+      const openButton = event.target.closest('[data-role="open-drawer"]');
+      if (!openButton) {
+        openDrawer.classList.remove("is-open");
+      }
+    }
+  });
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") {
+      const openDrawer = document.querySelector('[data-role="drawer"].is-open');
+      if (openDrawer) {
+        openDrawer.classList.remove("is-open");
+      }
+    }
+  });
+};
+var drawer_default = initDrawer;
+
 // src/assets/js/flayout.js
 function initFlayouts() {
   const flayouts = Array.from(
@@ -162,6 +201,7 @@ var chat_default = initTextareaAutoResize;
 document.addEventListener("DOMContentLoaded", () => {
   initFlayouts();
   modal_default();
+  drawer_default();
   chat_default(
     ".is-chat-input textarea",
     ".is-chat-input .e-btn",

@@ -19,7 +19,7 @@
 .page.has-stepper .e-header__login-cta {
   display: none;
 }
-@media (--laptop) {
+@media (--tablet-l) {
   .page.has-stepper {
     padding-inline-end: calc(var(--width-base) + var(--size-5));
   }

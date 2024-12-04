@@ -39,9 +39,9 @@
 
   --color-shadow:          0 0% 0%;
 
-  --color-bg-base-alpha:      #{color-mix(in srgb, var(--color-bg-base) 64%, transparent)};
-  --backdrop-filter-elevated: #{saturate(180%) blur(20px)};
-  --backdrop-filter-blur:     #{blur(20px)};
+  --color-bg-base-alpha:      hsl(from var(--color-bg-base) h s l / 0.64);
+  --backdrop-filter-elevated: saturate(180%) blur(20px);
+  --backdrop-filter-blur:     blur(20px);
 
   // Adjustments
   --filter-brightness-up:   brightness(1.16);
@@ -195,6 +195,7 @@
   --border-radius-xl:   var(--size-5);
 
   --border-radius-pill: 100vmax;
+
 
   // Z-INDEX
   --zindex-sticky:  10;

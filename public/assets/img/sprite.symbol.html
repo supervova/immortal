@@ -125,6 +125,7 @@ They might well be outsourced to an external stylesheet of course.
   icon-search { width: 24px; height: 24px; }
   icon-settings { width: 24px; height: 24px; }
   icon-share { width: 24px; height: 24px; }
+  icon-sm-chevron-left { width: 20px; height: 20px; }
   icon-sm-lock { width: 20px; height: 20px; }
   icon-sm-x-mark { width: 20px; height: 20px; }
   icon-star { width: 24px; height: 24px; }
@@ -170,6 +171,7 @@ for further details on how to create this embeddable sprite variant.
      <symbol fill="none" viewBox="0 0 24 24" id="icon-search" xmlns="http://www.w3.org/2000/svg"><path d="M14.95 14.95a7 7 0 1 0-9.9-9.9 7 7 0 0 0 9.9 9.9Zm0 0L21 21" stroke="var(--color-stroke-icon)" stroke-width="var(--width-stroke-icon)" stroke-linecap="round" stroke-linejoin="round"/></symbol>
      <symbol fill="none" viewBox="0 0 24 24" id="icon-settings" xmlns="http://www.w3.org/2000/svg"><path d="M16 6a2 2 0 1 1-4 0m4 0a2 2 0 1 0-4 0m4 0h4m-8 0H4m6 6a2 2 0 1 1-4 0m4 0a2 2 0 1 0-4 0m4 0h10M6 12H4m15 6a2 2 0 1 1-4 0m4 0a2 2 0 1 0-4 0m4 0h1m-5 0H4" stroke="var(--color-stroke-icon)" stroke-width="var(--width-stroke-icon)" stroke-linecap="round" stroke-linejoin="round"/></symbol>
      <symbol fill="none" viewBox="0 0 24 24" id="icon-share" xmlns="http://www.w3.org/2000/svg"><rect x="5" y="9" width="14" height="12" rx="2" fill="var(--color-fill-icon)"/><path d="m9 5 3-3m0 0 3 3m-3-3v12" stroke="var(--color-stroke-icon)" stroke-width="var(--width-stroke-icon)" stroke-linecap="round" stroke-linejoin="round"/><path d="M8 9H7a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-8a2 2 0 0 0-2-2h-1" stroke="var(--color-stroke-icon)" stroke-width="var(--width-stroke-icon)" stroke-linecap="round"/></symbol>
+     <symbol fill="none" viewBox="0 0 20 20" id="icon-sm-chevron-left" xmlns="http://www.w3.org/2000/svg"><path d="m12 14-4-4 4-4" stroke="var(--color-stroke-icon)" stroke-width="var(--width-stroke-icon)" stroke-linecap="round" stroke-linejoin="round"/></symbol>
      <symbol fill="none" viewBox="0 0 20 20" id="icon-sm-lock" xmlns="http://www.w3.org/2000/svg"><path d="M13 9V6a3 3 0 1 0-6 0v3m-1 8h8a2 2 0 0 0 2-2v-4a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2Zm5-4a1 1 0 1 1-2 0 1 1 0 0 1 2 0Z" stroke="var(--color-stroke-icon)" stroke-width="var(--width-stroke-icon)"/></symbol>
      <symbol fill="none" viewBox="0 0 20 20" id="icon-sm-x-mark" xmlns="http://www.w3.org/2000/svg"><path d="M15 5 5 15M5 5l10 10" stroke="var(--color-stroke-icon)" stroke-width="var(--width-stroke-icon)" stroke-linecap="round" stroke-linejoin="round"/></symbol>
      <symbol fill="none" viewBox="0 0 24 24" id="icon-star" xmlns="http://www.w3.org/2000/svg"><path d="m12 17.75-6.172 3.245 1.179-6.873-5-4.867 6.9-1 3.086-6.253 3.086 6.253 6.9 1-5 4.867 1.179 6.873L12 17.75Z" stroke="var(--color-stroke-icon)" stroke-width="var(--width-stroke-icon)" stroke-linecap="round" stroke-linejoin="round"/></symbol>
@@ -359,6 +361,14 @@ embedded above. They may be styled via CSS.
                         </svg>
                     </div>
                     <h2>icon-share, </h2>
+                </li>
+             <li title="icon-sm-chevron-left">
+                    <div class="icon-box">
+                        <svg class="icon-sm-chevron-left">
+                            <use xlink:href="#icon-sm-chevron-left"></use>
+                        </svg>
+                    </div>
+                    <h2>icon-sm-chevron-left, </h2>
                 </li>
              <li title="icon-sm-lock">
                     <div class="icon-box">
@@ -570,6 +580,14 @@ SVG sprite. They may be styled via CSS.
                         </svg>
                     </div>
                     <h2>icon-share</h2>
+                </li>
+             <li title="icon-sm-chevron-left">
+                    <div class="icon-box">
+                        <svg class="icon-sm-chevron-left">
+                            <use xlink:href="sprite.svg#icon-sm-chevron-left"></use>
+                        </svg>
+                    </div>
+                    <h2>icon-sm-chevron-left</h2>
                 </li>
              <li title="icon-sm-lock">
                     <div class="icon-box">

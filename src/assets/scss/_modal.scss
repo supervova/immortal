@@ -194,11 +194,15 @@
 }
 
 .e-modal__base .e-btn.is-close {
+  margin-inline-start: auto;
   // Compensate ::after to prevent x-scroll
   margin-inline-end: rem(2);
   margin-bottom: calc(-1 * var(--size-2));
+  position: sticky;
+  top: var(--size-2);
 
   @media (--tablet) {
+    top: 0;
     margin-inline-end: var(--size-3);
   }
 }

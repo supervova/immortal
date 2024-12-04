@@ -359,15 +359,6 @@
   cursor: not-allowed;
   filter: grayscale(100%);
   opacity: 0.5;
-
-  // Prevent overwrite with --filter-brightness-up
-  filter: grayscale(100%);
-
-  &:hover {
-    background-color: inherit;
-    // Prevent overwrite with --filter-brightness-up
-    filter: grayscale(100%);
-  }
 }
 
 @mixin state-focus($size: rem(2)) {
@@ -497,7 +488,7 @@
   }
 
   @media (any-hover: hover) and (pointer: fine) {
-    &:hover {
+    &:not([disabled]):hover {
       box-shadow: $btn-box-shadow-hover;
       filter: var(--filter-brightness-up);
       text-decoration: none;

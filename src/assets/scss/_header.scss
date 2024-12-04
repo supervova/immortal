@@ -6,6 +6,8 @@
 // #region
 .e-header {
   display: flex;
+  flex-wrap: wrap;
+  gap: var(--size-2p5);
   justify-content: center;
   padding-top: rem(19);
   padding-inline: var(--padding-x-container);
@@ -101,7 +103,7 @@
 // #endregion
 
 // -----------------------------------------------------------------------------
-// MISC
+// ONBOARDING CONTROLS
 // -----------------------------------------------------------------------------
 // #region
 .e-header__login-cta {
@@ -114,6 +116,92 @@
     color: var(--color-ink-2ry);
     margin-top: rem(36);
     margin-inline-start: var(--size-2);
+  }
+}
+
+.e-header .e-btn.has-progress {
+  appearance: none;
+  background: transparent;
+  border-radius: 0 var(--border-radius-lg) var(--border-radius-lg) 0;
+  color: initial;
+
+  flex-direction: column;
+
+  letter-spacing: initial;
+  line-height: initial;
+  text-align: left;
+
+  padding-block: 0;
+  padding-inline: 0;
+  position: relative;
+  transition: background var(--duration-100) var(--easing-base);
+  height: auto;
+
+  @media (--tablet) {
+    border-inline-start: 1px solid var(--color-ink-border);
+    align-items: flex-start;
+    justify-content: flex-start;
+    padding-top: rem(37);
+    padding-inline: var(--size-4);
+    width: rem(270);
+
+    body:has(.e-stepper.is-open) & {
+      border-inline-start: 0;
+    }
+  }
+
+  @media (--tablet-l) {
+    display: none;
+  }
+
+  @media (any-hover: hover) and (pointer: fine) {
+    &:hover {
+      background: var(--color-bg-base-alpha);
+    }
+  }
+}
+
+:where(.e-header .e-btn.has-progress) .h3 {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-bottom: var(--size-half);
+  width: 100%;
+}
+
+:where(.e-header .e-btn.has-progress) .e-btn__label {
+  display: none;
+
+  @media (--tablet) {
+    display: block;
+  }
+}
+
+:where(.e-header .e-btn.has-progress) .e-btn__value {
+  color: var(--color-ink-2ry);
+  font-size: var(--font-size-body-sm);
+  line-height: 1;
+  font-weight: 400;
+}
+
+// View details
+:where(.e-header .e-btn.has-progress)  small {
+  display: none;
+
+  @media (--tablet) {
+    display: block;
+    color: var(--color-ink-text-info);
+  }
+}
+
+:where(.e-header .e-btn.has-progress) .e-progress {
+  --position: absolute;
+  top: 50%;
+  left: 50%;
+  translate: -50% -50%;
+
+  @media (--tablet) {
+    display: none;
   }
 }
 // #endregion

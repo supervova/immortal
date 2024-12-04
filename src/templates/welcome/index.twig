@@ -5,17 +5,15 @@
   {{ parent() }}
 
   {% set page = {
-    is_onboarding: true,
+    is_onboarding_start: true,
     title: 'Create Your Digital Person — Echo Immortal',
     desc: 'Start creating your Digital Person by sharing your memories, values, and personality traits. Our simple onboarding process helps craft an AI avatar that reflects who you truly are.',
-    user_email: 'vladimir.nikishin@gmail.com'
+    user_email: 'vladimir.nikishin@gmail.com',
   } %}
 
   {% set questions = [
     '<p><strong>Hello! Let’s get straight to the point:</strong> let’s create your digital persona. Please start by providing your email address.</p>'
   ] %}
-
-
 
 {% endblock %}
 
@@ -48,10 +46,11 @@
           {{ icon('arrow-up') }}
         </button>
       </div>
-      <footer class="form__footer">
+      <footer class="e-form__footer is-security">
         {{ icon('sm-lock', 'is-sm') }}
         <span>
           Secure SSL Encryption
+          {# TODO: Remove on production #}
           <button class="e-btn is-link" type="button" data-role="open-overlay" data-target="freewall">
             🔴
           </button>

@@ -49,7 +49,7 @@
   --color-alpha-light-200: hsl(0 0% 100% / 0.2);
   --color-alpha-light-min: hsl(0 0% 100% / 0.07);
   --color-shadow: 0 0% 0%;
-  --color-bg-base-alpha: color-mix(in srgb, var(--color-bg-base) 64%, transparent);
+  --color-bg-base-alpha: hsl(from var(--color-bg-base) h s l / 0.64);
   --backdrop-filter-elevated: saturate(180%) blur(20px);
   --backdrop-filter-blur: blur(20px);
   --filter-brightness-up: brightness(1.16);
@@ -287,8 +287,8 @@
   --color-bg-2ry: hsl(0 0% 97%);
   --color-bg-inverse: hsl(0 0% 24%);
   --color-bg-layer-01: var(--color-bg-base);
-  --color-bg-layer-02: color-mix(in srgb, var(--color-bg-base) 88%, transparent);
-  --color-bg-2ry-layer-02: color-mix(in srgb, var(--color-bg-2ry) 88%, transparent);
+  --color-bg-layer-02: hsl(from var(--color-bg-base) / 0.64);
+  --color-bg-2ry-layer-02: hsl(from var(--color-bg-2ry) / 0.64);
   --color-bg-layer-03: var(--color-bg-layer-02);
   --color-bg-scrim: var(--color-alpha-dark-600);
   --color-ink-text: var(--color-alpha-dark-900);
@@ -979,12 +979,12 @@
     scale: 99%;
   }
   @media (any-hover: hover) and (pointer: fine) {
-    .e-btn:hover,
-    button:hover,
-    input[type=submit]:hover,
-    input[type=button]:hover,
-    input[type=reset]:hover,
-    a[role=button]:hover {
+    .e-btn:not([disabled]):hover,
+    button:not([disabled]):hover,
+    input[type=submit]:not([disabled]):hover,
+    input[type=button]:not([disabled]):hover,
+    input[type=reset]:not([disabled]):hover,
+    a[role=button]:not([disabled]):hover {
       box-shadow: none;
       filter: var(--filter-brightness-up);
       text-decoration: none;
@@ -1047,7 +1047,7 @@
     scale: 99%;
   }
   @media (any-hover: hover) and (pointer: fine) {
-    .e-btn.is-primary:hover {
+    .e-btn.is-primary:not([disabled]):hover {
       box-shadow: none;
       filter: var(--filter-brightness-up);
       text-decoration: none;
@@ -1106,9 +1106,6 @@
     border-radius: var(--border-radius-pill);
     backdrop-filter: var(--backdrop-filter-blur);
     padding: 0;
-    position: sticky;
-    top: var(--size-2);
-    margin-inline-start: auto;
     width: var(--height-btn);
     z-index: var(--zindex-fixed);
   }
@@ -1119,11 +1116,6 @@
     inset: -0.125rem;
     border-radius: inherit;
   }
-  @media (--tablet) {
-    .e-btn.is-close {
-      top: 0;
-    }
-  }
   .e-btn[disabled],
   button[disabled],
   input[type=submit][disabled],
@@ -1133,16 +1125,6 @@
     cursor: not-allowed;
     filter: grayscale(100%);
     opacity: 0.5;
-    filter: grayscale(100%);
-  }
-  .e-btn[disabled]:hover,
-  button[disabled]:hover,
-  input[type=submit][disabled]:hover,
-  input[type=button][disabled]:hover,
-  input[type=reset][disabled]:hover,
-  a[role=button][disabled]:hover {
-    background-color: inherit;
-    filter: grayscale(100%);
   }
   .e-buttons {
     display: flex;
@@ -1277,12 +1259,6 @@
     cursor: not-allowed;
     filter: grayscale(100%);
     opacity: 0.5;
-    filter: grayscale(100%);
-  }
-  [disabled]:hover,
-  [readonly]:hover {
-    background-color: inherit;
-    filter: grayscale(100%);
   }
   form small {
     color: var(--color-ink-2ry);
@@ -1293,17 +1269,17 @@
   .e-form__disclaimer {
     margin-block: var(--size-line);
   }
-  .e-form__footer > * {
+  .e-form__footer:not(.is-security) > * {
     margin-bottom: var(--size-2);
   }
   @media (--tablet) {
-    .e-form__footer {
+    .e-form__footer:not(.is-security) {
       display: flex;
       align-items: center;
       padding-top: var(--padding-top-form-actions);
       padding-bottom: var(--padding-bottom-form-actions);
     }
-    .e-form__footer > :not(:last-child) {
+    .e-form__footer:not(.is-security) > :not(:last-child) {
       margin-right: var(--size-2);
     }
   }
@@ -1825,6 +1801,7 @@
   }
   .e-message.is-incoming {
     flex-direction: row-reverse;
+    justify-content: flex-end;
   }
   .e-message.is-incoming .e-message__bubble {
     background-color: var(--color-bg-info);
@@ -1848,6 +1825,9 @@
     z-index: var(--zindex-fixed);
   }
   .is-chat-input .e-form__control {
+    display: flex;
+    align-items: center;
+    gap: var(--size-2);
     margin-inline: auto;
     position: relative;
     max-width: 40.25rem;
@@ -1892,7 +1872,35 @@
   .is-chat-input .e-btn.is-icon .e-icon {
     --color-stroke-icon: var(--color-ink-text-inverse);
   }
-  .form__footer {
+  .is-chat-input .e-link.is-prev {
+    font-size: var(--font-size-body-sm);
+    line-height: var(--line-height-body-sm);
+    padding-top: var(--padding-top-body-sm);
+    padding-bottom: var(--padding-bottom-body-sm);
+    display: flex;
+    align-items: center;
+    gap: var(--size-1);
+    translate: 0 -0.1875rem;
+  }
+  @media (--phone) {
+    .is-chat-input .e-link.is-prev .label {
+      border: 0;
+      clip: rect(0, 0, 0, 0);
+      margin: -1px;
+      padding: 0;
+      overflow: hidden;
+      position: absolute;
+      white-space: nowrap;
+      width: 1px;
+      height: 1px;
+    }
+  }
+  @media (--tablet) {
+    .is-chat-input .e-link.is-prev {
+      width: 5.5rem;
+    }
+  }
+  .e-form__footer.is-security {
     font-size: var(--font-size-caption);
     line-height: var(--line-height-caption);
     padding-top: var(--padding-top-caption);
@@ -1902,7 +1910,7 @@
     padding-block: var(--size-2p5);
     text-align: center;
   }
-  .form__footer .is-sm-lock {
+  .e-form__footer.is-security .is-sm-lock {
     margin-right: var(--size-half);
     translate: 0 -0.125rem;
   }
@@ -2271,6 +2279,8 @@
   /* Mixins were created in order to quickly style the buttons of plugins, like woocommerce */
   .e-header {
     display: flex;
+    flex-wrap: wrap;
+    gap: var(--size-2p5);
     justify-content: center;
     padding-top: 1.1875rem;
     padding-inline: var(--padding-x-container);
@@ -2366,6 +2376,85 @@
       color: var(--color-ink-2ry);
       margin-top: 2.25rem;
       margin-inline-start: var(--size-2);
+    }
+  }
+  .e-header .e-btn.has-progress {
+    appearance: none;
+    background: transparent;
+    border-radius: 0 var(--border-radius-lg) var(--border-radius-lg) 0;
+    color: initial;
+    flex-direction: column;
+    letter-spacing: initial;
+    line-height: initial;
+    text-align: left;
+    padding-block: 0;
+    padding-inline: 0;
+    position: relative;
+    transition: background var(--duration-100) var(--easing-base);
+    height: auto;
+  }
+  @media (--tablet) {
+    .e-header .e-btn.has-progress {
+      border-inline-start: 1px solid var(--color-ink-border);
+      align-items: flex-start;
+      justify-content: flex-start;
+      padding-top: 2.3125rem;
+      padding-inline: var(--size-4);
+      width: 16.875rem;
+    }
+    body:has(.e-stepper.is-open) .e-header .e-btn.has-progress {
+      border-inline-start: 0;
+    }
+  }
+  @media (--tablet-l) {
+    .e-header .e-btn.has-progress {
+      display: none;
+    }
+  }
+  @media (any-hover: hover) and (pointer: fine) {
+    .e-header .e-btn.has-progress:hover {
+      background: var(--color-bg-base-alpha);
+    }
+  }
+  :where(.e-header .e-btn.has-progress) .h3 {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    margin-bottom: var(--size-half);
+    width: 100%;
+  }
+  :where(.e-header .e-btn.has-progress) .e-btn__label {
+    display: none;
+  }
+  @media (--tablet) {
+    :where(.e-header .e-btn.has-progress) .e-btn__label {
+      display: block;
+    }
+  }
+  :where(.e-header .e-btn.has-progress) .e-btn__value {
+    color: var(--color-ink-2ry);
+    font-size: var(--font-size-body-sm);
+    line-height: 1;
+    font-weight: 400;
+  }
+  :where(.e-header .e-btn.has-progress) small {
+    display: none;
+  }
+  @media (--tablet) {
+    :where(.e-header .e-btn.has-progress) small {
+      display: block;
+      color: var(--color-ink-text-info);
+    }
+  }
+  :where(.e-header .e-btn.has-progress) .e-progress {
+    --position: absolute;
+    top: 50%;
+    left: 50%;
+    translate: -50% -50%;
+  }
+  @media (--tablet) {
+    :where(.e-header .e-btn.has-progress) .e-progress {
+      display: none;
     }
   }
   /* Mixins were created in order to quickly style the buttons of plugins, like woocommerce */
@@ -2541,11 +2630,15 @@
     }
   }
   .e-modal__base .e-btn.is-close {
+    margin-inline-start: auto;
     margin-inline-end: 0.125rem;
     margin-bottom: calc(-1 * var(--size-2));
+    position: sticky;
+    top: var(--size-2);
   }
   @media (--tablet) {
     .e-modal__base .e-btn.is-close {
+      top: 0;
       margin-inline-end: var(--size-3);
     }
   }
@@ -2804,6 +2897,36 @@
     }
   }
   /* Mixins were created in order to quickly style the buttons of plugins, like woocommerce */
+  .e-progress.is-circular {
+    --size: var(--size-7);
+    position: var(--position, relative);
+    width: var(--size);
+    height: var(--size);
+  }
+  .e-progress__circle {
+    rotate: -90deg;
+    width: 100%;
+    height: 100%;
+  }
+  .e-progress__circle-bg,
+  .e-progress__circle-indicator {
+    fill: none;
+    stroke-width: 4;
+    r: 45%;
+    cx: 50%;
+    cy: 50%;
+  }
+  .e-progress__circle-bg {
+    stroke: var(--color-ink-min);
+  }
+  .e-progress__circle-indicator {
+    stroke: var(--color-ink-2ry-brand);
+    stroke-linecap: round;
+    stroke-dasharray: 282.735%;
+    stroke-dashoffset: calc(282.735% * (1 - var(--progress) / 100));
+    transition: stroke-dashoffset var(--duration-700) var(--easing-base);
+  }
+  /* Mixins were created in order to quickly style the buttons of plugins, like woocommerce */
   .e-scroller {
     --scroller-shadow-size: 24px;
     --scroller-shadow-color: hsl(var(--color-shadow));
@@ -2904,9 +3027,14 @@
   html:has(.e-stepper.is-open) {
     overflow: hidden;
   }
-  html:has(.e-stepper.is-open) .e-modal {
+  html:has(.e-stepper.is-open) .e-stepper {
     pointer-events: auto;
     touch-action: auto;
+  }
+  @media (--tablet) {
+    html:has(.e-stepper.is-open) {
+      overflow: auto;
+    }
   }
   .e-stepper__header {
     background-color: var(--color-bg-base-alpha);
@@ -2914,12 +3042,19 @@
     display: flex;
     flex-direction: column;
     gap: 0;
-    padding-top: var(--size-7);
+    padding-top: 3.3125rem;
     padding-inline: var(--size-2p5);
-    position: sticky;
+    position: fixed;
     top: 0;
+    right: 0;
+    width: 100%;
     height: var(--stepper-header-height);
     z-index: var(--zindex-fixed);
+  }
+  .e-stepper__header .e-btn.is-close {
+    position: absolute;
+    top: var(--size-1p5);
+    right: var(--size-1p5);
   }
   @media (--tablet-l) {
     .e-stepper__header .e-btn.is-close {
@@ -3001,10 +3136,12 @@
     display: flex;
     flex-direction: column;
     gap: 0;
-    padding-block: var(--size-line);
+    padding-top: calc(var(--stepper-header-height) + var(--size-line));
+    padding-bottom: var(--size-8);
     padding-inline: var(--size-2p5);
     overflow-y: auto;
-    max-height: calc(100% - var(--stepper-header-height));
+    height: 100vh;
+    max-height: 100%;
   }
   .e-stepper__list > li {
     counter-increment: list-item var(--start-counter);
@@ -3053,12 +3190,12 @@
     inset-inline-start: var(--size-2);
     width: 0;
   }
-  .e-stepper__item h3 {
+  .e-stepper__item a {
     font-size: var(--font-size-body-sm);
     line-height: var(--line-height-body-sm);
     padding-top: var(--padding-top-body-sm);
     padding-bottom: var(--padding-bottom-body-sm);
-    font-weight: normal;
+    display: block;
     margin-bottom: -2px;
   }
   .e-stepper__item.is-active h3 {

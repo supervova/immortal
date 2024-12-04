@@ -7,7 +7,7 @@
     display: none;
   }
 
-  @media (--laptop) {
+  @media (--tablet-l) {
     padding-inline-end: calc(var(--width-base) + var(--size-5));
 
     .is-chat-input {

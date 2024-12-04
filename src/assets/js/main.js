@@ -1,6 +1,8 @@
 // Get external content, utilities
 import initModals, { openModal } from './modal.js';
 
+import initDrawer from './drawer.js';
+
 // Close flayouts on Esc
 import initFlayouts from './flayout.js';
 
@@ -10,6 +12,7 @@ import initTextareaAutoResize from './chat.js';
 document.addEventListener('DOMContentLoaded', () => {
   initFlayouts();
   initModals();
+  initDrawer();
 
   initTextareaAutoResize(
     '.is-chat-input textarea',

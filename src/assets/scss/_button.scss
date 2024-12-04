@@ -93,9 +93,6 @@ a[role='button'] {
   border-radius: var(--border-radius-pill);
   backdrop-filter: var(--backdrop-filter-blur);
   padding: 0;
-  position: sticky;
-  top: var(--size-2);
-  margin-inline-start: auto;
   width: var(--height-btn);
   z-index: var(--zindex-fixed);
 
@@ -106,10 +103,6 @@ a[role='button'] {
     position: absolute;
     inset: -1 * rem(2);
     border-radius: inherit;
-  }
-
-  @media (--tablet) {
-    top: 0;
   }
 }
 // #endregion
