@@ -267,18 +267,39 @@ html:has(.e-stepper.is-open) {
   right: var(--size-3);
   z-index: var(--zindex-fab);
 
-  &:disabled {
+  // Prevent overlapping by z-index independent scrollable list
+  &::after {
+    background-color: var(--color-base-success);
+    border-radius: var(--border-radius-lg);
+    color: var(--color-ink-2ry);
+    content: 'Save';
+    display: flex;
     opacity: 1;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    inset: 0;
+    transition: background var(--duration-50) var(--easing-base);
+    z-index: 1;
+  }
+
+  &[disabled] {
+    opacity: 1;
+
     &::after {
-      background-color: var(--color-bg-base);
-      border-radius: var(--border-radius-lg);
-      display: block;
-      content: '';
-      opacity: 0.5;
-      position: absolute;
-      inset: 0;
-      z-index: 1;
+      background-color: var(--color-bg-2ry);
+      color: var(--color-ink-3ry);
     }
+  }
+
+  @media (any-hover: hover) and (pointer: fine) {
+    &:not([disabled]):hover::after {
+      background: hsl(from var(--color-base-success) h s calc(l + 0.03));
+    }
+  }
+
+  @media (--tablet) {
+    bottom: rem(60);
   }
 }
 // #endregion

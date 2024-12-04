@@ -1,0 +1,31 @@
+{% extends "base/base.twig" %}
+{% from "base/macros.twig" import icon %}
+{# {% from "base/macros.twig" import icon, snippet, form_item, button %} #}
+
+{% block config %}
+  {{ parent() }}
+
+  {% set page = {
+    body_classes: 'e-page is-pricing has-brand-bar'
+  } %}
+
+{% endblock %}
+
+{% block head %}
+  {{ parent() }}
+{% endblock %}
+
+{# MAIN CONTENT ------------------------------------------------------------- #}
+{% block content %}
+<main class="e-main">
+</main>
+
+{% endblock %}
+
+{% block footer %}
+  {{ parent() }}
+{% endblock %}
+
+{% block body_suffix %}
+  {{ parent() }}
+{% endblock %}

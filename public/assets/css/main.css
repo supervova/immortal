@@ -2508,7 +2508,8 @@
     justify-content:center;
     list-style:none;
     margin:0;
-    padding-block:var(--size-1p5);
+    padding-top:calc(var(--size-1) - 0.0625rem);
+    padding-bottom:var(--size-1p5);
     padding-inline:var(--size-1);
     position:fixed;
     right:0;
@@ -2544,6 +2545,7 @@
   }
   @media only screen and (max-width: 767.98px){
     .e-header__menu-item{
+      --height-btn:auto;
       border:0;
       border-radius:var(--border-radius-base);
       color:var(--color-ink-2ry);
@@ -2561,17 +2563,31 @@
       font-size:var(--font-size-caption);
       letter-spacing:var(--letter-spacing-caption);
       line-height:var(--line-height-caption);
-      padding-top:var(--size-1);
+      padding-block:var(--size-1);
       width:100%;
-      height:var(--size-7);
     }
   }
-  :where(.e-page.is-home) .e-header__menu-item.is-home{
-    background-color:var(--color-bg-success);
+  :where(.e-page.is-home) .e-header__menu-item.is-home,
+  :where(.e-page.is-pricing) .e-header__menu-item.is-pricing{
+    pointer-events:none;
   }
-  :where(.e-page.is-home) .e-header__menu-item.is-home .e-icon{
-    --color-fill-icon:var(--color-bg-base);
-    --color-stroke-icon:var(--color-ink-2ry-success);
+  @media only screen and (max-width: 767.98px){
+    :where(.e-page.is-home) .e-header__menu-item.is-home,
+    :where(.e-page.is-pricing) .e-header__menu-item.is-pricing{
+      background-color:var(--color-bg-success);
+    }
+    :where(.e-page.is-home) .e-header__menu-item.is-home .e-icon,
+    :where(.e-page.is-pricing) .e-header__menu-item.is-pricing .e-icon{
+      --color-fill-icon:var(--color-bg-base);
+      --color-stroke-icon:var(--color-ink-2ry-success);
+    }
+  }
+  @media only screen and (min-width: 768px) and (min-height: 361px){
+    :where(.e-page.is-home) .e-header__menu-item.is-home,
+    :where(.e-page.is-pricing) .e-header__menu-item.is-pricing{
+      border:0;
+      color:var(--color-ink-text);
+    }
   }
   .e-header__login-cta{
     display:none;
@@ -3628,18 +3644,43 @@
     right:var(--size-3);
     z-index:var(--zindex-fab);
   }
-  .e-stepper .e-btn.is-save:disabled{
-    opacity:1;
-  }
-  .e-stepper .e-btn.is-save:disabled::after{
-    background-color:var(--color-bg-base);
+  .e-stepper .e-btn.is-save::after{
+    background-color:var(--color-base-success);
     border-radius:var(--border-radius-lg);
-    display:block;
-    content:"";
-    opacity:0.5;
+    color:var(--color-ink-2ry);
+    content:"Save";
+    display:-webkit-box;
+    display:-ms-flexbox;
+    display:flex;
+    opacity:1;
+    -webkit-box-align:center;
+    -ms-flex-align:center;
+    align-items:center;
+    -webkit-box-pack:center;
+    -ms-flex-pack:center;
+    justify-content:center;
     position:absolute;
     inset:0;
+    -webkit-transition:background var(--duration-50) var(--easing-base);
+    transition:background var(--duration-50) var(--easing-base);
     z-index:1;
+  }
+  .e-stepper .e-btn.is-save[disabled]{
+    opacity:1;
+  }
+  .e-stepper .e-btn.is-save[disabled]::after{
+    background-color:var(--color-bg-2ry);
+    color:var(--color-ink-3ry);
+  }
+  @media (any-hover: hover) and (pointer: fine){
+    .e-stepper .e-btn.is-save:not([disabled]):hover::after{
+      background:hsl(from var(--color-base-success) h s calc(l + 0.03));
+    }
+  }
+  @media only screen and (min-width: 768px) and (min-height: 361px){
+    .e-stepper .e-btn.is-save{
+      bottom:3.75rem;
+    }
   }
   .has-tooltip{
     --tooltip-background:rgba(0, 0, 0, 0.8);
