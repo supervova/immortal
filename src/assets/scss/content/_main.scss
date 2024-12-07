@@ -1,0 +1,23 @@
+@use '../abstracts' as *;
+
+.e-main__header {
+  text-align: center;
+  margin-bottom: var(--size-line);
+  padding-top: var(--spacer-max);
+}
+
+.e-main__title {
+  color: var(--color-ink-2ry);
+  margin-bottom: var(--size-1);
+
+  strong {
+    color: var(--color-ink-text);
+    font-weight: inherit;
+  }
+}
+
+.e-main__summary {
+  color: var(--color-ink-2ry);
+  margin-inline: auto;
+  max-width: rem(736);
+}

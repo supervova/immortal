@@ -95,7 +95,7 @@ textarea {
 
 select,
 textarea,
-input:not([type='checkbox']):not([type='radio']):not([type='submit']):not([type='reset']) {
+input:not([type='checkbox']):not([type='radio']):not([type='submit']):not([type='reset']):not([type='range']) {
   appearance: none;
   background-color: var(--color-bg-2ry);
   border: 0;

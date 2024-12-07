@@ -13,13 +13,260 @@
 
 {% block head %}
   {{ parent() }}
+  <link rel="stylesheet" href="/assets/css/pricing.css?{{ timestamp }}">
 {% endblock %}
 
 {# MAIN CONTENT ------------------------------------------------------------- #}
 {% block content %}
 <main class="e-main">
-</main>
+  <div class="e-container">
+    <header class="e-main__header">
+      <h1 class="e-main__title">
+        <strong>Plans</strong> and <strong>Pricing</strong>
+      </h1>
 
+      <p class="e-main__summary">
+        Digital Persons are created <a href="/welcome">for free</a>, but in their "infant" stage, their abilities are limited to one-on-one chat with you. They also won't inherit your personality traits or knowledge. To train your Digital Person, use it in social media and messaging apps, and one day—hopefully in the distant future—leave it for your descendants, choose one of our premium plans.
+      </p>
+
+      <p class="e-main__badge d-none laptop:d-block">
+        Get an additional discount for each year of subscription
+      </p>
+    </header>
+
+    <div class="e-segmented-control d-none tablet:d-flex">
+      <button class="e-segmented-control__item" id="billing-daily" type="button">Daily Billing</button>
+      <button class="e-segmented-control__item" id="billing-monthly" type="button">Monthly Billing (save 15%)</button>
+      <button class="e-segmented-control__item is-active" id="billing-annual" type="button">Annual Billing (save up to 50%)</button>
+    </div>
+
+    <p class="text-highlight text-center laptop:d-none">
+      Get discounts for paying upfront for a year or multiple years.
+    </p>
+
+    <div class="e-yearly-discount d-none tablet:d-flex">
+      {% set yearly_discounts = [
+        {period: '0y', value: '0%'},
+        {period: '5y', value: '-19%'},
+        {period: '10y', value: '-36%'},
+        {period: '15y', value: '-50%'},
+        {period: '20y', value: '-59%'},
+        {period: '25y', value: '-65%'},
+        {period: 'eternity', value: 'one-time payment $10K'}
+      ] %}
+
+
+      <ul class="e-yearly-discount__value">
+      {% for discount in yearly_discounts %}
+        <li>{{ discount.value }}</li>
+      {% endfor %}
+      </ul>
+
+        <label class="visually-hidden" for="input-yearly-discounts">Yearly discounts</label>
+        <input type="range" id="input-yearly-discounts" step="1" min="0" max="30" value="0">
+
+      <div class="e-yearly-discount__ruler">
+        {% for i in 1..31 %}
+          <div></div>
+        {% endfor %}
+      </div>
+
+      <ul class="e-yearly-discount__period">
+      {% for discount in yearly_discounts %}
+        <li>{{ discount.period }}</li>
+      {% endfor %}
+      </ul>
+    </div>
+
+    <div class="e-plans">
+      <div class="e-plan">
+        <div class="e-card">
+          <div class="e-card__header">
+            <h3 class="e-card__eyebrow">
+              <label>
+                Light
+                <input name="plan" type="radio" value="light">
+              </label>
+            </h3>
+            <p class="e-card__price">
+              <sup>$</sup>
+              <strong id="monthly-fee-light">83</strong>
+              <small>/ monthly</small>
+            </p>
+            <p class="e-card__summary">Perfect for a fresh start</p>
+          </div>
+
+          <button class="e-btn" type="button">Get Started</button>
+
+          <ul class="e-card__features">
+            <li><span class="has-tooltip" aria-label="Enables your Digital Person to engage with multiple users in public discussions or community forums, showcasing your unique voice and personality.">Public chats</span></li>
+            <li><span class="has-tooltip" aria-label="A secure cloud-based repository where your Digital Person stores and accesses shared memories, knowledge, and interactions.">Memory Cloud</span></li>
+            <li><span class="has-tooltip" aria-label="Advanced AI training that allows your Digital Person to evolve by analyzing patterns in your behavior, communication style, and preferences.">Deep Learning</span></li>
+            <li><span class="has-tooltip" aria-label="Seamlessly connect your Digital Person to Telegram for automated responses, chats, and proactive engagement with your contacts.">Telegram Integration</span></li>
+          </ul>
+        </div>
+        <small class="e-plan__hint">
+          {{ icon('help') }}
+          Hover the cursor over the underlined feature to view its explanation
+        </small>
+      </div>
+
+      <div class="e-card is-featured">
+        <div class="e-card__header">
+          <h3 class="e-card__eyebrow">
+            <label>
+              Standard
+              <input name="plan" type="radio" value="standard" checked>
+            </label>
+          </h3>
+          <p class="e-card__price">
+            <sup>$</sup>
+            <strong id="monthly-fee-standard">249</strong>
+            <small>/ monthly</small>
+          </p>
+          <p class="e-card__summary">Best for digital longevity</p>
+        </div>
+
+        <button class="e-btn" type="button">Get Started</button>
+
+        <ul class="e-card__features">
+          <li>Everything in Light</li>
+          <li><span class="has-tooltip" aria-label="Ensures your Digital Person continues to grow and adapt over time, sharing new thoughts and participating in digital life.">Life activity & developing</span></li>
+          <li><span class="has-tooltip" aria-label="A unique email address for your Digital Person, enabling it to send, receive, and manage emails on your behalf.">DP's Email</span></li>
+          <li><span class="has-tooltip" aria-label="Allows your Digital Person to interact on your social media profiles, posting updates, replying to messages, and engaging with followers.">Social networks integration</span></li>
+          <li><span class="has-tooltip" aria-label="Lets you schedule special messages or memories to be delivered at specific future moments, preserving meaningful connections.">Time Capsules & Events</span></li>
+          <li><span class="has-tooltip" aria-label="A detailed record of your Digital Person’s activities, interactions, and updates, ensuring transparency and control.">Logs</span></li>
+        </ul>
+      </div>
+
+      <div class="e-card">
+        <div class="e-card__header">
+          <h3 class="e-card__eyebrow">
+            <label>
+              Unlimited
+              <input name="plan" type="radio" value="unlimited">
+            </label>
+          </h3>
+          <p class="e-card__price">
+            <sup>$</sup>
+            <strong>10,000</strong>
+            <small>/ one time payment</small>
+          </p>
+          <p class="e-card__summary">Ideal for digital immortality longevity</p>
+        </div>
+
+        <button class="e-btn" type="button">Get Started</button>
+
+        <ul class="e-card__features">
+          <li>Everything in Standard</li>
+          <li><span class="has-tooltip" aria-label="A personalized AI-generated voice for your Digital Person, making conversations more lifelike and engaging.">DP's Voice</span></li>
+          <li><span class="has-tooltip" aria-label="Animated video representation of your Digital Person for enhanced communication in video calls and social media.">DP's Video</span></li>
+          <li><span class="has-tooltip" aria-label="Assigns a dedicated virtual phone number for your Digital Person to send texts and make calls independently.">DP's Phone number</span></li>
+          <li><span class="has-tooltip" aria-label="Offers professional AI tuning and support to customize your Digital Person’s behavior and ensure optimal performance.">Expert Guidance</span></li>
+          <li>Other features</li>
+        </ul>
+      </div>
+    </div>
+
+    <details class = "e-plan-builder">
+      <summary>
+        Total: <span class="h3"><strong>$<span id="total-sum">1,000</span></strong> for 1 year</span>
+        <span class="e-plan-builder__toggle" role="button">
+          {{ icon('sm-chevron-up', 'is-sm') }}
+          Plan builder
+        </span>
+        <span class="e-plan-builder__cancel" role="button">
+          Cancel
+        </span>
+      </summary>
+
+      <ul class="e-plan-builder__options">
+        <li>
+          <span class="e-plan-builder__option">
+            <span class="e-plan-builder__option-label">
+              <strong id="builder-base-plan">
+                Standard
+              </strong>
+              <small>
+                Base plan
+              </small>
+            </span>
+          </span>
+        </li>
+        <li>
+          <span class="e-plan-builder__option">
+            <input id="plan-builder-01"  type="checkbox">
+            <label class="e-plan-builder__option-label" for="plan-builder-01">
+              <strong>
+                Expert support
+              </strong>
+              <small>
+                Assistance in creation and customization
+              </small>
+            </label>
+            <small class="e-plan-builder__price">
+              + $400.00
+            </small>
+          </span>
+        </li>
+        <li>
+          <span class="e-plan-builder__option">
+            <input id="plan-builder-02" type="checkbox">
+            <label class="e-plan-builder__option-label" for="plan-builder-02">
+              <strong>
+                DP in Immortal Net
+              </strong>
+              <small>
+                Assistance in creation and customization
+              </small>
+            </label>
+            <small class="e-plan-builder__price">
+              + $450.00/y
+            </small>
+          </span>
+        </li>
+        <li>
+          <span class="e-plan-builder__option">
+            <input id="plan-builder-03" type="checkbox">
+            <label class="e-plan-builder__option-label" for="plan-builder-03">
+              <strong>
+                Another extra option
+              </strong>
+              <small>
+                The description of another additional option
+              </small>
+            </label>
+            <small class="e-plan-builder__price">
+              + $100.00
+            </small>
+          </span>
+        </li>
+        <li>
+          <span class="e-plan-builder__option">
+            <input id="plan-builder-04" type="checkbox">
+            <label class="e-plan-builder__option-label" for="plan-builder-04">
+              <strong>
+                Another extra option
+              </strong>
+              <small>
+                The description of another additional option
+              </small>
+            </label>
+            <small class="e-plan-builder__price">
+              + $100.00
+            </small>
+          </span>
+        </li>
+      </ul>
+
+      <a class="e-plan-builder__continue" href="/checkout">
+        Continue
+        {{ icon('sm-chevron-right', 'is-sm') }}
+      </a>
+    </details>
+
+  </div>
+</main>
 {% endblock %}
 
 {% block footer %}
@@ -28,4 +275,133 @@
 
 {% block body_suffix %}
   {{ parent() }}
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const billingButtons = document.querySelectorAll(
+        '.e-segmented-control__item'
+      );
+      const yearlyDiscountElement = document.querySelector('.e-yearly-discount');
+      const planInputs = document.querySelectorAll(
+        '.e-card__eyebrow input[type="radio"]'
+      );
+      const slider = document.getElementById('input-yearly-discounts');
+      const feeLight = document.getElementById('monthly-fee-light');
+      const feeStandard = document.getElementById('monthly-fee-standard');
+      const feeLightSuffix = feeLight.nextElementSibling; // <small> после #monthly-fee-light
+      const feeStandardSuffix = feeStandard.nextElementSibling; // <small> после #monthly-fee-standard
+
+      // Таблица цен для Annual Billing
+      const priceTable = [
+        { years: 1, light: 83, standard: 250 },
+        { years: 2, light: 79, standard: 238 },
+        { years: 3, light: 75, standard: 226 },
+        { years: 4, light: 71, standard: 214 },
+        { years: 5, light: 68, standard: 204 },
+        { years: 6, light: 64, standard: 193 },
+        { years: 7, light: 61, standard: 184 },
+        { years: 8, light: 58, standard: 175 },
+        { years: 9, light: 55, standard: 167 },
+        { years: 10, light: 53, standard: 159 },
+        { years: 11, light: 50, standard: 152 },
+        { years: 12, light: 48, standard: 145 },
+        { years: 13, light: 46, standard: 139 },
+        { years: 14, light: 44, standard: 133 },
+        { years: 15, light: 42, standard: 127 },
+        { years: 16, light: 41, standard: 122 },
+        { years: 17, light: 39, standard: 117 },
+        { years: 18, light: 37, standard: 112 },
+        { years: 19, light: 36, standard: 108 },
+        { years: 20, light: 35, standard: 104 },
+        { years: 21, light: 33, standard: 100 },
+        { years: 22, light: 32, standard: 96 },
+        { years: 23, light: 31, standard: 93 },
+        { years: 24, light: 30, standard: 89 },
+        { years: 25, light: 29, standard: 86 },
+        { years: 26, light: 28, standard: 83 },
+        { years: 27, light: 27, standard: 81 },
+        { years: 28, light: 26, standard: 78 },
+        { years: 29, light: 25, standard: 75 },
+      ];
+
+      // Обновление цен на основе значения ползунка (Annual Billing)
+      function updateAnnualPrices(sliderValue) {
+        const price = priceTable[sliderValue] || priceTable[0];
+        feeLight.textContent = price.light;
+        feeStandard.textContent = price.standard;
+        feeLightSuffix.textContent = '/ monthly';
+        feeStandardSuffix.textContent = '/ monthly';
+      }
+
+      // Обновление цен для Daily Billing
+      function updateDailyPrices() {
+        feeLight.textContent = 4;
+        feeStandard.textContent = 11;
+        feeLightSuffix.textContent = '/ daily';
+        feeStandardSuffix.textContent = '/ daily';
+      }
+
+      // Обновление цен для Monthly Billing
+      function updateMonthlyPrices() {
+        feeLight.textContent = 95;
+        feeStandard.textContent = 286;
+        feeLightSuffix.textContent = '/ monthly';
+        feeStandardSuffix.textContent = '/ monthly';
+      }
+
+      // Сброс состояния yearlyDiscountElement
+      function resetYearlyDiscount() {
+        yearlyDiscountElement.classList.add('is-disabled');
+      }
+
+      // Удаление класса is-disabled у yearlyDiscountElement
+      function enableYearlyDiscount() {
+        yearlyDiscountElement.classList.remove('is-disabled');
+      }
+
+      // Обработчик для кнопок биллинга
+      billingButtons.forEach((button, index) => {
+        button.addEventListener('click', () => {
+          billingButtons.forEach((btn) => btn.classList.remove('is-active'));
+          button.classList.add('is-active');
+
+          if (index === 0) {
+            resetYearlyDiscount();
+            updateDailyPrices();
+          } else if (index === 1) {
+            resetYearlyDiscount();
+            updateMonthlyPrices();
+          } else if (index === 2) {
+            enableYearlyDiscount();
+            updateAnnualPrices(slider.value);
+          }
+        });
+      });
+
+      // Обработчик для радиокнопок
+      planInputs.forEach((input) => {
+        input.addEventListener('change', () => {
+          if (input.value === 'unlimited') {
+            resetYearlyDiscount();
+          } else if (input.value === 'standard') {
+            enableYearlyDiscount();
+          } else if (
+            input.value === 'light' &&
+            billingButtons[2].classList.contains('is-active')
+          ) {
+            enableYearlyDiscount();
+          }
+        });
+      });
+
+      // Обработчик изменения ползунка
+      slider.addEventListener('input', (e) => {
+        if (billingButtons[2].classList.contains('is-active')) {
+          const sliderValue = parseInt(e.target.value, 10);
+          updateAnnualPrices(sliderValue);
+        }
+      });
+    });
+
+  </script>
 {% endblock %}

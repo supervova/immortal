@@ -2,7 +2,8 @@
 // Table of contents
 // -----------------------------------------------------------------------------
 // grid-base                - Base grid layout with default column, row, and gap settings
-// grid-12                  - 12-column grid layout with specific settings
+// multi-grid               - Grid layout with specific settings
+// grid-auto                - Grid with automatic columns based on a minimum width
 // grid                     - Responsive grid layout combining base and 12-column layouts
 // grid-columns             - Generates column classes for grid with custom breakpoints
 // flex-base                - Base flex layout with default settings
@@ -55,22 +56,26 @@
   }
 }
 
-// 12-column grid settings
-@mixin grid-12($columns: 12, $gap: var(--gap-large)) {
+// Multi-column grid
+@mixin multi-grid($columns: 12) {
   --grid-columns: repeat(#{$columns}, minmax(0, 1fr));
-  --grid-gap: #{$gap};
+}
+
+// Auto grid
+@mixin grid-auto($min-width: rem(280)) {
+  --grid-columns: repeat(auto-fit, minmax(#{$min-width}, 1fr));
 }
 
 // Adaptive grid with automatic switching to 12 columns
-@mixin grid($mobile-columns: 1fr, $desktop-columns: 12, $mobile-gap: var(--size-2), $desktop-gap: var(--gap-large)) {
-  @include grid-base($mobile-gap);
+@mixin grid($mobile-columns: 1fr, $desktop-columns: 12) {
+  @include grid-base();
 
   // Phone
   --grid-columns: #{$mobile-columns};
 
   // Tablet and up
   @media (--tablet) {
-    @include grid-12($desktop-columns, $desktop-gap);
+    @include multi-grid($desktop-columns);
   }
 }
 

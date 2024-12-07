@@ -71,6 +71,7 @@ const paths = {
       main: `${srcBase}/assets/scss/main.scss`,
       home: `${srcBase}/assets/scss/pages/home.scss`,
       onboarding: `${srcBase}/assets/scss/pages/onboarding.scss`,
+      pricing: `${srcBase}/assets/scss/pages/pricing.scss`,
     },
     watch: `${srcBase}/assets/scss/**/*.scss`,
     tmp: `${srcBase}/assets/css/`,
@@ -90,13 +91,12 @@ const paths = {
   img: {
     src: [
       `${srcBase}/assets/img/**/*.{jpg,png,gif,svg}`,
-      `!${srcBase}/assets/img/icons/*.svg`,
-      `!${srcBase}/assets/img/icons-bg/*`,
+      `!${srcBase}/assets/img/icons/sprite/*.svg`,
     ],
     dest: `${destAssets}/img/`,
   },
   svg: {
-    src: `${srcBase}/assets/img/icons/*.svg`,
+    src: `${srcBase}/assets/img/icons/sprite/*.svg`,
     dest: `${destAssets}/img`,
   },
   js: {
@@ -397,7 +397,18 @@ const cssOnboarding = (done) => {
   done();
 };
 
-const css = series(cssBase, cssHome, cssOnboarding);
+const cssPricing = (done) => {
+  processStyles(
+    paths.css.src.pricing,
+    'pricing',
+    paths.css.dest,
+    // [`${srcBase}/pages/uncss/**/*.html`],
+    true // Force production mode
+  );
+  done();
+};
+
+const css = series(cssBase, cssHome, cssOnboarding, cssPricing);
 // #endregion
 
 /**

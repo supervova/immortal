@@ -1,0 +1,92 @@
+@use '../abstracts' as *;
+
+[type='range'] {
+  --range-border-color:          var(--color-ink-border);
+  --range-thumb-mid-color:       var(--color-bg-base);
+  --range-thumb-mid-color-hover: hsl(0 0% 80%);
+  --range-thumb-height:          var(--size-2);
+  --range-track-height:          var(--size-1);
+
+  appearance: none;
+  background: none;
+  border: 0;
+  margin: 0;
+  padding: 0;
+  height: var(--range-thumb-height);
+  width: 100%;
+
+  &:focus-visible {
+    outline: 0;
+  }
+
+  // ⚠️ Selector chain does not work. Use the mixin in the separated style blocks
+  @mixin range-track {
+    background-color: var(--range-border-color);
+    border-radius: var(--border-radius-pill);
+    transition:
+      background var(--duration-50) var(--easing-base),
+      box-shadow var(--duration-50) var(--easing-base);
+    width: 100%;
+    height: var(--range-track-height);
+  }
+
+  // Track
+  &::-webkit-slider-runnable-track {
+    @include range-track;
+  }
+
+  &::-moz-range-track {
+    @include range-track;
+  }
+
+  &::-ms-track {
+    @include range-track;
+  }
+
+  @mixin range-thumb {
+    appearance: none;
+    background-color: var(--color-ink-3ry);
+    border-radius: 50%;
+    box-shadow:
+      0 0 0 var(--size-half) hsl(0 0% 91%),
+      inset 0 0 0 var(--size-half) var(--range-thumb-mid-color);
+    cursor: pointer;
+    position: relative;
+    translate: 0 calc(-1 * (50% - var(--range-track-height) / 2));
+    transition:
+      background var(--duration-50) var(--easing-base),
+      transform var(--duration-50) var(--easing-base);
+    width: var(--range-thumb-height);
+    height: var(--range-thumb-height);
+  }
+
+  // Thumb
+  &::-webkit-slider-thumb {
+    @include range-thumb;
+  }
+
+  &::-moz-range-thumb {
+    @include range-thumb;
+  }
+
+  &::-ms-thumb {
+    @include range-thumb;
+  }
+
+  &:hover,
+  &:focus-visible,
+  &:active {
+    // Thumb
+    &::-webkit-slider-thumb {
+      --range-thumb-mid-color: var(--range-thumb-mid-color-hover);
+    }
+
+    &::-moz-range-thumb {
+      --range-thumb-mid-color: var(--range-thumb-mid-color-hover);
+    }
+
+    &::-ms-thumb {
+      --range-thumb-mid-color: var(--range-thumb-mid-color-hover);
+    }
+  }
+}

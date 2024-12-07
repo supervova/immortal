@@ -5,7 +5,7 @@
 @use 'sass:meta';
 @use 'abstracts' as *;
 @use 'abstracts/custom';
-@use 'fonts';
+@use 'content/fonts';
 @use 'vars';
 @use 'vars-light';
 
@@ -33,9 +33,8 @@
   @include meta.load-css('form/form');
   @include meta.load-css('grid');
   @include meta.load-css('flex');
-
-  /*
   @include meta.load-css('form/checkbox-radio');
+  /*
   @include meta.load-css('form/select');
   @include meta.load-css('logo');
   @include meta.load-css('helpers/animation');
@@ -46,9 +45,11 @@
   @include meta.load-css('card');
   @include meta.load-css('chat');
   @include meta.load-css('code');
+  @include meta.load-css('content/main');
   @include meta.load-css('content/table');
   @include meta.load-css('flayout');
   @include meta.load-css('footer');
+  @include meta.load-css('form/range');
   @include meta.load-css('form/search');
   @include meta.load-css('header');
   @include meta.load-css('modal');
@@ -56,6 +57,7 @@
   @include meta.load-css('progress');
   @include meta.load-css('scroller');
   @include meta.load-css('section');
+  @include meta.load-css('segmented-control');
   @include meta.load-css('stepper');
   @include meta.load-css('tooltip');
 

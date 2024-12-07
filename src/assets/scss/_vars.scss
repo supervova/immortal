@@ -117,17 +117,23 @@
   --padding-top-base:    #{rem(6)};
   --padding-bottom-base: #{rem(2)};
 
-  --font-size-body-sm:      #{rem(15)};
-  --line-height-body-sm:    #{math.div(24, 15)};
+  --font-size-body-sm:      #{rem(16)};
+  --line-height-body-sm:    #{math.div(24, 16)};
   --letter-spacing-body-sm: 0;
-  --padding-top-body-sm:    #{rem(7)};
-  --padding-bottom-body-sm: #{rem(1)};
+  --padding-top-body-sm:    #{rem(6)};
+  --padding-bottom-body-sm: #{rem(2)};
 
   --font-size-label:      #{rem(17)};
   --letter-spacing-label: 0;
   --line-height-label:    #{math.div(24, 17)};
   --padding-top-label:    #{rem(6)};
   --padding-bottom-label: #{rem(2)};
+
+  --font-size-label-sm:      #{rem(14)};
+  --letter-spacing-label-sm: 0;
+  --line-height-label-sm:    #{math.div(20, 14)};
+  --padding-top-label-sm:    #{rem(1)};
+  --padding-bottom-label-sm: #{rem(3)};
 
   --font-size-caption:      #{rem(12)};
   --letter-spacing-caption: 0;
@@ -155,7 +161,7 @@
   --spacer:          var(--size-line);
   --spacer-half-max: var(--size-4);
   --spacer-max:      var(--size-8);
-  --gap-base:        var(--size-2p5);
+  --gap-base:        var(--size-3);
   --gap-large:       var(--size-4);
   // #endregion
 

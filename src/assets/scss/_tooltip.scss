@@ -11,6 +11,7 @@
   --tooltip-width: var(--width-sm);
 
   position: relative;
+  border-bottom: 1px dashed currentColor;
 
   &::before,
   &::after {

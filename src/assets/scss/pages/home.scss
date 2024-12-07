@@ -642,6 +642,16 @@ body::after {
   }
 }
 
+.e-card.is-featured {
+  .e-card__title {
+    @include text-format(h2);
+  }
+
+  .e-card__summary {
+    @include text-format(h3);
+  }
+}
+
 .e-card.is-social img {
   margin-bottom: var(--size-5);
 }

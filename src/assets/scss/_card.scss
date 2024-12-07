@@ -40,7 +40,7 @@
 
 // MODIFIERS
 
-.e-card.is-highlighted {
+.e-card.is-featured {
   background: linear-gradient(
     to bottom right,
     var(--color-gradient-bold-brand)
@@ -51,14 +51,6 @@
   .e-card__title,
   .e-card__summary {
     color: var(--color-ink-text-inverse);
-  }
-
-  .e-card__title {
-    @include text-format(h2);
-  }
-
-  .e-card__summary {
-    @include text-format(h3);
   }
 
   .e-btn {

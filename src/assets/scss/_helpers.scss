@@ -42,6 +42,10 @@
   .tablet\:d-inline {
     display: inline;
   }
+
+  .tablet\:d-flex {
+    display: flex;
+  }
 }
 
 @media (--tablet-l) {
@@ -54,9 +58,20 @@
   }
 }
 
+@media (--laptop) {
+  .laptop\:d-none {
+    display: none;
+  }
+
+  .laptop\:d-block {
+    display: block;
+  }
+}
+
 // TYPOOGRAPHY
 
 .text-center { text-align: center; }
+.text-highlight { color: var(--color-ink-text-info); }
 
 // MISC
 
