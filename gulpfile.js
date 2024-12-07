@@ -34,9 +34,11 @@ import twig from 'gulp-twig';
 import yargs from 'yargs';
 import { createGulpEsbuild } from 'gulp-esbuild';
 import { deleteAsync } from 'del';
-import { existsSync } from 'fs';
+import { existsSync, readFileSync } from 'fs';
 import { hideBin } from 'yargs/helpers';
 import { join } from 'path';
+
+const config = JSON.parse(readFileSync('./config/site.json', 'utf8'));
 
 const bsInstance = browserSync.create();
 const gulpEsbuild = createGulpEsbuild();
@@ -269,6 +271,9 @@ const pages = (done) => {
     .pipe(
       twig({
         base: './src/templates',
+        data: {
+          site: config, // передача данных из site.json
+        },
         filters: [
           {
             name: 'trans',

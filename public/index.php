@@ -33,11 +33,19 @@ $twig   = new Environment(
     ]
 );
 
-// Рендеринг главной страницы
+$siteConfig = json_decode(file_get_contents(__DIR__ . '/../config/site.json'), true);
+
+$pageData = [
+    'title' => 'Create Your Digital Person — Echo Immortal',
+    'desc' => 'Start creating your Digital Person by sharing your memories.',
+    'body_classes' => 'e-page is-home has-brand-bar'
+];
+
+// Рендеринг страницы
 echo $twig->render(
     'index.twig',
     [
-        'title'   => 'Home Page',
-        'content' => 'Welcome to the homepage!',
+    'site' => $siteConfig,
+    'page' => $pageData
     ]
 );

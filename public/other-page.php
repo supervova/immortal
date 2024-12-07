@@ -14,7 +14,24 @@ $twig = new Environment($loader, [
     'debug' => $_ENV['APP_DEBUG'] === 'true'
 ]);
 
-echo $twig->render('other-page.twig', [
-    'title' => 'Other Page',
-    'content' => 'This is another page in our site!'
-]);
+$siteConfig = json_decode(file_get_contents(__DIR__ . '/../config/site.json'), true);
+
+$pageData = [
+    'title' => '',
+    'desc' => '',
+    'body_classes' => '',
+
+    // Onboarding vars
+    // 'prev' => '',
+    // 'is_onboarding_start' => true,
+    // 'is_onboarding' => true,
+    // 'user_email' => '',
+];
+
+echo $twig->render(
+    'other-page.twig',
+    [
+    'site' => $siteConfig,
+    'page' => $pageData
+    ]
+);

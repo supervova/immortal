@@ -1,0 +1,19 @@
+{
+  "lang": "en",
+  "title": {
+    "en": "Echo Immortal — Create Your Digital Legacy with an AI Twin"
+  },
+  "desc": {
+    "en": "Design a Digital Person that mirrors your personality, voice, and values."
+  },
+  "url": "https://www.immortal-net.com",
+  "css": "/assets/css/main.css",
+  "img": "/assets/img/cover.png",
+  "fonts": {
+    "google": "Inter:wght@300;400;600"
+  },
+  "social": {
+    "facebook": "echo-immortal"
+  },
+  "google_tag_manager": false
+}
