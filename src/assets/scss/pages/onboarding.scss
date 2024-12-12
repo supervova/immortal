@@ -40,7 +40,7 @@
     @include text-format(base);
 
     font-weight: 400;
-
+    letter-spacing: var(--letter-spacing-base);
   }
 
   .d-flex {

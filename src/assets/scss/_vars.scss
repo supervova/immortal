@@ -310,6 +310,7 @@
     --padding-bottom-title: #{rem(8)};
 
     --font-size-h2:      #{rem(38)};
+    --letter-spacing-h2: #{-1 * rem(1)};
     --line-height-h2:    #{math.div(40, 38)};
     --padding-top-h2:    #{rem(6)};
     --padding-bottom-h2: #{rem(2)};

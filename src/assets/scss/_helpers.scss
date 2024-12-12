@@ -34,6 +34,12 @@
   display: flex;
 }
 
+@media (--phone-l) {
+  .phone-l\:d-block {
+    display: block;
+  }
+}
+
 @media (--tablet) {
   .tablet\:d-none {
     display: none;
@@ -43,14 +49,26 @@
     display: inline;
   }
 
+  .tablet\:d-inline-flex {
+    display: inline-flex;
+  }
+
   .tablet\:d-flex {
     display: flex;
+  }
+
+  .tablet\:d-block {
+    display: block;
   }
 }
 
 @media (--tablet-l) {
   .tablet-l\:d-none {
     display: none;
+  }
+
+  .tablet-l\:inline {
+    display: inline;
   }
 
   .tablet-l\:d-flex {

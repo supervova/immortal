@@ -1,53 +1,104 @@
-(() => {
-  /**
-   * ---------------------------------------------------------------------------
-   * TOGGLE SEARCH FORM ON MOBILES
-   * ---------------------------------------------------------------------------
-   */
+/**
+ * ---------------------------------------------------------------------------
+ * PROFILE MENU HANDLER
+ * ---------------------------------------------------------------------------
+ */
 
-  const search = document.getElementById('header-search-form');
-  let backdrop;
+// Управляет состоянием <details> на мобильных устройствах
+function toggleProfileMenuOnResize() {
+  const details = document.getElementById('header-profile-menu');
 
-  const closeSearch = () => {
-    search.classList.remove('is-open');
+  if (!details) return; // Если элемент не найден, выходим
 
-    if (backdrop != null) {
-      backdrop.remove();
+  if (window.innerWidth < 768) {
+    // На мобильных устройствах всегда открываем
+    details.setAttribute('open', 'open');
+  } else {
+    // На планшетах и ПК возвращаем стандартное поведение
+    details.removeAttribute('open');
+  }
+}
+
+// Инициализирует обработчик для <details>
+function initProfileMenuHandler() {
+  toggleProfileMenuOnResize();
+  window.addEventListener('resize', toggleProfileMenuOnResize);
+}
+
+/**
+ * ---------------------------------------------------------------------------
+ * SEARCH FORM HANDLER
+ * ---------------------------------------------------------------------------
+ */
+
+const initSearchHandler = () => {
+  const searchToggleButtons = document.querySelectorAll(
+    '[data-role="search-toggle"]'
+  );
+  let backdrop; // Элемент backdrop будет создан и управляться здесь
+
+  const createBackdrop = () => {
+    if (!backdrop) {
+      backdrop = document.createElement('div');
+      backdrop.className = 'backdrop';
+      document.body.appendChild(backdrop);
     }
-  };
-
-  const openSearch = (event) => {
-    event.preventDefault();
-
-    /* When the search form is already open, and the user clicks the search trigger,
-    we don't want to rerun the entire event registration. We'll add an early
-    return for that. */
-    if (search.classList.contains('is-open')) {
-      return;
-    }
-
-    // Create backdrop
-    backdrop = document.createElement('div');
-    backdrop.className = 'backdrop';
-    document.body.appendChild(backdrop);
-
-    // Show search and backdrop
-    search.classList.add('is-open');
     backdrop.classList.add('is-on');
   };
 
-  // Event Listener
-  if (search) {
-    window.addEventListener('click', (event) => {
-      if (event.target.closest('.js-toggle-search')) {
-        openSearch(event);
-      } else {
-        closeSearch();
-      }
+  const removeBackdrop = () => {
+    if (backdrop) {
+      backdrop.classList.remove('is-on');
+    }
+  };
 
-      if (event.target.matches('.js-cancel-search')) {
-        closeSearch();
+  searchToggleButtons.forEach((button) => {
+    button.addEventListener('click', (clickEvent) => {
+      clickEvent.stopPropagation();
+      const targetId = button.getAttribute('data-target');
+      const searchForm = document.getElementById(targetId);
+
+      if (searchForm && searchForm.getAttribute('role') === 'search') {
+        const handleOutsideClick = (e) => {
+          if (
+            (e.type === 'keydown' && e.key !== 'Escape') ||
+            (e.type === 'click' && searchForm.contains(e.target))
+          ) {
+            return;
+          }
+
+          searchForm.classList.remove('is-open');
+          removeBackdrop();
+          document.removeEventListener('keydown', handleOutsideClick);
+          document.removeEventListener('click', handleOutsideClick);
+        };
+
+        if (searchForm.classList.contains('is-open')) {
+          searchForm.classList.remove('is-open');
+          removeBackdrop();
+          document.removeEventListener('keydown', handleOutsideClick);
+          document.removeEventListener('click', handleOutsideClick);
+          return;
+        }
+
+        searchForm.classList.add('is-open');
+        createBackdrop();
+
+        const input = searchForm.querySelector('input[type="search"]');
+        if (input) input.focus();
+
+        document.addEventListener('keydown', handleOutsideClick);
+        document.addEventListener('click', handleOutsideClick, { once: true });
       }
     });
-  }
-})();
+  });
+
+  const searchForms = document.querySelectorAll('[role="search"]');
+  searchForms.forEach((form) => {
+    form.addEventListener('click', (formClickEvent) => {
+      formClickEvent.stopPropagation();
+    });
+  });
+};
+
+export { initProfileMenuHandler, initSearchHandler };

@@ -5,6 +5,7 @@
   {{ parent() }}
 
   {% set page = {
+    lang: 'en',
     is_onboarding_start: true,
     title: 'Create Your Digital Person — Echo Immortal',
     desc: 'Start creating your Digital Person by sharing your memories, values, and personality traits. Our simple onboarding process helps craft an AI avatar that reflects who you truly are.',
@@ -69,7 +70,7 @@
     <form class="e-modal__base is-small" id="form-confirmation" action="/welcome">
       <div class="e-modal__body">
         {{ icon('mail') }}
-        <h2>Please enter the code sent to <strong>{{ page.user_email }}</strong></h2>
+        <h2>Please enter the code sent to <strong>{{ user_email }}</strong></h2>
         <fieldset class="d-flex">
           <input type="number">
           <input type="number">

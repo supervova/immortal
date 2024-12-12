@@ -14,24 +14,24 @@
       <nav class="e-footer__col is-first-nav">
         <h3>About Us</h3>
         <ul>
-          <li><a href="#">Contact</a></li>
-          <li><a href="#">Blog</a></li>
-          <li><a href="#">Careers</a></li>
+          <li><a href="{{ site.global_nav.en.contact.slug }}">{{ site.global_nav.en.contact.title }}</a></li>
+          <li><a href="{{ site.global_nav.en.blog.slug }}">{{ site.global_nav.en.blog.title }}</a></li>
+          <li><a href="{{ site.global_nav.en.careers.slug }}">{{ site.global_nav.en.careers.title }}</a></li>
         </ul>
       </nav>
       <nav class="e-footer__col is-2nd-nav">
         <h3>Legal</h3>
         <ul>
-          <li><a href="#">Privacy Policy</a></li>
-          <li><a href="#">Terms and Conditions</a></li>
-          <li><a href="#">Agreement</a></li>
+          <li><a href="{{ site.global_nav.en.privacy.slug }}">{{ site.global_nav.en.privacy.title_long }}</a></li>
+          <li><a href="{{ site.global_nav.en.terms.slug }}">{{ site.global_nav.en.terms.title_long }}</a></li>
+          <li><a href="{{ site.global_nav.en.agreement.slug }}">{{ site.global_nav.en.agreement.title }}</a></li>
         </ul>
       </nav>
       <div class="e-footer__col is-social">
-        <a href="#" class="e-btn is-ghost is-icon is-twitter" aria-label="Follow Us on X.com">
+        <a href="https://x.com/{{ site.social.x }}" class="e-btn is-ghost is-icon is-twitter" aria-label="Follow Us on X.com">
           {{ icon('brand-x') }}
         </a>
-        <a href="#" class="e-btn is-ghost is-icon is-instagram" aria-label="Follow Us on Instagram">
+        <a href="https://www.instagram.com/{{ site.social.instagram }}" class="e-btn is-ghost is-icon is-instagram" aria-label="Follow Us on Instagram">
           {{ icon('brand-instagram') }}
         </a>
       </div>

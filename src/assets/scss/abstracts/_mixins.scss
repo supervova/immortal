@@ -20,6 +20,7 @@
 // %ol                      - Ordered list styles
 // border                   - Adds a border overlay with flex display and overflow handling
 // chevron-down             - Adds a chevron down icon with specific positioning and styles
+// brand-stripe             - Decorative gradient stripe used as a brand motif
 // utility-classes          - Generates utility classes based on provided properties
 // visually-hidden          - Hides elements visually but keeps them accessible
 // state-disabled           - Uses visual cues to indicate that the button is disabled
@@ -29,6 +30,7 @@
 // button-base              - Base styles for buttons including alignment, cursor, and touch-action
 // button                   - Comprehensive button styles with customizable properties
 // button-primary           - Styles for primary buttons with specific background, color, and shadow
+// button-link              - Styles for link-like buttons
 // scrollbar                - Styles for scrollbars with customizable properties
 // -----------------------------------------------------------------------------
 
@@ -262,6 +264,7 @@
     }
   }
 }
+
 // #endregion
 
 // -----------------------------------------------------------------------------
@@ -310,6 +313,43 @@
   transition: transform var(--duration-50) var(--easing-base);
   width: $icon-size;
   height: $icon-size;
+}
+
+@mixin brand-stripe(
+  $position: absolute,
+  $top: null,
+  $right: null,
+  $bottom: null,
+  $left: null,
+  $translate: null,
+  $width: 100%,
+  $height: var(--size-1p5),
+  $orientation: horizontal,
+  $z-index: var(--zindex-fixed)
+) {
+  content: '';
+  position: $position;
+  top: $top;
+  right: $right;
+  bottom: $bottom;
+  left: $left;
+  @if $translate {
+    translate: $translate;
+  }
+  width: $width;
+  height: $height;
+  z-index: $z-index;
+
+  background: linear-gradient(
+      if($orientation == vertical, 90deg, 180deg),
+      rgb(255 255 255 / 0.5),
+      rgb(255 255 255 / 0.16) 49.9%,
+      rgb(255 255 255 / 0) 50%
+    ),
+    linear-gradient(
+      if($orientation == vertical, 0deg, 90deg),
+      var(--color-gradient-brand)
+    );
 }
 // #endregion
 
@@ -387,7 +427,7 @@
 @mixin menu-item() {
   --height-btn: auto;
   border: 0;
-  border-radius: var(--border-radius-sm);
+  border-radius: var(--border-radius-base);
   background-color: transparent;
   color: var(--menu-color, var(--color-ink-2ry));
   display: flex;
@@ -399,7 +439,7 @@
   text-align: left;
   text-decoration: none;
   text-transform: none;
-  padding: var(--menu-item-padding, var(--size-1) var(--size-2));
+  padding: var(--menu-item-padding, var(--size-1p5) var(--size-2));
   position: relative;
   outline: 0;
   user-select: none;
@@ -419,6 +459,13 @@
   &:is(:active, :focus-visible) {
     background-color: var(--color-ink-min);
     text-decoration: none;
+  }
+
+  @media (any-hover: hover) and (pointer: fine) {
+    &:hover {
+      background-color: var(--color-ink-min);
+      text-decoration: none;
+    }
   }
 }
 
@@ -518,6 +565,28 @@
     --color-stroke-icon: var(--color-bg-brand-light);
   }
 }
+
+  @mixin button-link() {
+    appearance: none;
+    background: transparent;
+    border-radius: 0;
+    color: var(--color-ink-link);
+    font: inherit;
+    letter-spacing: inherit;
+    text-align: inherit;
+    padding: 0;
+    transition: filter var(--duration-50) var(--easing-base);
+    vertical-align: baseline;
+    height: auto;
+
+    @media (any-hover: hover) and (pointer: fine) {
+      &:hover {
+        background: transparent;
+        text-decoration: underline;
+      }
+    }
+  }
+
 
 @mixin scrollbar(
   $size: var(--size-1),

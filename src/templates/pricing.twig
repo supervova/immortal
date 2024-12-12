@@ -6,7 +6,8 @@
   {{ parent() }}
 
   {% set page = {
-    body_classes: 'e-page is-pricing has-brand-bar'
+    lang: 'en',
+    body_classes: 'e-page is-pricing has-brand-stripe'
   } %}
 
 {% endblock %}
@@ -26,7 +27,7 @@
       </h1>
 
       <p class="e-main__summary">
-        Digital Persons are created <a href="/welcome">for free</a>, but in their "infant" stage, their abilities are limited to one-on-one chat with you. They also won't inherit your personality traits or knowledge. To train your Digital Person, use it in social media and messaging apps, and one day—hopefully in the distant future—leave it for your descendants, choose one of our premium plans.
+        Digital Persons are created <a href="/{{ site.global_nav.en.onboarding.slug }}">for free</a>, but in their "infant" stage, their abilities are limited to one-on-one chat with you. They also won't inherit your personality traits or knowledge. To train your Digital Person, use it in social media and messaging apps, and one day—hopefully in the distant future—leave it for your descendants, choose one of our premium plans.
       </p>
 
       <p class="e-main__badge d-none laptop:d-block">
@@ -259,7 +260,7 @@
         </li>
       </ul>
 
-      <a class="e-plan-builder__continue" href="/checkout">
+      <a class="e-plan-builder__continue" href="/{{ site.global_nav.en.checkout.slug }}">
         Continue
         {{ icon('sm-chevron-right', 'is-sm') }}
       </a>
@@ -267,10 +268,6 @@
 
   </div>
 </main>
-{% endblock %}
-
-{% block footer %}
-  {{ parent() }}
 {% endblock %}
 
 {% block body_suffix %}
@@ -322,6 +319,8 @@
         { years: 27, light: 27, standard: 81 },
         { years: 28, light: 26, standard: 78 },
         { years: 29, light: 25, standard: 75 },
+        { years: 30, light: '→', standard: '→' },
+        { years: 31, light: '→', standard: '→' },
       ];
 
       // Обновление цен на основе значения ползунка (Annual Billing)

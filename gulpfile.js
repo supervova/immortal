@@ -39,6 +39,7 @@ import { hideBin } from 'yargs/helpers';
 import { join } from 'path';
 
 const config = JSON.parse(readFileSync('./config/site.json', 'utf8'));
+const menu = JSON.parse(readFileSync('./config/menu-dp.json', 'utf8'));
 
 const bsInstance = browserSync.create();
 const gulpEsbuild = createGulpEsbuild();
@@ -74,6 +75,7 @@ const paths = {
       home: `${srcBase}/assets/scss/pages/home.scss`,
       onboarding: `${srcBase}/assets/scss/pages/onboarding.scss`,
       pricing: `${srcBase}/assets/scss/pages/pricing.scss`,
+      social: `${srcBase}/assets/scss/pages/social.scss`,
     },
     watch: `${srcBase}/assets/scss/**/*.scss`,
     tmp: `${srcBase}/assets/css/`,
@@ -205,6 +207,9 @@ const copyFonts = () =>
     .pipe(changed(paths.fonts.dest))
     .pipe(dest(paths.fonts.dest));
 
+const copyConfig = () =>
+  src('./config/*.json').pipe(dest('./dist')).pipe(bsInstance.stream());
+
 const copy = parallel(copyFonts, copyVideo);
 // #endregion
 
@@ -273,6 +278,7 @@ const pages = (done) => {
         base: './src/templates',
         data: {
           site: config, // передача данных из site.json
+          menu, // Добавляем menu
         },
         filters: [
           {
@@ -375,45 +381,33 @@ const cssBase = (done) => {
     paths.css.src.main,
     'main',
     paths.css.dest
-    // [`${srcBase}/pages/uncss/**/*.html`]
+    // [`${srcBase}/pages/uncss/**/*.html`],
+    // true // Force production mode
   );
   done();
 };
 
 const cssHome = (done) => {
-  processStyles(
-    paths.css.src.home,
-    'home',
-    paths.css.dest,
-    // [`${srcBase}/pages/uncss/**/*.html`],
-    true // Force production mode
-  );
+  processStyles(paths.css.src.home, 'home', paths.css.dest);
   done();
 };
 
 const cssOnboarding = (done) => {
-  processStyles(
-    paths.css.src.onboarding,
-    'onboarding',
-    paths.css.dest,
-    // [`${srcBase}/pages/uncss/**/*.html`],
-    true // Force production mode
-  );
+  processStyles(paths.css.src.onboarding, 'onboarding', paths.css.dest);
   done();
 };
 
 const cssPricing = (done) => {
-  processStyles(
-    paths.css.src.pricing,
-    'pricing',
-    paths.css.dest,
-    // [`${srcBase}/pages/uncss/**/*.html`],
-    true // Force production mode
-  );
+  processStyles(paths.css.src.pricing, 'pricing', paths.css.dest);
   done();
 };
 
-const css = series(cssBase, cssHome, cssOnboarding, cssPricing);
+const cssSocial = (done) => {
+  processStyles(paths.css.src.social, 'social', paths.css.dest);
+  done();
+};
+
+const css = series(cssBase, cssHome, cssOnboarding, cssPricing, cssSocial);
 // #endregion
 
 /**
@@ -465,6 +459,7 @@ const watchFiles = () => {
   watch([paths.markup.watch], series(pages));
   watch(paths.svg.src, series(svg, parallel(css, img), reload));
   watch(paths.img.src, series(img, reload));
+  watch('./config/*.json', series(copyConfig));
 };
 
 const serve = (done) => {

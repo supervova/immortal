@@ -45,6 +45,7 @@
   padding-top: var(--padding-top-base);
   padding-bottom: var(--padding-bottom-base);
   font-weight: 400;
+  letter-spacing: var(--letter-spacing-base);
 }
 :where(.e-modal.is-freewall) .d-flex {
   gap: var(--size-half);

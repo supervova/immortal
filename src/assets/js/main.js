@@ -1,24 +1,37 @@
-// Get external content, utilities
-import initModals, { openModal } from './modal.js';
-
+import initCollapsibleText from './collapsibleText.js';
 import initDrawer from './drawer.js';
-
-// Close flayouts on Esc
 import initFlayouts from './flayout.js';
-
-// Chat input dynamic resize
+import initModals, { openModal } from './modal.js';
 import initTextareaAutoResize from './chat.js';
+import { initProfileMenuHandler, initSearchHandler } from './header.js';
 
 document.addEventListener('DOMContentLoaded', () => {
   initFlayouts();
   initModals();
   initDrawer();
+  initSearchHandler();
+  initProfileMenuHandler();
+  initCollapsibleText();
 
   initTextareaAutoResize(
     '.is-chat-input textarea',
     '.is-chat-input .e-btn',
     '.e-form.is-chat-input'
   );
+
+  // Set `is-active` class to matching menu items
+  const page = document.querySelector('.e-page');
+  const currentPageClass = page?.classList[1];
+
+  if (currentPageClass) {
+    const activeMenuItems = document.querySelectorAll(
+      `.e-menu__item.${currentPageClass}`
+    );
+
+    activeMenuItems.forEach((item) => {
+      item.classList.add('is-active');
+    });
+  }
 });
 
 // eslint-disable-next-line import/prefer-default-export

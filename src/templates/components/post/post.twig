@@ -1,0 +1,24 @@
+<article class="e-post{{ post.media ? ' has-media' : '' }}">
+  {% include 'components/post/header.twig' %}
+
+  {% if not post.repost %}
+    {% include 'components/post/media.twig' %}
+  {% endif %}
+
+  {% if post.base %}
+    <a class="e-post__body" href="{{ post.link }}">
+      <div class="e-collapsible">
+        {{ post.base }}
+      </div>
+    </a>
+  {% endif %}
+
+  {% if post.repost %}
+    {% include 'components/post/repost.twig' %}
+  {% endif %}
+
+  <footer class="e-post__footer">
+    {% include 'components/post/reactions.twig' %}
+    {% include 'components/post/actions.twig' %}
+  </footer>
+</article>

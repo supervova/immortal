@@ -1,0 +1,37 @@
+{
+  "profile": {
+    "icon": "book",
+    "title": "DP Diary",
+    "href": ""
+  },
+  "chat": {
+    "icon": "message",
+    "title": "Chat",
+    "href": "/chat"
+  },
+  "about": {
+    "icon": "dp",
+    "title": "About",
+    "href": "/about",
+    "classes": "d-none phone-l:d-block"
+  },
+  "download": {
+    "icon": "download",
+    "title": "Download",
+    "href": "/download",
+    "classes": "d-none tablet:d-block"
+  },
+  "search": {
+    "icon": "search",
+    "title": "Search",
+    "type": "button",
+    "role": "search-toggle",
+    "target": "header-search",
+    "classes": "tablet:d-none"
+  },
+  "settings": {
+    "icon": "settings",
+    "title": "Settings",
+    "href": "/settings"
+  }
+}

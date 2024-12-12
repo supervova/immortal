@@ -1,0 +1,20 @@
+{% set stat_type = stat.type|default('paragraph') %}
+{% set stat_modifier = stat.modifier|default('') %}
+
+{% if stat_type == 'button' %}
+  <button class="e-stat {{ stat_modifier }}" type="button">
+    <span class="e-stat__value">{{ stat.value }}</span>
+    <span class="e-stat__caption">{{ stat.caption }}</span>
+    <time class="e-stat__3ry" datetime="{{ stat.datetime }}">{{ stat.additional }}</time>
+  </button>
+{% else %}
+  <p class="e-stat">
+    <span class="e-stat__value">{{ stat.value }}</span>
+    <span class="e-stat__caption">{{ stat.caption }}</span>
+    {% if stat.datetime %}
+      <time class="e-stat__3ry" datetime="{{ stat.datetime }}">{{ stat.additional }}</time>
+    {% else %}
+      <span class="e-stat__3ry">{{ stat.additional }}</span>
+    {% endif %}
+  </p>
+{% endif %}

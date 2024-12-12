@@ -6,17 +6,14 @@
 /* form */
 [role='search'] {
   position: relative;
+  width: 100%;
 
   @media (--phone), (--phone-l-height) {
     background: var(--color-bg-base);
     display: flex;
-    padding: var(--size-1) var(--size-2);
+    padding: var(--size-3) var(--size-2) var(--size-2);
     max-width: 100%;
-    height: var(--size-8);
-  }
-
-  @media (--tablet) {
-    top: -24vh;
+    height: auto;
   }
 }
 
@@ -25,9 +22,7 @@
   border-radius: var(--border-radius-pill);
   // Correct the outline style in Safari
   outline-offset: -2px;
-  padding-right: var(--size-3);
   padding-inline-end: var(--size-3);
-  padding-left: var(--size-6);
   padding-inline-start: var(--size-6);
 
   @media (--phone), (--phone-l-height) {
@@ -35,24 +30,24 @@
   }
 
   @media (--tablet) {
-    // Correct the odd appearance in Chrome and Safari
-    // stylelint-disable-next-line property-no-vendor-prefix
-    -webkit-appearance: textfield;
     border-radius: var(--border-radius-sm);
     font-size: var(--font-size-base);
-    width: var(--width-lg);
-    height: var(--size-6);
+    height: var(--size-7);
   }
+}
+
+[type='search']::-webkit-search-decoration {
+  // Remove the inner padding in Chrome and Safari on macOS
+  appearance: none;
 }
 
 // Cancel button
 [type='search']::-webkit-search-cancel-button {
   appearance: none;
-  background: var(--icon-add) no-repeat center;
+  background: var(--icon-x-mark) no-repeat center;
   cursor: pointer;
   margin-right: calc(var(--size-1) * -1);
   margin-inline-end: calc(var(--size-1) * -1);
-  rotate: 45deg;
   height: var(--size-3);
   width: var(--size-3);
 
@@ -62,10 +57,7 @@
   }
 }
 
-[type='search']::-webkit-search-decoration {
-  // Remove the inner padding in Chrome and Safari on macOS
-  appearance: none;
-}
+
 
 // BUTTONS
 
@@ -76,18 +68,8 @@
   pointer-events: none;
   position: absolute;
   top: 50%;
-  left: var(--size-2p5);
+  left: var(--size-1);
   translate: 0 -50%;
-
-  &:active {
-    box-shadow: inset 0 0 0 4px var(--color-bg-2ry);
-  }
-
-  @media (any-hover: hover) and (pointer: fine) {
-    &:hover {
-      box-shadow: inset 0 0 0 4px var(--color-bg-2ry);
-    }
-  }
 
   @media (--tablet) {
     left: var(--size-half);

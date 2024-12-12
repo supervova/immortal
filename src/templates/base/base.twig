@@ -1,25 +1,5 @@
 {# Don't treat the config as an include. Twig won't understand #}
 {% block config %}
-  {% set site = {
-    lang: 'en',
-    title: {
-      en: 'Echo Immortal — Create Your Digital Legacy with an AI Twin'
-    },
-    desc: {
-      en: 'Design a Digital Person that mirrors your personality, voice, and values. Echo Immortal offers a unique way to preserve your legacy and stay connected through AI agents for social media and messaging.'
-    },
-    url: 'https://www.immortal-net.com',
-    css: '/assets/css/main.css',
-    img: '/assets/img/cover.png',
-    fonts: {
-      google: 'Inter:wght@300;400;600'
-    },
-    social: {
-      facebook: 'echo-immortal'
-    },
-    google_tag_manager: false
-  } %}
-
   {% set now = "now"|date('Y-m-d H:i:s') %}
   {% set current_year = "now"|date('Y') %}
   {% set timestamp = "now"|date('U') %}

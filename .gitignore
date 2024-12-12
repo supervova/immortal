@@ -4,6 +4,7 @@
 /assets
 deploy.sh
 dist
+src/assets/js/_tmp.js
 
 # Drafts
 docs/_index.md

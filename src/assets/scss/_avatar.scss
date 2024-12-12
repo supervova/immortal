@@ -1,0 +1,71 @@
+@use 'abstracts' as *;
+
+.e-avatar {
+  --avatar-size: var(--size-7);
+
+  background-color: var(--color-bg-brand);
+  // HACK: anti-aliasing edges
+  border: 0.1px solid transparent;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 500;
+  text-align: center;
+  text-transform: uppercase;
+  margin-bottom: 0;
+  overflow: hidden;
+  position: relative;
+  width: var(--avatar-size);
+  height: var(--avatar-size);
+
+  // Initials
+  &::before {
+    color: var(--color-ink-2ry-brand);
+    content: attr(data-initials);
+    font-size: var(--font-size-base);
+    font-weight: var(--font-weight-titles);
+    line-height: 1;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    translate: -50% -50%;
+    z-index: 0;
+  }
+
+  // Interlacing effect
+  &::after {
+    background-image:
+      repeating-linear-gradient(
+        to bottom, rgb(0 0 0 / 0.08),
+        rgb(0 0 0 / 0.08) 1px,
+        transparent 1px,
+        transparent 2px);
+    mix-blend-mode: multiply;
+    content: '';
+    border-radius: 50%;
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+  }
+}
+
+.e-avatar__overlay {
+  background-color: hsl(from var(--color-ink-2ry-info) h calc(s - 30) l);
+  mix-blend-mode: color;
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+}
+
+.e-avatar img {
+  position: relative;
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.e-avatar.is-large {
+  --avatar-size: #{rem(120)};
+}

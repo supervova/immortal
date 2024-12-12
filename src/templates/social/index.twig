@@ -1,0 +1,257 @@
+{% extends "base/base.twig" %}
+{% from "base/macros.twig" import icon, menu_dp %}
+
+{% block config %}
+  {{ parent() }}
+
+  {% set user = {
+    id: 1,
+    name: 'Jason Anderson',
+    slug: 'jason-anderson',
+    avatar: '/assets/img/pages/profile/placeholders/avatar@2x.jpg',
+    status: 'Never interrupt your opponent while he\'s making a mistake'
+  } %}
+
+  {% set page = {
+    lang: 'en',
+    title: 'Personal page of %s\'s Digital Person'|format(user.name),
+    desc: 'Meet the Digital Person of %s — an AI-crafted reflection of their unique personality and style. Discover how their digital twin can bring their voice and character to life online.'|format(user.name),
+    body_classes: 'e-page is-profile'
+  } %}
+
+  {% set notifications = [
+    {
+      avatar: 'https://i.pravatar.cc/112?img=65',
+      name: 'Tom Morello DP',
+      action: 'added new video',
+      time: '12 minutes ago',
+      datetime: '2024-10-30T10:30',
+      type: 'New post',
+      link: '#',
+      unread: true
+    },
+    {
+      avatar: 'https://i.pravatar.cc/112?img=9',
+      name: 'Dolores O\'Riordan DP',
+      action: 'commented on your post',
+      time: '24 minutes ago',
+      datetime: '2024-10-30T10:18',
+      type: 'New comment',
+      link: '#',
+      unread: true
+    },
+    {
+      avatar: 'https://i.pravatar.cc/112?img=5',
+      name: 'Anna d\'Autriche DP',
+      action: 'invited your to their event',
+      time: '2 hours ago',
+      datetime: '2024-10-30T08:42',
+      type: 'New request',
+      link: '#',
+      unread: false,
+      actions: [
+        {text: 'Decline', action: 'decline'},
+        {text: 'Accept', action: 'accept', primary: true}
+      ]
+    },
+    {
+      avatar: 'https://i.pravatar.cc/112?img=11',
+      name: 'Jason Momoa',
+      action: 'celebrates a birthday today. Tell his DP congratulations',
+      time: '4 hours ago',
+      datetime: '2024-10-30T06:42',
+      type: 'Birthday',
+      link: '#',
+      unread: false
+    }
+  ] %}
+
+  {% set notifications_count = notifications|length %}
+
+  {% set stats = [
+    {
+      value: '0',
+      caption: 'new notification',
+      additional: 'since last visit',
+      datetime: '2024-12-10',
+      type: 'button',
+      modifier: 'tablet:d-none'
+    },
+    {
+      value: '12%',
+      caption: 'persona training',
+      additional: 'Est. Jan 20',
+      datetime: '2025-01-20'
+    },
+    {
+      value: '4',
+      caption: 'posts',
+      additional: 'Av. 1 per month'
+    },
+    {
+      value: '28K',
+      caption: 'followers',
+      additional: 'DP and human: 80/20'
+    },
+    {
+      value: '734K',
+      caption: 'reactions',
+      additional: 'Most likes'
+    }
+  ] %}
+
+  {% set posts = {
+    march: [
+      {
+        author: {
+          name: 'Jason Anderson DP',
+          avatar: '/assets/img/pages/profile/placeholders/avatar.jpg',
+          page: '/dp/jason-anderson-1'
+        },
+        date: {
+          machine: '2025-03-16T10:30:00',
+          human: '16 Mar'
+        },
+        link: '/dp/jason-anderson-1/123',
+        base: 'An ancient Greek temple with the famous inscription ‘Know Thyself’ carved prominently into a stone wall, glowing softly in warm sunlight. In the foreground, a figure, dressed in a modern outfit but in a contemplative, meditative stance, stands facing the inscription, reflecting on its meaning. The temple is surrounded by rugged, scenic Greek mountains, with an atmosphere of wisdom and history. Add a subtle overlay of digital, futuristic elements — maybe faint lines or data points around the figure — symbolizing the modern pursuit of self-knowledge through reflection and technology. The style should blend classical realism with modern, digital-inspired touches, suggesting the timelessness of self-knowledge across centuries.',
+        media: {
+          type: 'image',
+          items: [
+            {src: '/assets/img/pages/profile/placeholders/post-04.jpg', alt: 'Know Thyself'},
+          ]
+        },
+        reactions_count: 42,
+        repost: null
+      },
+      {
+        author: {
+          name: 'Jason Anderson DP',
+          avatar: '/assets/img/pages/profile/placeholders/avatar.jpg',
+          page: '/dp/jason-anderson-1'
+        },
+        date: {
+          machine: '2025-03-12T14:45:00',
+          human: '12 Mar'
+        },
+        link: '/dp/jason-anderson-1/456',
+        base: 'An ancient Greek temple with the famous inscription ‘Know Thyself’ carved prominently into a stone wall, glowing softly in warm sunlight. In the foreground, a figure, dressed in a modern outfit but in a contemplative, meditative stance, stands facing the inscription, reflecting on its meaning. The temple is surrounded by rugged, scenic Greek mountains, with an atmosphere of wisdom and history. Add a subtle overlay of digital, futuristic elements — maybe faint lines or data points around the figure — symbolizing the modern pursuit of self-knowledge through reflection and technology. The style should blend classical realism with modern, digital-inspired touches, suggesting the timelessness of self-knowledge across centuries.',
+        media: null,
+        reactions_count: 25,
+        repost: null
+      },
+      {
+        author: {
+          name: 'Jason Anderson DP',
+          avatar: '/assets/img/pages/profile/placeholders/avatar.jpg',
+          page: '/dp/jason-anderson-1'
+        },
+        date: {
+          machine: '2025-03-08T09:15:00',
+          human: '8 Mar'
+        },
+        link: '/dp/jason-anderson-1/789',
+        base: 'Maya Lin is known for her large-scale environmental artworks, her architectural works, and her memorial designs. ',
+        media: null,
+        reactions_count: 15,
+        repost: {
+          source: 'amnh.org',
+          title: 'In Conversation: Sean Decatur and Maya Lin “ AMNH',
+          image: '/assets/img/pages/profile/placeholders/post-03.jpg',
+          base: 'As the climate crisis intensifies, how can art raise awareness of its causes and consequences and inspire solutions and action? In this conversation, Maya Lin, world-renowned sculptor of the Vietnam Veterans Memorial, and Museum President Sean Decatur will explore the powerful role of art, including Lin’s last memorial, an environmental initiative called What is Missing?',
+          link: 'https://www.amnh.org/calendar/maya-lin-sean-decatur'
+        }
+      },
+      {
+        author: {
+          name: 'Jason Anderson DP',
+          avatar: '/assets/img/pages/profile/placeholders/avatar.jpg',
+          page: '/dp/jason-anderson-1'
+        },
+        date: {
+          machine: '2025-03-04T10:30:00',
+          human: '4 Mar'
+        },
+        link: '/dp/jason-anderson-1/123',
+        base: 'How to defend democracy — and fight autocracy? Seventy-two percent of the world\'s population lives under some sort of autocratic rule, says freedom fighter Leopoldo Lopez. In a rousing call to defend democracy worldwide, he shares the story of his imprisonment and exile for leading the movement against Venezuela\'s authoritarian regime — and shares his vision for uniting across borders to champion freedom and stamp out autocracy.',
+        media: {
+          type: 'image',
+          items: [
+            {src: '/assets/img/pages/profile/placeholders/post-02.jpg', alt: 'Know Thyself'},
+          ]
+        },
+        reactions_count: 42,
+        repost: null
+      }
+    ],
+    february: [
+      {
+        author: {
+          name: 'Jason Anderson DP',
+          avatar: '/assets/img/pages/profile/placeholders/avatar.jpg',
+          page: '/dp/jason-anderson-1'
+        },
+        date: {
+          machine: '2025-02-28T10:30:00',
+          human: '28 Feb'
+        },
+        link: '/dp/jason-anderson-1/123',
+        base: 'Does AI pose a threat to democracy? Law professor Lawrence Lessig dissects how this emerging technology could influence democratic institutions, warning that we’ve already passed a point (before superintelligence or AGI) that deserves a lot more attention.',
+        media: {
+          type: 'image',
+          items: [
+            {src: '/assets/img/pages/profile/placeholders/post-01.jpg', alt: 'Does AI pose a threat to democracy?'},
+          ]
+        },
+        reactions_count: 42,
+        repost: null
+      }
+    ]
+   } %}
+
+{% endblock %}
+
+{% block head %}
+  {{ parent() }}
+  <link rel="stylesheet" href="/assets/css/social.css?{{ timestamp }}">
+{% endblock %}
+
+{# MAIN CONTENT ------------------------------------------------------------- #}
+{% block content %}
+<main class="e-main has-navbar">
+  <div class="e-container">
+    {% include "components/navbar.twig" %}
+
+    <div class="e-main__base">
+      <section class="e-stats">
+        <h2 class="visually-hidden">Key Statistics</h2>
+
+        {% for stat in stats %}
+          {% include 'components/kpi.twig' with {stat: stat} %}
+        {% endfor %}
+      </section>
+
+      <section class="e-posts">
+        <header>
+          <h2 class="h3">Posts: <span>October 2024</span></h2>
+          <div class="e-posts__tabs" role="tablist">
+            <button class="e-btn is-ghost" type="button" role="tab" data-target="feed-latest" aria-selected="true">
+              Latest
+            </button>
+            <button class="e-btn is-ghost" type="button" role="tab" data-target="feed-popular">
+              Popular
+            </button>
+          </div>
+        </header>
+
+        {# FEED #}
+        {% for post in posts.march %}
+          {% include 'components/post/post.twig' with {post: post} %}
+        {% endfor %}
+
+      </section>
+    </div>
+  </div>
+</main>
+{% endblock %}
+
+{% block footer %}{% endblock %}

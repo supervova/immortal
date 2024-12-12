@@ -1,0 +1,35 @@
+<aside class="e-navbar">
+  <header class="e-navbar__header">
+    {% include 'components/avatar.twig' with {
+        src: user.avatar,
+        name: user.name,
+        modifier: 'is-large'
+    } %}
+    <h2 class="h3">
+      {{ user.name }} DP
+    </h2>
+    <p class="e-navbar__subtitle">{{ user.status }}</p>
+  </header>
+
+  {# Menu #}
+  {{ menu_dp(menu, user) }}
+
+  {# Footer #}
+  <details class="e-navbar__footer e-flayout is-up" data-role="flayout">
+    <summary>
+      <span class="d-none tablet-l:inline">
+        ©️ {{ site.title_short[page.lang|default(site.lang)] }}
+        {{ current_year }}
+      </span>
+      {{ icon('more', 'tablet-l:d-none') }}
+    </summary>
+    <div class="e-flayout__body">
+      <ul class="e-list is-inline">
+        <li><a href="/{{ site.global_nav.en.faq.slug }}">{{ site.global_nav.en.faq.title }}</a></li>
+        <li><a href="/{{ site.global_nav.en.privacy.slug }}">{{ site.global_nav.en.privacy.title }}</a></li>
+        <li><a href="/{{ site.global_nav.en.terms.slug }}">{{ site.global_nav.en.terms.title }}</a></li>
+      </ul>
+      <a href="/{{ site.global_nav.en.pricing.slug }}" class="e-btn is-primary">Upgrade</a>
+    </div>
+  </details>
+</aside>

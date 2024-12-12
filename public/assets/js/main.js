@@ -1,3 +1,107 @@
+// src/assets/js/collapsibleText.js
+function initCollapsibleText() {
+  const showChar = 160;
+  const textMore = "More";
+  const textLess = "Less";
+  const collapsibleText = document.querySelectorAll(".e-collapsible");
+  collapsibleText.forEach((element) => {
+    const content = element.innerHTML;
+    if (content.length > showChar) {
+      const visibleText = content.slice(0, showChar);
+      const hiddenText = content.slice(showChar);
+      const html = `
+        ${visibleText}\u2026
+        <span class="e-collapsible__body">
+          <span>${hiddenText}</span>&nbsp;
+          <button class="e-collapsible__toggle" type="button">${textMore}</button>
+        </span>
+      `;
+      const newElement = element;
+      newElement.innerHTML = html;
+    }
+  });
+  document.addEventListener("click", (event) => {
+    const { target } = event;
+    if (target.classList.contains("e-collapsible__toggle")) {
+      event.preventDefault();
+      const collapsibleToggle = target;
+      const moreContent = collapsibleToggle.previousElementSibling;
+      const ellipses = collapsibleToggle.parentElement.previousElementSibling;
+      if (collapsibleToggle.classList.contains("is-less")) {
+        collapsibleToggle.classList.remove("is-less");
+        collapsibleToggle.textContent = textMore;
+      } else {
+        collapsibleToggle.classList.add("is-less");
+        collapsibleToggle.textContent = textLess;
+      }
+      moreContent.style.display = moreContent.style.display === "none" ? "inline" : "none";
+      ellipses.style.display = ellipses.style.display === "none" ? "inline" : "none";
+    }
+  });
+}
+var collapsibleText_default = initCollapsibleText;
+
+// src/assets/js/drawer.js
+var initDrawer = () => {
+  document.addEventListener("click", (event) => {
+    const openButton = event.target.closest('[data-role="open-drawer"]');
+    if (openButton) {
+      const targetId = openButton.dataset.target;
+      const drawer = document.getElementById(targetId);
+      if (drawer) {
+        drawer.classList.toggle("is-open");
+      }
+    }
+  });
+  document.addEventListener("click", (event) => {
+    const closeButton = event.target.closest('[data-role="close-drawer"]');
+    if (closeButton) {
+      const drawer = closeButton.closest('[data-role="drawer"]');
+      if (drawer) {
+        drawer.classList.remove("is-open");
+      }
+    }
+    const openDrawer = document.querySelector('[data-role="drawer"].is-open');
+    if (openDrawer && !openDrawer.contains(event.target)) {
+      const openButton = event.target.closest('[data-role="open-drawer"]');
+      if (!openButton) {
+        openDrawer.classList.remove("is-open");
+      }
+    }
+  });
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") {
+      const openDrawer = document.querySelector('[data-role="drawer"].is-open');
+      if (openDrawer) {
+        openDrawer.classList.remove("is-open");
+      }
+    }
+  });
+};
+var drawer_default = initDrawer;
+
+// src/assets/js/flayout.js
+function initFlayouts() {
+  const flayouts = Array.from(
+    document.querySelectorAll('[data-role="flayout"]')
+  );
+  document.addEventListener("click", (event) => {
+    flayouts.forEach((el) => {
+      if (!el.contains(event.target)) {
+        el.removeAttribute("open");
+      }
+    });
+  });
+  window.addEventListener("keydown", (event) => {
+    if (event.key === "Esc" || event.key === "Escape") {
+      const openFlayout = document.querySelector('[data-role="flayout"][open]');
+      if (openFlayout) {
+        openFlayout.removeAttribute("open");
+      }
+    }
+  });
+}
+
 // src/assets/js/modal.js
 var animationDuration = 400;
 var visibleModal = null;
@@ -94,67 +198,6 @@ var initModals = () => {
 };
 var modal_default = initModals;
 
-// src/assets/js/drawer.js
-var initDrawer = () => {
-  document.addEventListener("click", (event) => {
-    const openButton = event.target.closest('[data-role="open-drawer"]');
-    if (openButton) {
-      const targetId = openButton.dataset.target;
-      const drawer = document.getElementById(targetId);
-      if (drawer) {
-        drawer.classList.toggle("is-open");
-      }
-    }
-  });
-  document.addEventListener("click", (event) => {
-    const closeButton = event.target.closest('[data-role="close-drawer"]');
-    if (closeButton) {
-      const drawer = closeButton.closest('[data-role="drawer"]');
-      if (drawer) {
-        drawer.classList.remove("is-open");
-      }
-    }
-    const openDrawer = document.querySelector('[data-role="drawer"].is-open');
-    if (openDrawer && !openDrawer.contains(event.target)) {
-      const openButton = event.target.closest('[data-role="open-drawer"]');
-      if (!openButton) {
-        openDrawer.classList.remove("is-open");
-      }
-    }
-  });
-  document.addEventListener("keydown", (event) => {
-    if (event.key === "Escape") {
-      const openDrawer = document.querySelector('[data-role="drawer"].is-open');
-      if (openDrawer) {
-        openDrawer.classList.remove("is-open");
-      }
-    }
-  });
-};
-var drawer_default = initDrawer;
-
-// src/assets/js/flayout.js
-function initFlayouts() {
-  const flayouts = Array.from(
-    document.querySelectorAll('[data-role="flayout"]')
-  );
-  document.addEventListener("click", (event) => {
-    flayouts.forEach((el) => {
-      if (!el.contains(event.target)) {
-        el.removeAttribute("open");
-      }
-    });
-  });
-  window.addEventListener("keydown", (event) => {
-    if (event.key === "Esc" || event.key === "Escape") {
-      const openFlayout = document.querySelector('[data-role="flayout"][open]');
-      if (openFlayout) {
-        openFlayout.removeAttribute("open");
-      }
-    }
-  });
-}
-
 // src/assets/js/chat.js
 function initTextareaAutoResize(textareaSelector, sendButtonSelector, formSelector) {
   const chatInput = document.querySelector(textareaSelector);
@@ -197,16 +240,100 @@ function initTextareaAutoResize(textareaSelector, sendButtonSelector, formSelect
 }
 var chat_default = initTextareaAutoResize;
 
+// src/assets/js/header.js
+function toggleProfileMenuOnResize() {
+  const details = document.getElementById("header-profile-menu");
+  if (!details) return;
+  if (window.innerWidth < 768) {
+    details.setAttribute("open", "open");
+  } else {
+    details.removeAttribute("open");
+  }
+}
+function initProfileMenuHandler() {
+  toggleProfileMenuOnResize();
+  window.addEventListener("resize", toggleProfileMenuOnResize);
+}
+var initSearchHandler = () => {
+  const searchToggleButtons = document.querySelectorAll(
+    '[data-role="search-toggle"]'
+  );
+  let backdrop;
+  const createBackdrop = () => {
+    if (!backdrop) {
+      backdrop = document.createElement("div");
+      backdrop.className = "backdrop";
+      document.body.appendChild(backdrop);
+    }
+    backdrop.classList.add("is-on");
+  };
+  const removeBackdrop = () => {
+    if (backdrop) {
+      backdrop.classList.remove("is-on");
+    }
+  };
+  searchToggleButtons.forEach((button) => {
+    button.addEventListener("click", (clickEvent) => {
+      clickEvent.stopPropagation();
+      const targetId = button.getAttribute("data-target");
+      const searchForm = document.getElementById(targetId);
+      if (searchForm && searchForm.getAttribute("role") === "search") {
+        const handleOutsideClick = (e) => {
+          if (e.type === "keydown" && e.key !== "Escape" || e.type === "click" && searchForm.contains(e.target)) {
+            return;
+          }
+          searchForm.classList.remove("is-open");
+          removeBackdrop();
+          document.removeEventListener("keydown", handleOutsideClick);
+          document.removeEventListener("click", handleOutsideClick);
+        };
+        if (searchForm.classList.contains("is-open")) {
+          searchForm.classList.remove("is-open");
+          removeBackdrop();
+          document.removeEventListener("keydown", handleOutsideClick);
+          document.removeEventListener("click", handleOutsideClick);
+          return;
+        }
+        searchForm.classList.add("is-open");
+        createBackdrop();
+        const input = searchForm.querySelector('input[type="search"]');
+        if (input) input.focus();
+        document.addEventListener("keydown", handleOutsideClick);
+        document.addEventListener("click", handleOutsideClick, { once: true });
+      }
+    });
+  });
+  const searchForms = document.querySelectorAll('[role="search"]');
+  searchForms.forEach((form) => {
+    form.addEventListener("click", (formClickEvent) => {
+      formClickEvent.stopPropagation();
+    });
+  });
+};
+
 // src/assets/js/main.js
 document.addEventListener("DOMContentLoaded", () => {
   initFlayouts();
   modal_default();
   drawer_default();
+  initSearchHandler();
+  initProfileMenuHandler();
+  collapsibleText_default();
   chat_default(
     ".is-chat-input textarea",
     ".is-chat-input .e-btn",
     ".e-form.is-chat-input"
   );
+  const page = document.querySelector(".e-page");
+  const currentPageClass = page?.classList[1];
+  if (currentPageClass) {
+    const activeMenuItems = document.querySelectorAll(
+      `.e-menu__item.${currentPageClass}`
+    );
+    activeMenuItems.forEach((item) => {
+      item.classList.add("is-active");
+    });
+  }
 });
 export {
   openModal

@@ -5,6 +5,35 @@
   @include container;
 }
 
+.e-main.has-navbar {
+  display: flex;
+  flex-direction: column;
+
+  .e-container {
+    --sidebar-width: #{rem(80)};
+
+    @media (--tablet) {
+      display: grid;
+      align-items: start;
+      flex-grow: 1;
+      gap: var(--size-line);
+      grid-template-columns: var(--sidebar-width) 1fr;
+      padding-inline-start: 0;
+      height: 100%;
+    }
+
+    @media (--tablet-l) {
+      --sidebar-width: #{rem(299)};
+      padding-inline-start: var(--padding-x-container);
+    }
+
+    @media (--laptop) {
+      --sidebar-width: #{rem(290)};
+    }
+  }
+}
+
+
 // CONTENT CONTAINERS
 // For list view, e. g. SERP or blog feed
 .e-col-1\/1 {

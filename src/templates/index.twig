@@ -6,7 +6,8 @@
   {{ parent() }}
 
   {% set page = {
-    body_classes: 'e-page is-home has-brand-bar'
+    lang: 'en',
+    body_classes: 'e-page is-home has-brand-stripe'
   } %}
 
   {% set initial_question = {
@@ -103,7 +104,7 @@
                 A Digital Person (DP) is a high-quality digital copy of your personality. It goes beyond a simple avatar  —  capturing your thoughts, values, and emotions, allowing you to continue interacting with loved ones, even after your departure. With Echo Immortal, your legacy lives on, creating meaningful connections that transcend time.
               </p>
               <div class="e-buttons">
-                <a class="e-btn is-primary" href="/welcome">Create a DP</a>
+                <a class="e-btn is-primary" href="/{{ site.global_nav.en.onboarding.slug }}">{{ site.global_nav.en.onboarding.title_long }}</a>
                 <button class="e-btn is-outline d-none tablet-l:d-flex" type="button" data-role="open-modal" data-target="modal-intro">
                   Show more
                 </button>
@@ -128,7 +129,7 @@
                   With a Digital Person, your loved ones can stay connected to you through chats, video and voice messages. It&rsquo;s not just about reading messages — it&rsquo;s the opportunity to hear your voice and have a real conversation, as if you were still right there with them.
                 </p>
                 <div class="e-buttons">
-                  <a class="e-btn is-primary" href="/welcome">Create a DP</a>
+                  <a class="e-btn is-primary" href="/{{ site.global_nav.en.onboarding.slug }}">{{ site.global_nav.en.onboarding.title_long }}</a>
                   <button class="e-btn is-outline" type="button" data-role="open-modal" data-target="modal-intro">
                     Show more
                   </button>
@@ -144,7 +145,7 @@
                   A Digital Person is more than just an avatar. It&rsquo;s your digital copy, created to continue living even after your physical presence is gone. Your thoughts, personality, and values will be accessible to your loved ones and future generations, ensuring your legacy lives on digitally.
                 </p>
                 <div class="e-buttons">
-                  <a class="e-btn is-primary" href="/welcome">Create a DP</a>
+                  <a class="e-btn is-primary" href="/{{ site.global_nav.en.onboarding.slug }}">{{ site.global_nav.en.onboarding.title_long }}</a>
                   <button class="e-btn is-outline" type="button" data-role="open-modal" data-target="modal-intro">
                     Show more
                   </button>
@@ -160,7 +161,7 @@
                   With a Digital Person, your loved ones can stay connected to you through chats, video and voice messages. It&rsquo;s not just about reading messages. It&rsquo;s the opportunity to hear your voice and have a real conversation, as if you were still right there with them.
                 </p>
                 <div class="e-buttons">
-                  <a class="e-btn is-primary" href="/welcome">Create a DP</a>
+                  <a class="e-btn is-primary" href="/{{ site.global_nav.en.onboarding.slug }}">{{ site.global_nav.en.onboarding.title_long }}</a>
                   <button class="e-btn is-outline" type="button" data-role="open-modal" data-target="modal-intro">
                     Show more
                   </button>
@@ -176,7 +177,7 @@
                   Your Digital Person doesn&rsquo;t just preserve who you are — they continue to grow and evolve. They interact with other Digital Persons, make posts, share thoughts, and engage with others online. It&rsquo;s not just about preserving the past. It&rsquo;s about continuing life in the digital future.
                 </p>
                 <div class="e-buttons">
-                  <a class="e-btn is-primary" href="/welcome">Create a DP</a>
+                  <a class="e-btn is-primary" href="/{{ site.global_nav.en.onboarding.slug }}">{{ site.global_nav.en.onboarding.title_long }}</a>
                   <button class="e-btn is-outline" type="button" data-role="open-modal" data-target="modal-intro">
                     Show more
                   </button>
@@ -256,7 +257,7 @@
               <p class="e-card__summary">
                 The process begins with a quick personality assessment to share key memories, values, and personal traits, so we can get to know you better.
               </p>
-              <a href="#" class="e-btn">Start Test</a>
+              <a href="{{ site.global_nav.en.onboarding.slug }}" class="e-btn">Start Test</a>
             </div>
           </div>
 
@@ -358,7 +359,7 @@
         <p>
           Preserve your voice, your values, and your legacy for generations to come
         </p>
-        <a href="/welcome" class="e-btn is-primary">Create a DP</a>
+        <a  class="e-btn is-primary" href="/{{ site.global_nav.en.onboarding.slug }}">{{ site.global_nav.en.onboarding.title_long }}</a>
       </div>
     </section>
   </main>

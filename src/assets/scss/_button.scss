@@ -58,24 +58,7 @@ a[role='button'] {
 
 // Link: use instead a(href='#') and a(href='javascript:void(0)')
 .e-btn.is-link {
-  appearance: none;
-  background: transparent;
-  border-radius: 0;
-  color: var(--color-ink-link);
-  font: inherit;
-  letter-spacing: inherit;
-  text-align: inherit;
-  padding: 0;
-  transition: filter var(--duration-50) var(--easing-base);
-  vertical-align: baseline;
-  height: auto;
-
-  @media (any-hover: hover) and (pointer: fine) {
-    &:hover {
-      background: transparent;
-      text-decoration: underline;
-    }
-  }
+  @include button-link();
 }
 
 // Icon

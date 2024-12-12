@@ -29,10 +29,24 @@
     padding-top: var(--size-2);
   }
 }
+
+.e-header .e-logo {
+  flex-shrink: 0;
+
+  img {
+    max-width: none;
+  }
+}
+
+.e-header .e-icon {
+  @media (--tablet) {
+    --color-fill-icon: var(--color-bg-base);
+  }
+}
 // #endregion
 
 // -----------------------------------------------------------------------------
-// NAVBAR
+// NAVBAR BASE
 // -----------------------------------------------------------------------------
 // #region
 
@@ -52,7 +66,38 @@
   bottom: 0;
   left: 0;
   z-index: var(--zindex-fixed);
+}
 
+.e-header .e-flayout summary::after {
+  display: none;
+}
+
+.e-header__menu.e-flayout__body {
+  @media (--tablet) {
+    --flayout-body-width: var(--width-sm);
+
+    border: var(--flayout-body-border);
+    align-items: flex-start;
+    padding: var(--padding-x-box);
+    opacity: 1;
+    position: absolute;
+    bottom: auto;
+    transition: translate var(--duration-200) var(--easing-base);
+    translate: 0 -50%;
+    left: auto;
+    z-index: var(--zindex-flayout);
+
+    .e-flayout[open] & {
+      translate: 0;
+    }
+
+    > li {
+      width: 100%;
+    }
+  }
+}
+
+.e-header__menu:not(.e-flayout__body) {
   @media (--tablet) {
     background-color: transparent;
     border-top: 0;
@@ -94,8 +139,13 @@
   }
 }
 
-:where(.e-page.is-home) .e-header__menu-item.is-home,
-:where(.e-page.is-pricing) .e-header__menu-item.is-pricing {
+// :where(.e-page.is-home) .e-header__menu-item.is-home,
+// :where(.e-page.is-pricing) .e-header__menu-item.is-pricing,
+// :where(.e-page.is-profile) .e-header__menu-item.is-profile,
+// :where(.e-page.is-chat) .e-header__menu-item.is-chat,
+// :where(.e-page.is-about) .e-header__menu-item.is-about,
+// :where(.e-page.is-settings) .e-header__menu-item.is-settings
+:where(body:not(:has(.e-search.is-open))) .e-header__menu-item.is-active {
   pointer-events: none;
 
   @media (--phone) {
@@ -112,7 +162,221 @@
     color: var(--color-ink-text);
   }
 }
+
 // #endregion
+
+// -----------------------------------------------------------------------------
+// NAVBAR - PROFILE CONTROLS
+// -----------------------------------------------------------------------------
+// #region
+:where(.e-header) .h2 {
+  display: none;
+
+  @media (--tablet-p-only) {
+    @include text-truncate;
+
+    display: block;
+    font-weight: var(--font-weight-titles);
+    letter-spacing: var(--letter-spacing-h2);
+    padding-top: calc(var(--padding-top-h2) + var(--size-3));
+    padding-inline: var(--size-2);
+  }
+}
+
+.e-header__profile-controls {
+  display: contents;
+
+  .e-btn {
+    transition:
+      background var(--duration-50) var(--easing-base),
+      opacity var(--duration-500) var(--easing-base);
+  }
+
+  @media (--tablet) {
+    display: flex;
+    padding-top: var(--size-3);
+  }
+}
+
+:where(.e-header) .e-flayout.has-notifications {
+  display: none;
+
+  @media (--tablet) {
+    display: block;
+  }
+}
+
+.e-header .e-flayout.is-profile-menu {
+  @media (--phone) {
+    display: contents;
+
+    summary {
+      display: none;
+    }
+  }
+}
+
+:where(.e-header .e-flayout.is-profile-menu) .e-flayout__body.e-header__menu {
+  @media (--phone) {
+    box-shadow: none;
+    border-radius: 0;
+    flex-direction: row;
+    text-align: center;
+    padding-top: calc(var(--size-1) - 0.0625rem);
+    padding-bottom: var(--size-1p5);
+    padding-inline: var(--size-1);
+    width: auto;
+
+    .e-header__menu-item {
+      @include text-truncate();
+
+      border-radius: var(--border-radius-base);
+      gap: var(--size-half);
+      font-size: var(--font-size-caption);
+    }
+  }
+}
+
+:where(.e-header .e-flayout.is-profile-menu) .e-avatar {
+  transition: box-shadow var(--duration-100) var(--easing-base);
+  @media (any-hover: hover) and (pointer: fine) {
+    &:hover {
+      box-shadow: 0 0 0 rem(3) hsl(from var(--color-ink-2ry-brand) h s calc(l + 11));
+    }
+  }
+}
+
+// #endregion
+
+
+// -----------------------------------------------------------------------------
+// LOGGED IN STATE
+// -----------------------------------------------------------------------------
+// #region
+
+.e-header.is-logged-in .e-container {
+  @media (--tablet-p-only) {
+    max-width: none;
+    padding-top: 0;
+    padding-inline-start: 0;
+  }
+}
+
+:where(.e-header.is-logged-in) {
+  @media (--tablet-p-only) {
+    .e-logo {
+      background-color: var(--color-bg-base-alpha);
+      border-inline-end: 1px solid var(--color-ink-border);
+      padding-top: var(--size-2);
+      overflow: hidden;
+      width: rem(80);
+
+      img {
+        translate: -1 * rem(8);
+      }
+    }
+
+    .h2 {
+      padding-top: calc(var(--padding-top-h2) + var(--size-5));
+    }
+
+    .e-header__profile-controls {
+      padding-top: var(--size-5);
+    }
+  }
+}
+
+// #endregion
+
+// -----------------------------------------------------------------------------
+// SEARCH
+// -----------------------------------------------------------------------------
+// #region
+:where(.e-header) .e-search {
+
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  opacity: 0;
+  transition:
+    translate var(--duration-200) var(--easing-base),
+    opacity var(--duration-200) var(--easing-base);
+  translate: 0 -100%;
+
+  &.is-open {
+    opacity: 1;
+    translate: 0 0;
+  }
+
+  .e-btn {
+    aspect-ratio: 1;
+    padding: 0;
+    height: 100%;
+
+    &,
+    &:hover {
+      background-color: transparent;
+    }
+  }
+
+  @media (--tablet) {
+    align-self: flex-start;
+    background-color: var(--color-bg-base);
+    border-radius: calc(var(--border-radius-sm) + var(--size-1));
+    box-shadow: var(--box-shadow-level-01);
+    padding: var(--size-1);
+    max-width: 40%;
+
+    &.is-open {
+      translate: 0 var(--size-4);
+    }
+  }
+}
+
+[data-role='search-toggle'] .e-icon {
+  transition:
+    rotate var(--duration-100) var(--easing-base),
+    opacity var(--duration-100) var(--easing-base);
+
+    &.is-sm-x-mark {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      rotate: -45deg;
+      translate: -50% -50%;
+      opacity: 0;
+    }
+}
+
+body:has(.e-search.is-open) [data-role='search-toggle'] {
+
+  @media (--phone) {
+    background-color: var(--color-bg-success);
+
+    .e-icon {
+      --color-fill-icon: var(--color-bg-base);
+      --color-stroke-icon: var(--color-ink-2ry-success);
+    }
+  }
+
+  @media (--tablet) {
+    .e-icon.is-search {
+      opacity: 0;
+    }
+
+    .e-icon.is-sm-x-mark {
+      opacity: 1;
+      rotate: 0deg;
+    }
+  }
+}
+
+// #endregion
+
+// -----------------------------------------------------------------------------
+// NOTIFICATIONS: @see _notifications
+// -----------------------------------------------------------------------------
 
 // -----------------------------------------------------------------------------
 // ONBOARDING CONTROLS

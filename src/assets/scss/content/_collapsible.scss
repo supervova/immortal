@@ -1,0 +1,15 @@
+@use 'abstracts' as *;
+
+.e-collapsible__body > span {
+  display: none;
+}
+
+.e-collapsible__toggle {
+  @include button-link();
+
+  // stylelint-disable-next-line no-duplicate-selectors
+  & {
+    color: var(--color, var(--color-ink-2ry));
+    font-weight: var(--font-weight-titles-max);
+  }
+}

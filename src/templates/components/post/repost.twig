@@ -1,0 +1,16 @@
+{% if post.repost %}
+  <section class="repost" aria-label="Repost from {{ post.repost.source }}">
+    <a href="{{ post.repost.link }}" rel="noopener noreferrer" target="_blank">
+      {% if post.repost.image %}
+        <img src="{{ post.repost.image }}" loading="lazy" alt="{{ post.repost.title }}">
+      {% endif %}
+      <div class="repost__content">
+        <span class="repost__source">{{ post.repost.source }}</span>
+        {% if post.repost.title %}
+          <h3 class="repost__title">{{ post.repost.title }}</h3>
+        {% endif %}
+        <div class="repost__base">{{ post.repost.base|truncate(100) }}</div>
+      </div>
+    </a>
+  </section>
+{% endif %}

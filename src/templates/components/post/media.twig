@@ -1,0 +1,20 @@
+{% if post.media.type == 'image' and post.media.items %}
+  <figure class="e-post__media">
+    {% for image in post.media.items %}
+      <a href="{{ post.link }}">
+        <img
+          src="{{ image.src }}"
+          loading="lazy"
+          alt="{{ image.alt }}"
+        >
+      </a>
+    {% endfor %}
+  </figure>
+{% elseif post.media.type == 'video' %}
+  <figure class="e-post__media">
+    <video
+      src="{{ post.media.src }}"
+      controls
+    ></video>
+  </figure>
+{% endif %}

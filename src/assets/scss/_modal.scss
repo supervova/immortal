@@ -128,19 +128,13 @@
   height: max-content;
 
   &::before {
-    background:
-      linear-gradient(
-        rgb(255 255 255 / 0.5),
-        rgb(255 255 255 / 0.16) 49.9%,
-        rgb(255 255 255 / 0) 50%),
-        linear-gradient(90deg, var(--color-gradient-brand));
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: var(--size-1p5);
-    z-index: var(--zindex-fixed);
+    @include brand-stripe(
+      $position: absolute,
+      $top: 0,
+      $left: 0,
+      $width: 100%,
+      $height: var(--size-1p5)
+    );
   }
 
   @media (--tablet) {

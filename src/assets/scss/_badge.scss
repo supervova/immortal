@@ -1,0 +1,31 @@
+@use 'abstracts' as *;
+
+.e-badge {
+  background-color: hsl(from var(--color-ink-2ry-brand) h calc(s - 40) calc(l + 12));
+  border-radius: var(--border-radius-pill);
+  box-shadow: var(--box-shadow-level-01);
+  font-size: var(--font-size-caption);
+  font-weight: var(--font-weight-titles);
+  line-height: 1;
+  color: var(--color-ink-text-inverse);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: var(--size-half);
+  margin-inline-start: var(--size-half);
+  padding: 2px var(--size-1);
+  min-width: var(--size-line);
+  height: var(--size-line);
+
+  [role='menuitem'] & {
+    margin-left: auto;
+    margin-inline-start: auto;
+  }
+
+  /* sup */&.is-sup {
+    margin: 0;
+    position: absolute;
+    right: calc(-1 * var(--size-half));
+    top: calc(-1 * var(--size-1));
+  }
+}

@@ -1,8 +1,8 @@
 {# Using:
 {% from "base/macros.twig" import icon %}
 
-{{ icon('like') }}
-{{ icon('share', 'is-lg') }} #}
+{{ _self.icon('like') }}
+{{ _self.icon('share', 'is-lg') }} #}
 
 {# Icon #}
 {% macro icon(name, classes='') %}
@@ -64,5 +64,36 @@
       <p itemprop="description">{{ summary }}</p>
     </div>
   </article>
+{% endmacro %}
+
+{# DP Menu #}
+{% macro menu_dp(menuItems, user, baseClasses = 'e-menu', itemClasses = 'e-menu__item', addSearch = false) %}
+  <ul class="{{ baseClasses }}">
+    {% for key, item in menuItems %}
+      <li {% if item.classes %}class="{{ item.classes }}"{% endif %}>
+        {% if item.type == 'button' and addSearch %}
+          <button
+            class="{{ itemClasses }} is-{{ key }}"
+            type="button"
+            data-role="{{ item.role }}"
+            data-target="{{ item.target }}"
+          >
+            {% set icon_output = _self.icon(item.icon) %}
+            {{ icon_output }}
+            {{ item.title }}
+          </button>
+        {% else %}
+          <a
+            class="{{ itemClasses }} is-{{ key }}"
+            href="/dp/{{ user.slug }}-{{ user.id }}{{ item.href }}"
+          >
+            {% set icon_output = _self.icon(item.icon) %}
+            {{ icon_output }}
+            {{ item.title }}
+          </a>
+        {% endif %}
+      </li>
+    {% endfor %}
+  </ul>
 {% endmacro %}
 

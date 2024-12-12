@@ -42,7 +42,9 @@ h2, .h2 {
 
 h3, .h3 {
   @include text-format(h3);
+
   font-weight: var(--font-weight-h3, bold);
+  letter-spacing: var(--letter-spacing-h3);
 }
 
 // -----------------------------------------------------------------------------
@@ -53,6 +55,7 @@ h4, .h4,
 h5, h6 {
   @include text-format(base);
   font-weight: var(--font-weight-h4, bold);
+  letter-spacing: var(--letter-spacing-base);
 }
 
 // -----------------------------------------------------------------------------

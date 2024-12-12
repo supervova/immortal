@@ -1,12 +1,116 @@
-{% from "base/macros.twig" import icon %}
+{% from "base/macros.twig" import icon, menu_dp %}
 
-<header class="e-header">
+<header class="e-header{% if user_id > 0 or user.id %} is-logged-in{% endif %}">
   <div class="e-container">
-    <a href="/" class="e-logo">
+    <a class="e-logo" href="/">
       <img src="/assets/img/components/logo.svg" alt="Echo Immortal">
     </a>
 
-    {% if page.is_onboarding_start %}
+    {% if user_id > 0 or user.id %}
+      <h1 class="h2">
+        {{ user.name }} DP
+      </h1>
+
+      <form class="e-search" id="header-search" role="search" aria-label="Search the website" action="/search" method="get">
+        <label class="visually-hidden" for="input-search-query">Search:</label>
+        <p>
+          <input
+            id="input-search-query"
+            name="q"
+            type="search"
+            placeholder="Search"
+            required
+          >
+          <button class="e-btn" type="submit" aria-label="Submit search">
+            {{ icon('search') }}
+          </button>
+        </p>
+      </form>
+
+      <nav class="e-header__profile-controls">
+        <button class="e-btn is-ghost is-icon d-none tablet:d-inline-flex" type="button" data-role="search-toggle" data-target="header-search" aria-label="search">
+          {{ icon('search') }}
+          {{ icon('sm-x-mark', 'is-sm') }}
+        </button>
+
+        <details class="e-flayout has-notifications" data-role="flayout">
+          <summary>
+            {{ icon('bell') }}
+            <sup
+              class="e-badge is-sup"
+              aria-live="polite"
+              role="status"
+              aria-label="
+                You have {{ notifications_count }}
+                {% if notifications_count == 0 %}
+                  not new notifications
+                {% elseif notifications_count == 1 %}
+                  a new notification
+                {% else %}
+                  {{ notifications_count }} new notifications
+                {% endif %}
+            ">
+              {% if notifications_count > 99 %}
+                99+
+              {% else %}
+                {{ notifications_count }}
+              {% endif %}
+            </sup>
+          </summary>
+          {% if notifications is defined and notifications is not empty %}
+            <ul class="e-flayout__body e-notifications">
+              {% for notification in notifications %}
+                <li class="e-notification {{ notification.unread ? 'is-unread' : '' }}">
+                  {% include 'components/avatar.twig' with {
+                    src: notification.avatar,
+                    name: notification.name
+                  } %}
+                  <p class="e-notification__copy">
+                      <a class="e-notification__link" href="{{ notification.link }}">
+                        <strong>{{ notification.name }}</strong>
+                        {{ notification.action }}
+                      </a>
+                      <span class="e-notification__byline">
+                        <time datetime="{{ notification.datetime }}">{{ notification.time }}</time> •
+                        <em class="e-notification__type">{{ notification.type }}</em>
+                      </span>
+
+                      {% if notification.actions is defined %}
+                        <span class="e-notification__actions">
+                          {% for action in notification.actions %}
+                            <button
+                              class="e-btn {{ action.primary is defined and action.primary ? 'is-primary' : '' }}"
+                              type="button"
+                              data-action="{{ action.action }}"
+                            >
+                              {{ action.text }}
+                            </button>
+                          {% endfor %}
+                        </span>
+                      {% endif %}
+                  </p>
+                </li>
+              {% endfor %}
+            </ul>
+          {% else %}
+            <div class="e-flayout__body text-center">
+              📭  You have no new notifications
+            </div>
+          {% endif %}
+        </details>
+
+        <details class="e-flayout is-profile-menu" id="header-profile-menu" data-role="flayout">
+          <summary>
+            {% include 'components/avatar.twig' with {
+                src: user.avatar,
+                name: user.name,
+                tag: 'span'
+            } %}
+          </summary>
+          {{ menu_dp(menu, user, 'e-flayout__body e-header__menu', 'e-header__menu-item e-menu__item', true) }}
+        </details>
+      </nav>
+    {% elseif page.is_onboarding_start %}
       <p class="e-header__login-cta">
         Already have an account?
         <button class="e-btn is-link" type="button" data-role="open-modal" data-target="signin">
@@ -39,15 +143,15 @@
             </a>
           </li>
           <li>
-            <a class="e-header__menu-item e-btn is-ghost is-pricing" href="/pricing">
+            <a class="e-header__menu-item e-btn is-ghost is-pricing" href="/{{ site.global_nav.en.pricing.slug }}">
               {{ icon('price', 'tablet:d-none') }}
-              <span class="tablet:d-none">Price</span>
-              <span class="d-none tablet:d-inline">Pricing</span>
+              <span class="tablet:d-none">{{ site.global_nav.en.pricing.title }}</span>
+              <span class="d-none tablet:d-inline">{{ site.global_nav.en.pricing.title_long }}</span>
             </a>
           </li>
           <li class="tablet:d-none">
-            <a class="e-header__menu-item is-welcome" href="/welcome">
-              {{ icon('add') }} Create
+            <a class="e-header__menu-item is-welcome" href="/{{ site.global_nav.en.onboarding.slug }}">
+              {{ icon('add') }} {{ site.global_nav.en.onboarding.title }}
             </a>
           </li>
           <li>

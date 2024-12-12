@@ -1,0 +1,20 @@
+{% set avatar = {
+  src: src|default(null),
+  name: name|default(''),
+  modifier: modifier|default(''),
+  tag: tag|default('figure')
+} %}
+
+<{{ avatar.tag }}
+  class="e-avatar {{ avatar.modifier }}"
+  data-initials="{{ avatar.name|slice(0, 1)|upper }}"
+>
+  {% if avatar.src %}
+    <span class="e-avatar__overlay"></span>
+    <img
+      src="{{ avatar.src }}"
+      onerror="this.style.display='none';"
+      alt="Avatar of {{ avatar.name }}"
+    >
+  {% endif %}
+</{{ avatar.tag }}>

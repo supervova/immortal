@@ -1,5 +1,8 @@
 {
   "lang": "en",
+  "title_short": {
+    "en": " Echo Immortal"
+  },
   "title": {
     "en": "Echo Immortal — Create Your Digital Legacy with an AI Twin"
   },
@@ -12,8 +15,62 @@
   "fonts": {
     "google": "Inter:wght@300;400;600"
   },
+  "global_nav": {
+    "en": {
+      "about": {
+        "title": "About",
+        "slug": "about"
+      },
+      "agreement": {
+        "title": "Agreement",
+        "slug": "agreement"
+      },
+      "blog": {
+        "title": "Blog",
+        "slug": "blog"
+      },
+      "careers": {
+        "title": "Careers",
+        "slug": "careers"
+      },
+      "checkout": {
+        "title": "Checkout",
+        "slug": "checkout"
+      },
+      "contact": {
+        "title": "Contact",
+        "slug": "contact"
+      },
+      "faq": {
+        "title": "FAQ",
+        "slug": "frequently-asked-questions"
+      },
+      "onboarding": {
+        "title": "Create",
+        "title_long": "Create a DP",
+        "slug": "welcome"
+      },
+      "pricing": {
+        "title": "Price",
+        "title_long": "Pricing",
+        "slug": "pricing"
+      },
+      "privacy": {
+        "title": "Privacy",
+        "title_long": "Privacy Policy",
+        "slug": "privacy"
+      },
+      "terms": {
+        "title": "Terms",
+        "title_long": "Terms and Conditions",
+        "slug": "terms"
+      }
+    }
+  },
   "social": {
-    "facebook": "echo-immortal"
+    "facebook": "echo-immortal",
+    "instagram": "echo.immortal",
+    "x": "EchoImmortal"
   },
   "google_tag_manager": false
 }

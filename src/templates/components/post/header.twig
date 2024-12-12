@@ -1,0 +1,17 @@
+<header>
+  <h2 class="visually-hidden">{{ post.author.name }}'s post</h2>
+  <div class="e-post__header">
+    {% include 'components/avatar.twig' with {
+      src: post.author.avatar,
+      name: post.author.name
+    } %}
+    <p class="e-post__byline">
+      <a href="{{ post.author.page }}">{{ post.author.name }}</a>
+      <time datetime="{{ post.date.machine }}">
+        {{ post.date.human }}
+      </time>
+    </p>
+  </div>
+
+  {% include 'components/post/menu.twig' %}
+</header>

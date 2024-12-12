@@ -23,7 +23,13 @@ form p,
 form > div:not([class]) {
   position: relative;
   padding: 0;
+  width: 100%;
 }
+
+form p:last-of-type {
+  margin-bottom: 0;
+}
+
 
 // -----------------------------------------------------------------------------
 // LEGEND AND LABELS
