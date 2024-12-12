@@ -197,6 +197,11 @@
   }
 }
 
+:where(.repost:has(:not(img))) .repost__content {
+  border-top-right-radius: var(--border-radius-md);
+  border-top-left-radius: var(--border-radius-md);
+}
+
 .repost__source {
   @include text-format(caption);
 

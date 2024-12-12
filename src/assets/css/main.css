@@ -3808,6 +3808,10 @@
       padding-inline: var(--size-2);
     }
   }
+  :where(.repost:has(:not(img))) .repost__content {
+    border-top-right-radius: var(--border-radius-md);
+    border-top-left-radius: var(--border-radius-md);
+  }
   .repost__source {
     font-size: var(--font-size-caption);
     line-height: var(--line-height-caption);

@@ -86,7 +86,7 @@ const paths = {
       twig: [
         `${srcBase}/templates/**/*.twig`,
         `!${srcBase}/templates/base/*.twig`,
-        `!${srcBase}/templates/components/*.twig`,
+        `!${srcBase}/templates/components/**/*.twig`,
       ],
     },
     watch: [`${srcBase}/templates/**/*.twig`, `${destAssets}/css/home.css`],

@@ -4324,6 +4324,14 @@
       padding-inline:var(--size-2);
     }
   }
+  .js-has-pseudo :where([csstools-has-1a-36-2t-34-33-37-38-1m-2w-2p-37-14-1m-32-33-38-14-2x-31-2v-15-15]:not(does-not-exist)) .repost__content{
+    border-top-right-radius:var(--border-radius-md);
+    border-top-left-radius:var(--border-radius-md);
+  }
+  :where(.repost:has(:not(img))) .repost__content{
+    border-top-right-radius:var(--border-radius-md);
+    border-top-left-radius:var(--border-radius-md);
+  }
   .repost__source{
     font-size:var(--font-size-caption);
     line-height:var(--line-height-caption);
