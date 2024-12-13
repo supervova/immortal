@@ -4,20 +4,20 @@ function initCollapsibleText() {
   const textMore = "More";
   const textLess = "Less";
   const collapsibleText = document.querySelectorAll(".e-collapsible");
-  collapsibleText.forEach((element) => {
+  collapsibleText.forEach((input) => {
+    const element = input;
     const content = element.innerHTML;
     if (content.length > showChar) {
       const visibleText = content.slice(0, showChar);
       const hiddenText = content.slice(showChar);
       const html = `
-        ${visibleText}\u2026
+        <span class="e-collapsible__visible">${visibleText}\u2026</span>
         <span class="e-collapsible__body">
-          <span>${hiddenText}</span>&nbsp;
+          <span class="e-collapsible__hidden">${hiddenText}</span>
           <button class="e-collapsible__toggle" type="button">${textMore}</button>
         </span>
       `;
-      const newElement = element;
-      newElement.innerHTML = html;
+      element.innerHTML = html;
     }
   });
   document.addEventListener("click", (event) => {
@@ -25,17 +25,22 @@ function initCollapsibleText() {
     if (target.classList.contains("e-collapsible__toggle")) {
       event.preventDefault();
       const collapsibleToggle = target;
-      const moreContent = collapsibleToggle.previousElementSibling;
-      const ellipses = collapsibleToggle.parentElement.previousElementSibling;
+      const collapsibleBody = collapsibleToggle.closest(".e-collapsible__body");
+      const hiddenContent = collapsibleBody.querySelector(
+        ".e-collapsible__hidden"
+      );
+      const visibleContent = collapsibleBody.previousElementSibling;
       if (collapsibleToggle.classList.contains("is-less")) {
         collapsibleToggle.classList.remove("is-less");
         collapsibleToggle.textContent = textMore;
+        hiddenContent.style.display = "none";
+        visibleContent.style.display = "inline";
       } else {
         collapsibleToggle.classList.add("is-less");
         collapsibleToggle.textContent = textLess;
+        hiddenContent.style.display = "inline";
+        visibleContent.style.display = "none";
       }
-      moreContent.style.display = moreContent.style.display === "none" ? "inline" : "none";
-      ellipses.style.display = ellipses.style.display === "none" ? "inline" : "none";
     }
   });
 }
@@ -85,8 +90,12 @@ function initFlayouts() {
   const flayouts = Array.from(
     document.querySelectorAll('[data-role="flayout"]')
   );
+  const profileMenuId = "header-profile-menu";
   document.addEventListener("click", (event) => {
     flayouts.forEach((el) => {
+      if (el.id === profileMenuId && window.innerWidth < 768) {
+        return;
+      }
       if (!el.contains(event.target)) {
         el.removeAttribute("open");
       }

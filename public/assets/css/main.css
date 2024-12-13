@@ -3379,6 +3379,7 @@
     -webkit-box-direction:normal;
     -ms-flex-direction:column;
     flex-direction:column;
+    text-align:left;
     margin-bottom:0;
     padding:var(--size-2p5);
     max-width:12rem;
@@ -4158,6 +4159,14 @@
   }
   :where(.e-posts > header) .h3 span{
     font-weight:400;
+  }
+  .e-posts__tabs{
+    display:none;
+  }
+  @media only screen and (min-width: 568px){
+    .e-posts__tabs{
+      display:block;
+    }
   }
   .e-posts__tabs .e-btn{
     --height-btn:var(--size-6);

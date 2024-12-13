@@ -25,21 +25,27 @@
 }
 
 .e-posts__tabs {
-  .e-btn {
-    --height-btn: var(--size-6);
+  display: none;
 
-    &[aria-selected='true'] {
-      color: var(--color-ink-text);
-      pointer-events: none;
+  @media (--phone-l) {
+    display: block;
+  }
+}
 
-      &:hover {
-        background-color: transparent;
-      }
+.e-posts__tabs .e-btn {
+  --height-btn: var(--size-6);
+
+  &[aria-selected='true'] {
+    color: var(--color-ink-text);
+    pointer-events: none;
+
+    &:hover {
+      background-color: transparent;
     }
+  }
 
-    @media (--laptop) {
-      --height-btn: var(--size-5);
-    }
+  @media (--laptop) {
+    --height-btn: var(--size-5);
   }
 }
 // #endregion
