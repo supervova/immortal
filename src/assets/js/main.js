@@ -1,12 +1,12 @@
 import initCollapsibleText from './collapsibleText.js';
 import initDrawer from './drawer.js';
-import initFlayouts from './flayout.js';
+import initFlyouts from './flyout.js';
 import initModals, { openModal } from './modal.js';
 import initTextareaAutoResize from './chat.js';
 import { initProfileMenuHandler, initSearchHandler } from './header.js';
 
 document.addEventListener('DOMContentLoaded', () => {
-  initFlayouts();
+  initFlyouts();
   initModals();
   initDrawer();
   initSearchHandler();

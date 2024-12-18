@@ -63,20 +63,20 @@ a[role='button'] {
 
 // Icon
 .e-btn.is-icon {
-  --height-btn: var(--size-7);
+  --btn-height: var(--size-7);
 
   padding: 0;
-  width: var(--height-btn);
+  width: var(--btn-height);
 }
 
 // Close
 .e-btn.is-close {
-  --height-btn: var(--size-5);
+  --btn-height: var(--size-5);
 
   border-radius: var(--border-radius-pill);
   backdrop-filter: var(--backdrop-filter-blur);
   padding: 0;
-  width: var(--height-btn);
+  width: var(--btn-height);
   z-index: var(--zindex-fixed);
 
   // Expanded clickable area

@@ -20,7 +20,8 @@ fieldset {
 
 // Input container
 form p,
-form > div:not([class]) {
+form > div:not([class]),
+.e-form__control {
   position: relative;
   padding: 0;
   width: 100%;
@@ -28,6 +29,20 @@ form > div:not([class]) {
 
 form p:last-of-type {
   margin-bottom: 0;
+}
+
+.e-form__control.is-compact {
+  .e-label.is-icon {
+    position: absolute;
+    top: var(--size-half);
+    inset-inline-start: var(--size-2);
+    width: var(--size-icon);
+    height: var(--size-icon);
+  }
+
+  :--text-field {
+    padding-inline-start: var(--size-6);
+  }
 }
 
 
@@ -99,9 +114,8 @@ textarea {
   hanging-punctuation: none;
 }
 
-select,
-textarea,
-input:not([type='checkbox']):not([type='radio']):not([type='submit']):not([type='reset']):not([type='range']) {
+:--text-field,
+[type='search'] {
   appearance: none;
   background-color: var(--color-bg-2ry);
   border: 0;
@@ -128,9 +142,7 @@ input:not([type='checkbox']):not([type='radio']):not([type='submit']):not([type=
   }
 }
 
-select,
-textarea,
-input:not([type='checkbox']):not([type='radio']):not([type='submit']):not([type='reset']):not([type='search']) {
+:--text-field {
   border-radius: var(--border-radius-sm);
   padding-inline: var(--padding-x-input);
 }

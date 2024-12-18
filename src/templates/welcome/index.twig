@@ -10,6 +10,7 @@
     title: 'Create Your Digital Person — Echo Immortal',
     desc: 'Start creating your Digital Person by sharing your memories, values, and personality traits. Our simple onboarding process helps craft an AI avatar that reflects who you truly are.',
     user_email: 'vladimir.nikishin@gmail.com',
+    link: site.url ~ '/welcome'
   } %}
 
   {% set questions = [
@@ -26,7 +27,8 @@
 {# MAIN CONTENT ------------------------------------------------------------- #}
 {% block content %}
 
-  <main class="e-main is-flex-column">
+  <main
+    class="e-main is-flex-column">
     {# Progress component #}
 
     <div class="e-messages is-centering">
@@ -66,11 +68,66 @@
 {% block body_suffix %}
   {{ parent() }}
 
+  <dialog class="e-modal is-signin" id="modal-signin">
+    <div class="e-modal__base is-small">
+      <header class="mb-2">
+        {{ icon('mail', 'is-large') }}
+        <h2 class="h3">Sign in with email</h2>
+        <p class="text-2ry">Train and control your digital person</p>
+      </header>
+      <form class="e-modal__body" action="/sign-in" novalidate>
+        <p class="e-form__control is-compact">
+          <label class="e-label is-icon" for="input-email" aria-label="Your email">
+            {{ icon('mail') }}
+          </label>
+          <input id="input-email" name="email" type="email" autocomplete="email" required placeholder="Email address">
+          <span class="e-form__error">
+            <small role="alert">Please enter a valid email address.</small>
+          </span>
+        </p>
+        <p class="e-form__control is-compact is-password">
+          <label class="e-label is-icon" for="input-password" aria-label="Your password">
+            {{ icon('lock') }}
+          </label>
+          <input id="input-password" name="password" type="password" autocomplete="off" required placeholder="Password">
+          <span class="e-form__error">
+            <small role="alert">Your password must be at least 8 characters long and include at least one letter and one number.</small>
+          </span>
+          <button class="e-btn is-icon is-ghost" type="button" aria-label="Show/hide password">
+            {{ icon('eye-slash') }}
+            {{ icon('eye', 'd-none') }}
+          </button>
+        </p>
+        <button class="e-btn is-primary w-100" type="submit" disabled>Sign in</button>
+      </form>
+      <footer>
+        <small role="separator">Or authorize with</small>
+        <div class="e-buttons">
+          <button class="e-btn is-outline" type="submit" data-action="authorization-google" aria-label="Authorize with Google" >
+            {{ icon('brand-google') }}
+          </button>
+          <button class="e-btn is-outline" type="submit" data-action="authorization-google" aria-label="Authorize with Google" >
+            {{ icon('brand-facebook') }}
+          </button>
+          <button class="e-btn is-outline" type="submit" data-action="authorization-google" aria-label="Authorize with Google" >
+            {{ icon('brand-apple') }}
+          </button>
+        </div>
+        <p class="e-modal__cta">
+          <strong> <a href="/welcome">Sign up</a></strong>
+          <a href="/recovery">Forgot password?</a>
+        </p>
+      </footer>
+    </div>
+  </dialog>
+
   <div class="e-modal is-freewall" id="freewall">
     <form class="e-modal__base is-small" id="form-confirmation" action="/welcome">
       <div class="e-modal__body">
         {{ icon('mail') }}
-        <h2>Please enter the code sent to <strong>{{ user_email }}</strong></h2>
+        <h2>Please enter the code sent to
+          <strong>{{ user_email }}</strong>
+        </h2>
         <fieldset class="d-flex">
           <input type="number">
           <input type="number">
@@ -87,13 +144,56 @@
   </div>
 
   <script>
+
+    /** Authorization */
+    document.addEventListener('DOMContentLoaded', () => {
+      const emailInput = document.querySelector('#input-email');
+      const passwordInput = document.querySelector('#input-password');
+      const submitButton = document.querySelector("button[type='submit'].is-primary");
+      const passwordToggleButton = document.querySelector('.e-form__control.is-password .e-btn');
+      const eyeSlashIcon = document.querySelector('.e-icon.is-eye-slash');
+      const eyeIcon = document.querySelector('.e-icon.is-eye');
+
+      // Регулярные выражения для проверки email и пароля
+      const emailPattern = /^[^\s@]+@[^\s@]+\.[a-zA-Z]{2,}$/;
+      const passwordPattern = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
+
+      // Функция для проверки валидности формы
+      function checkFormValidity() {
+        const isEmailValid = emailPattern.test(emailInput.value);
+        const isPasswordValid = passwordPattern.test(passwordInput.value);
+
+        // Разблокировать или заблокировать кнопку отправки
+        submitButton.disabled = !(isEmailValid && isPasswordValid);
+      }
+
+      // Слушатели событий для проверки валидации при вводе
+      emailInput.addEventListener('input', checkFormValidity);
+      passwordInput.addEventListener('input', checkFormValidity);
+
+      // Переключение видимости пароля
+      passwordToggleButton.addEventListener('click', () => {
+        const isPasswordVisible = passwordInput.type === 'text';
+
+        // Переключить тип поля
+        passwordInput.type = isPasswordVisible ? 'password' : 'text';
+
+        // Переключить классы у иконок
+        eyeSlashIcon.classList.toggle('d-none', !isPasswordVisible);
+        eyeIcon.classList.toggle('d-none', isPasswordVisible);
+      });
+
+      // Начальная проверка валидности
+      checkFormValidity();
+    });
+
+    /** Control of verification code completion */
     document.addEventListener('DOMContentLoaded', () => {
       const form = document.getElementById('form-confirmation');
       const inputs = form.querySelectorAll('input[type="number"]');
       const submitButton = form.querySelector('button[type="submit"]');
 
-      inputs.forEach((input, index) => {
-        // Ограничение ввода до 1 символа
+      inputs.forEach((input, index) => { // Ограничение ввода до 1 символа
         input.addEventListener('input', () => {
           input.value = input.value.slice(0, 1);
 
@@ -117,25 +217,25 @@
       // Проверка, заполнены ли все поля
       function checkFormCompletion() {
         const allFilled = Array.from(inputs).every((input) => input.value !== '');
-        submitButton.disabled = !allFilled;
+        submitButton.disabled = ! allFilled;
       }
 
       // Запрет на отправку формы, если не все поля заполнены
       form.addEventListener('submit', (e) => {
         const allFilled = Array.from(inputs).every((input) => input.value !== '');
-        if (!allFilled) {
+        if (! allFilled) {
           e.preventDefault();
         }
       });
+    });
 
-      // Open freewall
-      document
-        .querySelector('[data-role="open-overlay"]')
-        .addEventListener('click', (event) => {
-          const trigger = event.currentTarget;
-          const overlay = trigger.getAttribute('data-target');
-          document.getElementById(overlay).classList.add('is-open');
-        });
+    /** Open freewall */
+    document.addEventListener('DOMContentLoaded', () => {
+      document.querySelector('[data-role="open-overlay"]').addEventListener('click', (event) => {
+        const trigger = event.currentTarget;
+        const overlay = trigger.getAttribute('data-target');
+        document.getElementById(overlay).classList.add('is-open');
+      });
     });
   </script>
 {% endblock %}

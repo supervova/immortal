@@ -15,7 +15,8 @@
   (-webkit-min-device-pixel-ratio: 1.25),
   (min-resolution: 1.25dppx),
   (min-resolution: 120dpi);
-@custom-selector :--text-field :where(input:not([type="checkbox"]):not([type="radio"]), select, textarea):not(:focus);
+@custom-selector :--text-field select, textarea, .form__text-input, input[type="text"], input[type="email"], input[type="password"], input[type="number"], input[type="url"], input[type="tel"], input[type="date"];
+@custom-selector :--text-field-blur :where(input:not([type="checkbox"]):not([type="radio"]), select, textarea):not(:focus);
 .e-slideshow {
   position: relative;
 }

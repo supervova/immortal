@@ -16,6 +16,7 @@
     lang: 'en',
     title: 'Personal page of %s\'s Digital Person'|format(user.name),
     desc: 'Meet the Digital Person of %s — an AI-crafted reflection of their unique personality and style. Discover how their digital twin can bring their voice and character to life online.'|format(user.name),
+    link: site.url ~ '/dp/' ~ user.slug ~ '-' ~ user.id,
     body_classes: 'e-page is-profile'
   } %}
 

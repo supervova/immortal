@@ -50,14 +50,16 @@
   @include meta.load-css('content/collapsible');
   @include meta.load-css('content/main');
   @include meta.load-css('content/table');
-  @include meta.load-css('flayout');
+  @include meta.load-css('flyout');
   @include meta.load-css('footer');
   @include meta.load-css('form/range');
   @include meta.load-css('form/search');
+  @include meta.load-css('form/validation');
   @include meta.load-css('header');
   @include meta.load-css('kpi');
   @include meta.load-css('menu');
   @include meta.load-css('modal');
+  @include meta.load-css('modal-signin');
   @include meta.load-css('navbar');
   @include meta.load-css('notifications');
   @include meta.load-css('post');
@@ -87,7 +89,6 @@
   // Form
   @include meta.load-css('form/date-time');
   @include meta.load-css('form/file');
-  @include meta.load-css('form/validation');
 
 
   // Show | Hide

@@ -7,7 +7,7 @@
 // -----------------------------------------------------------------------------
 // #region
 
-:--text-field:user-invalid {
+:--text-field-blur:user-invalid {
   box-shadow: 0 0 0 rem(2) var(--color-base-error);
 
   // Show error message
@@ -40,7 +40,8 @@
 }
 
 // Ensure proper padding around error messages
-.e-form__error > span {
+.e-form__error > span,
+.e-form__error > small {
   display: block;
   padding-top: calc(var(--padding-top-caption) + var(--size-half));
   padding-bottom: var(--padding-bottom-caption);

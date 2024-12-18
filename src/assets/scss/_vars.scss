@@ -178,7 +178,7 @@
   --padding-y-btn:       0;
   --padding-x-btn:       var(--size-2p5);
 
-  --height-btn:          var(--size-7);
+  --btn-height:          var(--size-7);
 
   --padding-x-input:     var(--size-2);
   --padding-y-input:     #{rem(5)};
@@ -207,7 +207,7 @@
   --zindex-sticky:  10;
   --zindex-fixed:   20;  // including app/nav bar
   --zindex-fab:     30;
-  --zindex-flayout: 40;
+  --zindex-flyout: 40;
   --zindex-tooltip: 50;
   --zindex-drawer:  70;
   --zindex-modal:   80;
@@ -218,10 +218,10 @@
 
   --width-sm:        #{rem(272)};
 
-  // Flayouts, tablet and desktop drawers, alerts (.e-modal.is-sm) on landscape phones
+  // Flyouts, tablet and desktop drawers, alerts (.e-modal.is-sm) on landscape phones
   --width-base:      #{rem(320)};
 
-  // Wide drawers, alerts (.e-modal.is-sm), flayouts on tablets and up
+  // Wide drawers, alerts (.e-modal.is-sm), flyouts on tablets and up
   --width-md:        #{rem(448)};
 
   // Default modals on landscape phones and up
@@ -249,7 +249,7 @@
     0 1px 2px hsl(var(--color-shadow) / var(--shadow-opacity-low, 0.06)),
     0 2px 4px -1px hsl(var(--color-shadow) / var(--shadow-opacity-low, 0.06));
 
-  // Overlays: Flayouts, Tooltips, Drawers, Dropdowns, Pickers,
+  // Overlays: Flyouts, Tooltips, Drawers, Dropdowns, Pickers,
   // Modal Bottom Sheets, FAB hover
   --box-shadow-level-02:
     0 0 0.5px 1px var(--color-alpha-light-min),

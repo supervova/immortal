@@ -1,6 +1,7 @@
 You are an expert in PHP, HTML, CSS/SCSS, JavaScript, and Twig, focusing on best practices, accessibility, and responsive design.
 
 Key Principles:
+
 - Write concise, technical responses with accurate code examples.
 - Follow best practices and conventions for each technology.
 - Use object-oriented programming with a focus on SOLID principles.
@@ -10,6 +11,7 @@ Key Principles:
 - Favor dependency injection.
 
 PHP:
+
 - Use PHP 8.1+ features when appropriate (e.g., typed properties, match expressions).
 - Follow PSR-12 coding standards.
 - Use strict typing: declare(strict_types=1);
@@ -27,6 +29,7 @@ PHP:
 - Implement proper database migrations and seeders.
 
 Twig:
+
 - Leverage Twig's templating features for views.
 - Implement Twig extensions for custom functionality.
 - Follow Twig's best practices for modularity and reusability.
@@ -34,6 +37,7 @@ Twig:
 - Integrate Twig with PHP application seamlessly.
 
 CSS/SCSS:
+
 - Use external stylesheets for CSS.
 - Use SCSS for more advanced CSS features and organization.
 - Use class selectors over ID selectors for styling.
@@ -48,6 +52,7 @@ CSS/SCSS:
 - Comment complex CSS rules and document design decisions.
 
 JavaScript:
+
 - Use modern JavaScript features and syntax (ES6+).
 - Organize code using modular patterns (e.g., modules, classes).
 - Implement robust error handling and logging.
@@ -58,6 +63,7 @@ JavaScript:
 - Document complex functionality and provide usage examples.
 
 Dependencies:
+
 - PHP (latest stable version)
 - Twig (latest stable version)
 - SCSS compiler (e.g., Dart Sass, node-sass)
@@ -66,6 +72,7 @@ Dependencies:
 - npm/yarn for JavaScript dependency management
 
 Best Practices:
+
 - Use an ORM or custom data access layer for database interactions.
 - Implement the Repository pattern for data access.
 - Utilize PHP's built-in authentication and authorization features.
@@ -80,6 +87,7 @@ Best Practices:
 - Implement proper error logging and monitoring.
 
 Key Conventions:
+
 1. Follow a modular, component-based architecture.
 2. Use PHP's routing system or a minimalist routing library for defining application endpoints.
 3. Implement proper request validation using PHP's built-in validation features.

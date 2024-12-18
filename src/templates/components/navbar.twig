@@ -1,3 +1,27 @@
+{% set share_buttons = {
+  facebook: {
+    url: 'https://www.facebook.com/sharer/sharer.php?u=' ~ page.link|url_encode ~ '&title=' ~ page.title|url_encode,
+    icon: 'brand-facebook',
+    label: 'Share on Facebook'
+  },
+  twitter: {
+    url: 'https://twitter.com/intent/tweet?url=' ~ page.link|url_encode ~ '&text=' ~ page.title|url_encode,
+    icon: 'brand-x',
+    label: 'Share on X.com'
+  },
+  whatsapp: {
+    url: 'https://api.whatsapp.com/send?text=' ~ page.title|url_encode ~ '%20' ~ page.link|url_encode,
+    icon: 'brand-whatsapp',
+    label: 'Share via WhatsApp',
+    attr: 'target="_blank" rel="noopener noreferrer"'
+  },
+  email: {
+    url: 'mailto:?subject=' ~ page.title|url_encode ~ '&body=' ~ page.link|url_encode,
+    icon: 'mail',
+    label: 'Share via email'
+  }
+} %}
+
 <aside class="e-navbar">
   <header class="e-navbar__header">
     {% include 'components/avatar.twig' with {
@@ -14,8 +38,18 @@
   {# Menu #}
   {{ menu_dp(menu, user) }}
 
+  <ul class="e-navbar__social">
+    {% for button in share_buttons %}
+      <li>
+        <a class="btn is-icon" href="{{ button.url }}" {{ button.attr|default('') }} aria-label="{{ button.label }}">
+          {{ icon(button.icon) }}
+        </a>
+      </li>
+    {% endfor %}
+  </ul>
+
   {# Footer #}
-  <details class="e-navbar__footer e-flayout is-up" data-role="flayout">
+  <details class="e-navbar__footer e-flyout is-up" data-role="flyout">
     <summary>
       <span class="d-none tablet-l:inline">
         ©️ {{ site.title_short[page.lang|default(site.lang)] }}
@@ -23,7 +57,7 @@
       </span>
       {{ icon('more', 'tablet-l:d-none') }}
     </summary>
-    <div class="e-flayout__body">
+    <div class="e-flyout__body">
       <ul class="e-list is-inline">
         <li><a href="/{{ site.global_nav.en.faq.slug }}">{{ site.global_nav.en.faq.title }}</a></li>
         <li><a href="/{{ site.global_nav.en.privacy.slug }}">{{ site.global_nav.en.privacy.title }}</a></li>

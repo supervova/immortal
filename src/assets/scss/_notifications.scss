@@ -1,7 +1,7 @@
 @use 'abstracts' as *;
 
-// Flayout
-.e-flayout.has-notifications {
+// Flyout
+.e-flyout.has-notifications {
   margin-inline-end: var(--size-1p5);
 
   summary {
@@ -16,8 +16,8 @@
     touch-action: manipulation;
     transition: background var(--duration-50) var(--easing-base);
     user-select: none;
-    width: var(--height-btn);
-    height: var(--height-btn);
+    width: var(--btn-height);
+    height: var(--btn-height);
 
     @media (any-hover: hover) and (pointer: fine) {
       &:hover {
@@ -26,7 +26,7 @@
     }
   }
 
-  .e-flayout__body {
+  .e-flyout__body {
     overflow-y: auto;
     bottom: auto;
     right: 0;
@@ -35,7 +35,7 @@
     max-height: calc(100vh - #{rem(120)});
   }
 
-  &[open] .e-flayout__body {
+  &[open] .e-flyout__body {
     translate: 0;
   }
 
@@ -133,7 +133,7 @@
   padding-top: var(--size-1);
 
   .e-btn {
-    --height-btn: var(--size-5);
+    --btn-height: var(--size-5);
     border-radius: var(--border-radius-md);
   }
 }

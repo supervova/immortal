@@ -33,7 +33,7 @@
           {{ icon('sm-x-mark', 'is-sm') }}
         </button>
 
-        <details class="e-flayout has-notifications" data-role="flayout">
+        <details class="e-flyout has-notifications" data-role="flyout">
           <summary>
             {{ icon('bell') }}
             <sup
@@ -58,7 +58,7 @@
             </sup>
           </summary>
           {% if notifications is defined and notifications is not empty %}
-            <ul class="e-flayout__body e-notifications">
+            <ul class="e-flyout__body e-notifications">
               {% for notification in notifications %}
                 <li class="e-notification {{ notification.unread ? 'is-unread' : '' }}">
                   {% include 'components/avatar.twig' with {
@@ -93,13 +93,13 @@
               {% endfor %}
             </ul>
           {% else %}
-            <div class="e-flayout__body text-center">
+            <div class="e-flyout__body text-center">
               📭  You have no new notifications
             </div>
           {% endif %}
         </details>
 
-        <details class="e-flayout is-profile-menu" id="header-profile-menu" data-role="flayout">
+        <details class="e-flyout is-profile-menu" id="header-profile-menu" data-role="flyout">
           <summary>
             {% include 'components/avatar.twig' with {
                 src: user.avatar,
@@ -107,13 +107,13 @@
                 tag: 'span'
             } %}
           </summary>
-          {{ menu_dp(menu, user, 'e-flayout__body e-header__menu', 'e-header__menu-item e-menu__item', true) }}
+          {{ menu_dp(menu, user, 'e-flyout__body e-header__menu', 'e-header__menu-item e-menu__item', true) }}
         </details>
       </nav>
     {% elseif page.is_onboarding_start %}
       <p class="e-header__login-cta">
         Already have an account?
-        <button class="e-btn is-link" type="button" data-role="open-modal" data-target="signin">
+        <button class="e-btn is-link" type="button" data-role="open-modal" data-target="modal-signin">
           Sign In
         </button>
       </p>
@@ -155,7 +155,7 @@
             </a>
           </li>
           <li>
-            <button class="e-header__menu-item e-btn is-outline" data-role="open-modal" data-target="signin">
+            <button class="e-header__menu-item e-btn is-outline" data-role="open-modal" data-target="modal-signin">
               {{ icon('pixels', 'tablet:d-none') }} Sign In
             </button>
           </li>

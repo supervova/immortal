@@ -4,35 +4,35 @@
 
 ```pug
 //- Menu (dropdown)
-details.flayout(data-role='flayout')
+details.flyout(data-role='flyout')
   summary
 
-  ul.flayout__body.menu
+  ul.flyout__body.menu
     li: a.menu__link(href='') Menu Item
     li: a.menu__link(href='') Menu Item
     li: a.menu__link(href='') Menu Item
 
 //- Tiny form
-details.flayout(data-role='flayout')
+details.flyout(data-role='flyout')
   summary Toggle
 
-  div.flayout__body
+  div.flyout__body
     p
-      label(for='flayout-title') Event Title
-      input#flayout-title(name='title' type='text')
+      label(for='flyout-title') Event Title
+      input#flyout-title(name='title' type='text')
     p
-      label(for='flayout-files') Attaching files…
-      input#flayout-files(type='file' multiple)
+      label(for='flyout-files') Attaching files…
+      input#flyout-files(type='file' multiple)
     footer.buttons
       button(type='reset') Cancel
       button(type='button') Delete
       button(type='button') OK
 
 //- Hint
-details.flayout(data-role='flayout')
+details.flyout(data-role='flyout')
   summary Toggle
 
-  div.flayout__body
+  div.flyout__body
     h3 Lorem ipsum dolor sit amet
     p Consectetur adipisicing elit. Beatae reiciendis atque nobis, non laboriosam labore sapiente cumque architecto itaque, sunt cum, in fugit voluptas doloremque sint explicabo vero similique incidunt.
 ```
@@ -50,7 +50,7 @@ details.flayout(data-role='flayout')
 
 Не помню, почему мне захотелось так сделать. Но сейчас меня вариант с `details` вполне устраивает.
 
-TODO: Сделать вариант `.flayout>(button+.flayout_body)`. Потому что details невозможно превратить в трансформера — развернуть выпадашку в tab bar на мобилках. За основу взять [вариант из Diet Framework](https://codepen.io/sebdd/pen/ExjvzJP?editors=1010). Сделать разметку ролями menu и menuitem — для не обернутых в `nav` меню. На кнопку повесить [`aria-haspopup` и `aria-expanded`](https://codepen.io/pen).
+TODO: Сделать вариант `.flyout>(button+.flyout_body)`. Потому что details невозможно превратить в трансформера — развернуть выпадашку в tab bar на мобилках. За основу взять [вариант из Diet Framework](https://codepen.io/sebdd/pen/ExjvzJP?editors=1010). Сделать разметку ролями menu и menuitem — для не обернутых в `nav` меню. На кнопку повесить [`aria-haspopup` и `aria-expanded`](https://codepen.io/pen).
 
 Скрытые и показываемые по клику пользователя немодальные панели. Которые могут содержать поля ввода, кнопки, короткий текст или меню.
 

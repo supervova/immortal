@@ -425,7 +425,7 @@
 // #region
 
 @mixin menu-item() {
-  --height-btn: auto;
+  --btn-height: auto;
   border: 0;
   border-radius: var(--border-radius-base);
   background-color: transparent;
@@ -514,7 +514,7 @@
   color: $btn-color;
   font-weight: bolder;
   // Hanging characters are cropping by `overflow: hidden` and `line-height: 1`
-  line-height: var(--height-btn);
+  line-height: var(--btn-height);
   white-space: nowrap;
   // Show the overflow in Edge
   overflow: visible;
@@ -524,7 +524,7 @@
     background var(--duration-50) var(--easing-base),
     box-shadow var(--duration-50) var(--easing-base);
   max-width: 100%;
-  height: var(--height-btn);
+  height: var(--btn-height);
 
   @include label(false);
   @include button-base();

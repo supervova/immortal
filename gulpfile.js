@@ -60,8 +60,8 @@ const root = {
   src: './src',
   dest: {
     prod: './public', // для production
-    dev: './dist', // для разработки
-    assets: './public/assets', // assets всегда в public
+    dev: './dist', // папка dev сервера
+    assets: './public/assets', // общая папка assets для production и dev
   },
 };
 

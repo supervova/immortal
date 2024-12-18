@@ -1,0 +1,67 @@
+@use 'sass:map';
+@use 'abstracts' as *;
+
+:where(.e-modal.is-signin) {
+  header,
+  .e-modal__body {
+    text-align: center;
+  }
+
+  .e-icon.is-large {
+    --color-fill-icon: var(--color-bg-base);
+    --color-stroke-icon: var(--color-ink-2ry-info);
+    --width-stroke-icon: 1;
+
+    margin-block: var(--size-1);
+    width: var(--size-6);
+    height: var(--size-6);
+  }
+
+  .h3 {
+    margin-bottom: 0;
+  }
+
+  .e-form__control.is-password {
+    margin-bottom: var(--size-2);
+
+    .e-btn {
+      --btn-height: var(--size-6);
+      position: absolute;
+      bottom: 0;
+      inset-inline-end: 0;
+    }
+  }
+
+  footer {
+    flex-direction: column;
+  }
+
+  [role='separator'] {
+    background-color: var(--color-bg-base);
+    color: var(--color-ink-2ry);
+    display: inline-flex;
+    padding-inline: var(--size-2);
+    translate: 0 var(--size-4);
+    justify-content: center;
+  }
+
+  .e-buttons {
+    border-top: 1px solid var(--color-ink-border);
+    margin-top: var(--size-2);
+    padding-block: var(--size-line);
+    width: 100%;
+  }
+
+  .e-btn {
+    flex: 1;
+  }
+
+  .e-modal__cta {
+    @include text-format(body-sm);
+
+    display: flex;
+    justify-content: space-between;
+    white-space: nowrap;
+    width: 100%;
+  }
+}

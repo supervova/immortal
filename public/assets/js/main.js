@@ -85,14 +85,12 @@ var initDrawer = () => {
 };
 var drawer_default = initDrawer;
 
-// src/assets/js/flayout.js
-function initFlayouts() {
-  const flayouts = Array.from(
-    document.querySelectorAll('[data-role="flayout"]')
-  );
+// src/assets/js/flyout.js
+function initFlyouts() {
+  const flyouts = Array.from(document.querySelectorAll('[data-role="flyout"]'));
   const profileMenuId = "header-profile-menu";
   document.addEventListener("click", (event) => {
-    flayouts.forEach((el) => {
+    flyouts.forEach((el) => {
       if (el.id === profileMenuId && window.innerWidth < 768) {
         return;
       }
@@ -103,9 +101,9 @@ function initFlayouts() {
   });
   window.addEventListener("keydown", (event) => {
     if (event.key === "Esc" || event.key === "Escape") {
-      const openFlayout = document.querySelector('[data-role="flayout"][open]');
-      if (openFlayout) {
-        openFlayout.removeAttribute("open");
+      const openFlyout = document.querySelector('[data-role="flyout"][open]');
+      if (openFlyout) {
+        openFlyout.removeAttribute("open");
       }
     }
   });
@@ -322,7 +320,7 @@ var initSearchHandler = () => {
 
 // src/assets/js/main.js
 document.addEventListener("DOMContentLoaded", () => {
-  initFlayouts();
+  initFlyouts();
   modal_default();
   drawer_default();
   initSearchHandler();

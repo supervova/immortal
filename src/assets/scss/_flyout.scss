@@ -1,20 +1,20 @@
 @use 'abstracts' as *;
 
 // Container
-.e-flayout {
-  --flayout-body-background: var(--color-bg-base);
-  --flayout-body-border-radius: var(--border-radius-lg);
-  --flayout-body-border: 0;
-  --flayout-body-box-shadow: var(--box-shadow-level-02);
-  --flayout-body-color: var(--color-ink-text);
-  --flayout-body-width: var(--width-md);
+.e-flyout {
+  --flyout-body-background: var(--color-bg-base);
+  --flyout-body-border-radius: var(--border-radius-lg);
+  --flyout-body-border: 0;
+  --flyout-body-box-shadow: var(--box-shadow-level-02);
+  --flyout-body-color: var(--color-ink-text);
+  --flyout-body-width: var(--width-md);
 
   position: relative;
 }
 
 // Body animation
 // stylelint-disable-next-line selector-pseudo-element-no-unknown
-.e-flayout::details-content {
+.e-flyout::details-content {
   opacity: 0;
   transition:
     content-visibility var(--duration-200) var(--easing-base),
@@ -23,17 +23,17 @@
 }
 
 // stylelint-disable-next-line selector-pseudo-element-no-unknown
-.e-flayout[open]::details-content {
+.e-flyout[open]::details-content {
   opacity: 1;
 }
 
 // Body styling
-.e-flayout__body {
-  background-color: var(--flayout-body-background);
-  border-radius: var(--flayout-body-border-radius);
-  border: var(--flayout-body-border);
-  box-shadow: var(--flayout-body-box-shadow);
-  color: var(--flayout-body-color);
+.e-flyout__body {
+  background-color: var(--flyout-body-background);
+  border-radius: var(--flyout-body-border-radius);
+  border: var(--flyout-body-border);
+  box-shadow: var(--flyout-body-box-shadow);
+  color: var(--flyout-body-color);
   display: flex;
   flex-direction: column;
   text-align: left;
@@ -43,8 +43,8 @@
   opacity: 0;
   position: absolute;
   transition-behavior: allow-discrete;
-  width: min(100vw, var(--flayout-body-width));
-  z-index: var(--zindex-flayout);
+  width: min(100vw, var(--flyout-body-width));
+  z-index: var(--zindex-flyout);
 
   [open] & {
     opacity: 1;
@@ -62,7 +62,7 @@
 }
 
 // Summary Marker
-.e-flayout summary::after {
+.e-flyout summary::after {
   background-image: var(--icon-chevron-down);
   background-position: center;
   background-repeat: no-repeat;
@@ -74,12 +74,12 @@
   height: var(--size-icon);
 }
 
-.e-flayout[open] summary::after {
+.e-flyout[open] summary::after {
   rotate: 180deg;
 }
 
 // Share Specific Styles
-.e-flayout.is-share {
+.e-flyout.is-share {
   summary {
     border-radius: var(--border-radius-small);
     display: flex;
@@ -96,7 +96,7 @@
     }
   }
 
-  .e-flayout__body {
+  .e-flyout__body {
     bottom: var(--size-offset);
     right: calc(var(--size-offset) * -1);
     left: auto;

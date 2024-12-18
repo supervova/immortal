@@ -120,9 +120,9 @@
   background-repeat: no-repeat;
   background-position: calc(-1 * var(--size-1)) calc(-1 * var(--size-8));
   background-size: var(--bg-image-size-base);
-  box-shadow:
-    0 0 0 rem(1) var(--color-bg-base-alpha),
-    var(--box-shadow-level-03);
+  border: 0;
+  box-shadow: var(--box-shadow-level-03);
+  padding-top: var(--size-line);
   inset: 0;
   width: min(calc(100% - var(--size-4)), var(--width-md));
   height: max-content;

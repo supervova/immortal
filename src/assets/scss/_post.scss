@@ -33,7 +33,7 @@
 }
 
 .e-posts__tabs .e-btn {
-  --height-btn: var(--size-6);
+  --btn-height: var(--size-6);
 
   &[aria-selected='true'] {
     color: var(--color-ink-text);
@@ -45,7 +45,7 @@
   }
 
   @media (--laptop) {
-    --height-btn: var(--size-5);
+    --btn-height: var(--size-5);
   }
 }
 // #endregion
@@ -59,6 +59,8 @@
   border-radius: calc(var(--border-radius-md) + var(--size-2));
   box-shadow: var(--box-shadow-level-01);
   padding-bottom: var(--size-line);
+  overflow: hidden;
+  position: relative;
 }
 // #endregion
 
@@ -68,10 +70,12 @@
 // #region
 
 .e-post > header {
+  background-color: var(--color-bg-brand);
   display: flex;
   align-items: center;
   gap: var(--size-2);
   justify-content: space-between;
+  margin-bottom: var(--size-2);
   padding-block: var(--size-1);
   padding-inline: var(--size-2);
 }
@@ -93,7 +97,8 @@
   display: flex;
   flex-direction: column;
   margin: 0;
-  padding: var(--size-1);
+  padding: 0;
+  padding-inline-end: var(--size-line);
 
   > a {
     @include text-format(body-sm);
@@ -116,19 +121,39 @@
   align-items: center;
   justify-content: center;
   padding-inline: var(--size-2);
-  height: var(--size-6);
+  height: var(--size-7);
 
   &::after {
     display: none;
   }
 }
 
-.e-post__menu .e-flayout__body {
+.e-post__menu .e-flyout__body {
   width: var(--width-sm);
 }
 
 .e-post__menu .e-menu__item {
   font-size: var(--font-size-label-sm);
+}
+
+// Media posts
+
+.e-post:has(.e-post__media) > header {
+  background-color: transparent;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  padding: var(--size-4);
+}
+
+:where(.e-post:has(.e-post__media) > header) {
+  .e-post__header,
+  .e-post__menu summary {
+    background-color: var(--color-bg-base-alpha);
+    backdrop-filter: var(--backdrop-filter-blur);
+    border-radius: var(--border-radius-pill);
+  }
 }
 
 // #endregion
@@ -203,7 +228,7 @@
   }
 }
 
-:where(.repost:has(:not(img))) .repost__content {
+:where(.repost:not(:has(img))) .repost__content {
   border-top-right-radius: var(--border-radius-md);
   border-top-left-radius: var(--border-radius-md);
 }
@@ -260,7 +285,7 @@
 }
 
 .e-post__reactions .e-btn {
-  --height-btn: var(--size-4);
+  --btn-height: var(--size-4);
 
   aspect-ratio: 1;
   background-color: transparent;
@@ -300,7 +325,7 @@
   }
 }
 
-.e-post__share .e-flayout__body {
+.e-post__share .e-flyout__body {
   width: var(--width-sm);
 }
 
