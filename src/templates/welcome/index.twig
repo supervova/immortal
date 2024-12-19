@@ -68,59 +68,6 @@
 {% block body_suffix %}
   {{ parent() }}
 
-  <dialog class="e-modal is-signin" id="modal-signin">
-    <div class="e-modal__base is-small">
-      <header class="mb-2">
-        {{ icon('mail', 'is-large') }}
-        <h2 class="h3">Sign in with email</h2>
-        <p class="text-2ry">Train and control your digital person</p>
-      </header>
-      <form class="e-modal__body" action="/sign-in" novalidate>
-        <p class="e-form__control is-compact">
-          <label class="e-label is-icon" for="input-email" aria-label="Your email">
-            {{ icon('mail') }}
-          </label>
-          <input id="input-email" name="email" type="email" autocomplete="email" required placeholder="Email address">
-          <span class="e-form__error">
-            <small role="alert">Please enter a valid email address.</small>
-          </span>
-        </p>
-        <p class="e-form__control is-compact is-password">
-          <label class="e-label is-icon" for="input-password" aria-label="Your password">
-            {{ icon('lock') }}
-          </label>
-          <input id="input-password" name="password" type="password" autocomplete="off" required placeholder="Password">
-          <span class="e-form__error">
-            <small role="alert">Your password must be at least 8 characters long and include at least one letter and one number.</small>
-          </span>
-          <button class="e-btn is-icon is-ghost" type="button" aria-label="Show/hide password">
-            {{ icon('eye-slash') }}
-            {{ icon('eye', 'd-none') }}
-          </button>
-        </p>
-        <button class="e-btn is-primary w-100" type="submit" disabled>Sign in</button>
-      </form>
-      <footer>
-        <small role="separator">Or authorize with</small>
-        <div class="e-buttons">
-          <button class="e-btn is-outline" type="submit" data-action="authorization-google" aria-label="Authorize with Google" >
-            {{ icon('brand-google') }}
-          </button>
-          <button class="e-btn is-outline" type="submit" data-action="authorization-google" aria-label="Authorize with Google" >
-            {{ icon('brand-facebook') }}
-          </button>
-          <button class="e-btn is-outline" type="submit" data-action="authorization-google" aria-label="Authorize with Google" >
-            {{ icon('brand-apple') }}
-          </button>
-        </div>
-        <p class="e-modal__cta">
-          <strong> <a href="/welcome">Sign up</a></strong>
-          <a href="/recovery">Forgot password?</a>
-        </p>
-      </footer>
-    </div>
-  </dialog>
-
   <div class="e-modal is-freewall" id="freewall">
     <form class="e-modal__base is-small" id="form-confirmation" action="/welcome">
       <div class="e-modal__body">
